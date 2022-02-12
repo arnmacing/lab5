@@ -46,4 +46,4 @@ public abstract class AbstractCommand implements Command {
         return name.equals(other.name) && description.equals(other.description);
     }
 }
-}
+
