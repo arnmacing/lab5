@@ -1,20 +1,22 @@
 package commands;
 
-import Utility.CollectionManager;
+import sourse.HumanBeing;
+import utility.CollectionManager;
+import utility.HumanAsker;
 
 /**
  * Command 'add_if_max'. Adds a new element to collection if it's more than the largest.
  */
+
 public class AddElementIfMaxCommand extends AbstractCommand {
     private CollectionManager collectionManager;
-    // private
+    private HumanAsker humanAsker;
 
-    public AddElementIfMaxCommand (CollectionManager collectionManager)
-            //добавить человека
+    public AddElementIfMaxCommand (CollectionManager collectionManager, HumanAsker humanAsker)
     {
         super("add_if_max {element}", "добавить новый элемент, если его значение больше, чем у наибольшего");
         this.collectionManager = collectionManager;
-        //this.
+        this.humanAsker = humanAsker;
     }
 
     /**
@@ -23,7 +25,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String argument) {
+    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
         return false;
     }
 }

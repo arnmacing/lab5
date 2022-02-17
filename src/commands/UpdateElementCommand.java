@@ -1,6 +1,8 @@
 package commands;
 
-import Utility.CollectionManager;
+import sourse.HumanBeing;
+import utility.CollectionManager;
+import utility.HumanAsker;
 
 /**
  * Command 'update'. Updates the information about human.
@@ -8,13 +10,12 @@ import Utility.CollectionManager;
 
 public class UpdateElementCommand extends AbstractCommand {
     private CollectionManager collectionManager;
-    // private
+    private HumanAsker humanAsker;
 
-    public UpdateElementCommand(CollectionManager collectionManager) {
-        // добавить человека
+    public UpdateElementCommand(CollectionManager collectionManager, HumanAsker humanAsker) {
         super("update <ID> {element}", "обновить значение элемента коллекции по ID");
         this.collectionManager = collectionManager;
-        // this.
+        this.humanAsker = humanAsker;
     }
 
     /**
@@ -23,7 +24,7 @@ public class UpdateElementCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String argument) {
+    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
         return false;
     }
 }

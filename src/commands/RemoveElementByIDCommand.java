@@ -1,6 +1,6 @@
 package commands;
 
-import Utility.CollectionManager;
+import utility.CollectionManager;
 
 /**
  * Command 'remove_by_id'. Removes the element by its ID.
@@ -20,7 +20,7 @@ public class RemoveElementByIDCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String argument) {
+    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
         return false;
     }
 }

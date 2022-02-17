@@ -1,6 +1,6 @@
 package commands;
 
-import Utility.CollectionManager;
+import utility.CollectionManager;
 
 /**
  * Command 'clear'. Clears the collection.
@@ -20,7 +20,7 @@ public class ClearCommand extends AbstractCommand {
      * @return Command exit status.
      */
     @Override
-    public boolean execute(String argument) {
+    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
         /*
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();

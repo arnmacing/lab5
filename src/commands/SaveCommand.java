@@ -1,6 +1,6 @@
 package commands;
 
-import Utility.CollectionManager;
+import utility.CollectionManager;
 
 /**
  * Command 'save'. Saves the collection to a file.
@@ -20,7 +20,7 @@ public class SaveCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String argument) { /*
+    public boolean execute(String commandStringArgument, Object commandObjectArgument) { /*
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             collectionManager.saveCollection();
