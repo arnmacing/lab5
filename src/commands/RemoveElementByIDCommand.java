@@ -20,7 +20,7 @@ public class RemoveElementByIDCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
+    public boolean execute(String argument) {
         return false;
     }
 }

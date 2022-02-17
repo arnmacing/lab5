@@ -18,9 +18,10 @@ public class ClearCommand extends AbstractCommand {
      * Executes the command.
      *
      * @return Command exit status.
+     * @param argument
      */
     @Override
-    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
+    public boolean execute(String argument) {
         /*
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();

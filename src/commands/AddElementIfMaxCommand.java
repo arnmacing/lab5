@@ -1,6 +1,5 @@
 package commands;
 
-import sourse.HumanBeing;
 import utility.CollectionManager;
 import utility.HumanAsker;
 
@@ -22,10 +21,11 @@ public class AddElementIfMaxCommand extends AbstractCommand {
     /**
      * Executes the command.
      * @return Command exit status.
+     * @param argument
      */
 
     @Override
-    public boolean execute(String commandStringArgument, Object commandObjectArgument) {
+    public boolean execute(String argument) {
         return false;
     }
 }

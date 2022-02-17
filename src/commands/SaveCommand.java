@@ -20,7 +20,7 @@ public class SaveCommand extends AbstractCommand {
      */
 
     @Override
-    public boolean execute(String commandStringArgument, Object commandObjectArgument) { /*
+    public boolean execute(String argument) { /*
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             collectionManager.saveCollection();

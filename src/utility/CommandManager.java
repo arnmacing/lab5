@@ -3,7 +3,7 @@ package utility;
 import java.util.ArrayList;
 import java.util.List;
 
-import commands.Command;
+import commands.*;
 
 /**
  * Управление командами.
@@ -70,6 +70,10 @@ public class CommandManager {
         commands.add(serverExitCommand);
     }
 
+    public CommandManager(HelpCommand helpCommand, InfoCommand infoCommand, ShowCommand showCommand, AddCommand addCommand, UpdateElementCommand updateCommand, RemoveElementByIDCommand removeByIDCommand, ClearCommand clearCommand, SaveCommand saveCommand, ExecuteScriptCommand executeScriptCommand, ExitCommand exitCommand, InsertElementAtIndexCommand insertElementAtIndexCommand, AddElementIfMaxCommand insertAtIndexCommand, RemoveGreaterCommand removeGreaterCommand, RemoveAllByWeaponTypeCommand removeAllByWeaponTypeCommand, AverageOfMinutesOfWaitingCommand averageOfMinutesOfWaitingCommand, FilterStartsWithNameCommand filterStartsWithNameCommand) {
+
+    }
+
     /**
      * @return Список команд.
      */
@@ -83,7 +87,7 @@ public class CommandManager {
     */
 
     public boolean help(String stringArgument, Object objectArgument) {
-        if (helpCommand.execute(stringArgument, objectArgument)) {
+        if (helpCommand.execute(String argument)) {
             for (Command command : commands) {
                 ResponseOutputer.appendtable(command.getName() + " " + command.getUsage(), command.getDescription());
             }

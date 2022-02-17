@@ -112,7 +112,7 @@ public class Console {
     }
 
     /**
-     * Выводин ошибку toOut.toString() на консоль.
+     * Выводит ошибку toOut.toString() на консоль.
      * @param toOut Ошибка при печати.
      */
 
@@ -125,4 +125,12 @@ public class Console {
         return "Console (класс для обработки ввода команд)";
     }
 
+    /**
+     * Выводит toOut.toString() + \n на консоль.
+     * @param toOut Объект для печати.
+     */
+
+    public static void println(Object toOut) {
+        System.out.println(toOut);
+    }
 }

@@ -2,7 +2,6 @@ package utility;
 
 import run.App;
 import sourse.Coordinates;
-import sourse.HumanBeing;
 
 import java.util.Scanner;
 
@@ -52,6 +51,35 @@ public class HumanAsker {
     }
 
     /**
+     * Запрашивает у пользователя имя человека.
+     * @return Имя человека.
+     * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+     */
+    public String askName() throws IncorrectInputInScriptException {
+        String name;
+        while (true) {
+            try {
+                Console.println("Введите имя:");
+                Console.print(App.PS2);
+                name = userScanner.nextLine().trim();
+                if (fileMode) Console.println(name);
+                if (name.equals("")) throw new MustBeNotEmptyException(); //ошибка пустого ввода
+                break;
+            } catch (NoSuchElementException exception) { //не найдено
+                Console.printerror("Имя не распознано!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (MustBeNotEmptyException exception) {
+                Console.printerror("Имя не может быть пустым!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        }
+        return name;
+    }
+
+    /**
      * Запрашивает у пользователя координату X.
      * @return Координата Х.
      * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
@@ -89,27 +117,23 @@ public class HumanAsker {
      * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
      */
 
-    public Float askY() throws IncorrectInputInScriptException {
+    public double askY() throws IncorrectInputInScriptException { //ошибка неверного ввода в скрипте
         String strY;
-        Float y;
+        double y;
         while (true) {
             try {
-                Console.println("Введите координату Y < " + (MAX_Y+1) + ":");
+                Console.println("Введите координату Y:");
                 Console.print(App.PS2);
                 strY = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strY);
-                y = Float.parseFloat(strY);
-                if (y > MAX_Y) throw new NotInDeclaredLimitsException();
+                y = Double.parseDouble(strY);
                 break;
-            } catch (NoSuchElementException exception) {
+            } catch (NoSuchElementException exception) { //элемент не найден
                 Console.printerror("Координата Y не распознана!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (NotInDeclaredLimitsException exception) {
-                Console.printerror("Координата Y не может превышать " + MAX_Y + "!");
-                if (fileMode) throw new IncorrectInputInScriptException();
+                if (fileMode) throw new IncorrectInputInScriptException(); //ошибка неверного ввода в скрипте
             } catch (NumberFormatException exception) {
                 Console.printerror("Координата Y должна быть представлена числом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
+                if (fileMode) throw new IncorrectInputInScriptException(); //ошибка неверного ввода в скрипте
             } catch (NullPointerException | IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
@@ -131,5 +155,36 @@ public class HumanAsker {
         return new Coordinates(x, y);
     }
 
+    /**
+     * Задает пользователю вопрос.
+     * @return Ответ.
+     * @param question Вопрос.
+     * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+     */
+
+    public boolean askQuestion(String question) throws IncorrectInputInScriptException { //ошибка неверного ввода в скрипте
+        String finalQuestion = question + " (+/-):";
+        String answer;
+        while (true) {
+            try {
+                Console.println(finalQuestion);
+                Console.print(App.PS2);
+                answer = userScanner.nextLine().trim();
+                if (fileMode) Console.println(answer);
+                if (!answer.equals("+") && !answer.equals("-")) throw new NotInDeclaredLimitsException(); //выход за пределы
+                break;
+            } catch (NoSuchElementException exception) { // 'элемент не найден
+                Console.printerror("Ответ не распознан!");
+                if (fileMode) throw new IncorrectInputInScriptException(); //ошибка неверного ввода в скрипте
+            } catch (NotInDeclaredLimitsException exception) { //выход за пределы
+                Console.printerror("Ответ должен быть представлен знаками '+' или '-'!");
+                if (fileMode) throw new IncorrectInputInScriptException(); //ошибка неверного ввода в скрипте
+            } catch (IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        }
+        return (answer.equals("+")) ? true : false;
+    }
 
 }

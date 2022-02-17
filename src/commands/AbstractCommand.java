@@ -1,7 +1,7 @@
 package commands;
 
 /**
- * Abstract Command class contains Object methods, name and description.
+ * Абстрактный классc команд содержит объектные методы, имя и описание.
  */
 
 public abstract class AbstractCommand implements Command {
@@ -14,15 +14,17 @@ public abstract class AbstractCommand implements Command {
     }
 
     /**
-     * @return Name and usage way of the command.
+     * @return Имя и способ использования команды.
      */
+
     public String getName() {
         return name;
     }
 
     /**
-     * @return Description of the command.
+     * @return Описание команды.
      */
+
     public String getDescription() {
         return description;
     }
