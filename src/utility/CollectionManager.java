@@ -67,12 +67,13 @@ public class CollectionManager<T> {
      * @param id ID человека.
      * @return Человек по его ID или null, если человек не найден.
      */
-    public HumanBeing getById(Long id) {
-        for (HumanBeing human : humanCollection) {
-            if (human.getId().equals(id)) return human;
-        }
-        return null;
-    }
+//TODO
+//    public HumanBeing getById(Long id) {
+//        for (HumanBeing human : humanCollection) {
+//            if (human.getId().equals(id)) return human;
+//        }
+//        return null;
+//    }
 
     /**
      * Добавление нового человека в коллекцию.
@@ -93,33 +94,30 @@ public class CollectionManager<T> {
     /**
      * Удалить из коллекции человека, превышающего заданный.
      */
-
-    public void removeGreater(HumanBeing humanToCompare) {
-        humanCollection.removeIf(human -> human. > 0);
-    }
+//TODO
+//    public void removeGreater(HumanBeing humanToCompare) {
+//        humanCollection.removeIf(human -> human. > 0);
+//    }
 
     /**
      * Clears the collection.
      */
     public void clearCollection() {
-        marinesCollection.clear();
+        humanCollection.clear();
     }
-
-
 }
 
-/*    public int generateNextId();
-    public void sort();
-    public String getHelp();
-    public String getInfo();
-    public String show();
-    public void add(T element);
-    public void updateByID(Integer id, T newElement);
-    public void removeByID(Integer id);
-    public void clear();
-    public void save();
-    public void addIfMax(T element);
-    public void printStartsWithName(String start);
-    public boolean deserializeCollection(String json);
-*/
+//    public int generateNextId();
+//    public void sort();
+//    public String getHelp();
+//    public String getInfo();
+//    public String show();
+//    public void add(T element);
+//    public void updateByID(Integer id, T newElement);
+//    public void removeByID(Integer id);
+//    public void clear();
+//    public void save();
+//    public void addIfMax(T element);
+//    public void printStartsWithName(String start);
+//    public boolean deserializeCollection(String json);
 

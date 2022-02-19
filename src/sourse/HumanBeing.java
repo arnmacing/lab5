@@ -136,7 +136,7 @@ public class HumanBeing {
      * Method to get id
      * @return id
      */
-    public int getID() {
+    public int getId() {
         return id;
     }
 
@@ -152,16 +152,16 @@ public class HumanBeing {
      * Method to get coordinateX
      * @return coordinateX
      */
-    public Coordinates getCoordinateX() {
-        return coordinates.getX;
+    public double getCoordinateX() {
+        return coordinates.getX();
     }
 
     /**
      * Method to get coordinateY
      * @return coordinateY
      */
-    public Coordinates getCoordinateY() {
-        return coordinates.getY;
+    public double getCoordinateY() {
+        return coordinates.getY();
     }
 
     /**
