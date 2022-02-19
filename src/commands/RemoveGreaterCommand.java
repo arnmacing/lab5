@@ -35,7 +35,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
             HumanBeing humanToFind = new HumanBeing(
                     //TODO generate next id
-                collectionManager.generateNextId(),
+                Math.toIntExact(collectionManager.generateNextId()),
                 humanAsker.askName(),
                 humanAsker.askCoordinates(),
                 ZonedDateTime.now(),
@@ -53,14 +53,14 @@ public class RemoveGreaterCommand extends AbstractCommand {
             //TODO remove greater
             collectionManager.removeGreater(humanFromCollection);
             //TODO text
-            Console.println("а что писаать ну.. хуй");
+            Console.println("а что писать ну.. хуй");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
         } catch (CollectionIsEmptyException exception) {
             Console.printerror("Коллекция пуста!");
         } catch (HumanNotFoundException exception) {
-            Console.printerror("Солдата с такими характеристиками в коллекции нет!");
+            Console.printerror("Человека с такими характеристиками в коллекции нет!");
         } catch (IncorrectInputInScriptException exception) {}
         return false;
     }

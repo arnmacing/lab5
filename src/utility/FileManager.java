@@ -26,6 +26,10 @@ public class FileManager {
         return humanCollection;
     }
 
+    public void writeCollection(Collection<?> collection) {
+
+    }
+
     @Override
     public boolean equals(Object o){
         return this == o;

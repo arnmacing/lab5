@@ -4,6 +4,9 @@ import sourse.HumanBeing;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
 
 public class CollectionManager<T> {
     private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
@@ -75,6 +78,13 @@ public class CollectionManager<T> {
 //        return null;
 //    }
 
+    public HumanBeing getByValue(HumanBeing humanToFind) {
+        for (HumanBeing human : humanCollection) {
+            if (human.equals(humanToFind)) return human;
+        }
+        return null;
+    }
+
     /**
      * Добавление нового человека в коллекцию.
      */
@@ -104,6 +114,26 @@ public class CollectionManager<T> {
      */
     public void clearCollection() {
         humanCollection.clear();
+    }
+     public void removeGreater(HumanBeing humanToCompare) {
+        humanCollection.removeIf(human -> human.compareTo(humanToCompare) > 0);
+    }
+
+    /**
+     * Generates next ID. It will be (the bigger one + 1).
+     * @return Next ID.
+     */
+    public Long generateNextId() {
+        if (humanCollection.isEmpty()) return 1L;
+        return Integer.parseInt(humanCollection.last().getId() + 1L);
+    }
+
+    /**
+     * Saves the collection to file.
+     */
+    public void saveCollection() {
+            fileManager.writeCollection(humanCollection);
+            lastSaveTime = LocalDateTime.now();
     }
 }
 

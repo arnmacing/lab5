@@ -1,6 +1,7 @@
 package commands;
 
 import utility.CollectionManager;
+import utility.Console;
 import utility.FileManager;
 
 public class InfoCommand extends AbstractCommand {
@@ -10,16 +11,11 @@ public class InfoCommand extends AbstractCommand {
         this.collectionManager = this.collectionManager;
     }
 
-//    @Override
-//    public String getUsage() {
-//        return null;
-//    }
-
     @Override
     public boolean execute(String argument) {
-        System.out.println ("Инициализация: " + FileManager.lastInit);
-        System.out.println("Тип коллекции: " + collectionManager.collectionType());
-        System.out.println ("Количество элементов в коллекции: " + FileManager.humanCollection.size());
+        Console.println ("Инициализация: " + FileManager.lastInit);
+        Console.println("Тип коллекции: " + collectionManager.collectionType());
+        Console.println ("Количество элементов в коллекции: " + FileManager.humanCollection.size());
         return true;
     }
 }

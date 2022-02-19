@@ -1,6 +1,7 @@
 package commands;
 
 import utility.CommandManager;
+import utility.Console;
 
 public class HelpCommand extends AbstractCommand {
     private CommandManager commandManager;
@@ -15,7 +16,7 @@ public class HelpCommand extends AbstractCommand {
 
     @Override
     public boolean execute(String argument) {
-        System.out.println(commandManager.getCommands());
+        Console.println(commandManager.getCommands());
         return true;
     }
 }
