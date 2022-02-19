@@ -155,6 +155,125 @@ public class HumanAsker {
         return new Coordinates(x, y);
     }
 
+
+    /**
+     * Запрашивает у пользователя статус человека.
+     * @return Статус человека.
+     * @throws
+     */
+
+    public boolean askRealHero() throws .......... {
+        String strRealHero;
+        boolean realHero;
+        // в пизду
+    }
+
+    /**
+     * Запрашивает у пользователя наличие зубочистки.
+     * @return Наличие зубочистки.
+     * @throws
+     */
+
+    public boolean askHasToothpick() throws .......... {
+        String strhasHoothpick;
+        boolean hasToothpick;
+        // в пизду x2
+    }
+
+    /**
+     * Запрашиваает у пользователя скорость удара человека.
+     * @return Скорость удара человека.
+     * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+     */
+
+    public Integer askImpactSpeed() throws IncorrectInputInScriptException {
+        String strSpeed;
+        Integer speed;
+        while (true) {
+            try {
+                Console.println("Введите cкорость удара:");
+                Console.print(App.PS2);
+                strSpeed = userScanner.nextLine().trim();
+                if (fileMode) Console.println(strSpeed);
+                speed = Integer.parseInt(strSpeed);
+                if (speed == null) throw new NotInDeclaredLimitsException(); //или отдельная ошибка пустого ввода?
+                break;
+            } catch (NoSuchElementException exception) {
+                Console.printerror("Скорость удара не распознана!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NotInDeclaredLimitsException exception) {
+                Console.printerror("Скорость удара не может быть пустым вводом!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            }catch (NumberFormatException exception) {
+                Console.printerror("Cкорость удара должна быть представлена числом!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NullPointerException | IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        }
+        return speed;
+    }
+
+    /**
+     * Запрашивает у пользователя название песни.
+     * @return Название песни.
+     * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+     */
+
+    public String askSoundtrackName() throws IncorrectInputInScriptException {
+        String soundtrackName;
+        while (true) {
+            try {
+                Console.println("Введите название песни:");
+                Console.print(App.PS2);
+                soundtrackName = userScanner.nextLine().trim();
+                if (fileMode) Console.println(soundtrackName);
+                if (soundtrackName.equals("")) throw new MustBeNotEmptyException();
+                break;
+            } catch (NoSuchElementException exception) {
+                Console.printerror("Название песни не распознано!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (MustBeNotEmptyException exception) {
+                Console.printerror("Название песни не может быть пустым!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        }
+        return soundtrackName;
+    }
+
+    /**
+     * Запрашивает у пользователя количество минут ожидания.
+     * @return Количество минут ожидания.
+     * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+     */
+
+    public float askMinutesOfWaiting() throws IncorrectInputInScriptException {
+        String strMinutesOfWaiting;
+        float minutesOfWaiting;
+        while (true) {
+            try {
+                Console.println("Введите количество минут ожидания:");
+                Console.print(App.PS2);
+                strMinutesOfWaiting = userScanner.nextLine().trim();
+                if (fileMode) Console.println(strMinutesOfWaiting);
+                minutesOfWaiting = Float.parseFloat(strMinutesOfWaiting);
+            } catch (NoSuchElementException exception) {
+                Console.printerror("Количество минут ожидания не распознано!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NumberFormatException exception) {
+                Console.printerror("Количество минут ожидания должно быть представлено числом!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NullPointerException | IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        }
+        return minutesOfWaiting;
+    }
     /**
      * Задает пользователю вопрос.
      * @return Ответ.
@@ -186,5 +305,6 @@ public class HumanAsker {
         }
         return (answer.equals("+")) ? true : false;
     }
-
 }
+
+
