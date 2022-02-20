@@ -3,10 +3,10 @@ package commands;
 import utility.CollectionManager;
 import utility.Console;
 
-public class AverageofMinutesCommand extends AbstractCommand {
+public class AverageOfMinutesCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
-    public AverageofMinutesCommand(CollectionManager collectionManager) {
+    public AverageOfMinutesCommand(CollectionManager collectionManager) {
         super("Average of minutes", "вывести среднее значение поля minutesOfWaiting для всех элементов коллекции");
         this.collectionManager = collectionManager;
     }

@@ -33,8 +33,7 @@ public class App {
                     new AddElementIfMaxCommand(collectionManager, humanAsker),
                     new RemoveGreaterCommand(collectionManager, humanAsker),
                     new RemoveAllByWeaponTypeCommand(),
-                    //TODO
-                    new AverageOfMinutesOfWaitingCommand(collectionManager),
+                    new AverageOfMinutesCommand(collectionManager),
                     new FilterStartsWithNameCommand(collectionManager)
             );
 
