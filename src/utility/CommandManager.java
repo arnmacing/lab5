@@ -1,6 +1,7 @@
 package utility;
 
 import java.util.ArrayList;
+//todo нахуй нам лист?
 import java.util.List;
 
 import commands.*;
@@ -78,6 +79,7 @@ public class CommandManager {
      * @return Список команд.
      */
 
+    //todo это что...
     public List<Command> getCommands() {
         return commands;
     }
@@ -86,6 +88,7 @@ public class CommandManager {
     * Вывод информации обо всех командах.
     */
 
+    //todo ???????
 //    public boolean help(String stringArgument, Object objectArgument) {
 //        if (helpCommand.execute(String argument)) {
 //            for (Command command : commands) {
@@ -99,6 +102,7 @@ public class CommandManager {
     * Выполнение необходимых команд.
     */
 
+    //todo чистка? что за аргументы? разобраться
     public boolean info(String stringArgument, Object objectArgument) {
         return infoCommand.execute(stringArgument, objectArgument);
     }
@@ -147,8 +151,7 @@ public class CommandManager {
         return insertAtIndexCommand.execute(stringArgument, objectArgument);
     }
 
-    //TODO
     public boolean removeAllByWeaponType(String stringArgument, Object objectArgument) {
-        return removeAllByWeaponType.ex
+        return removeAllByWeaponTypeCommand.execute(stringArgument, objectArgument);
     }
 }

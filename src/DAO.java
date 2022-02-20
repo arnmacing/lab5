@@ -10,6 +10,6 @@ public interface DAO {
     HumanBeing get(int id);
     ArrayList<HumanBeing> getAll();
     int clear();
-    //JsonObject getJSONDescription();
+    JsonObject getJSONDescription();
     //void sort();
 }

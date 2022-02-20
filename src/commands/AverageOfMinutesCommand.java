@@ -1,7 +1,7 @@
 package commands;
 
-import utility.CollectionManager;
-import utility.Console;
+import utility.*;
+import exceptions.*;
 
 public class AverageOfMinutesCommand extends AbstractCommand {
     private CollectionManager collectionManager;

@@ -1,4 +1,5 @@
 package utility;
+//todo x26 exception ?? human asker
 
 import run.App;
 import sourse.*;
