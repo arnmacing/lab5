@@ -208,7 +208,7 @@ public class HumanBeing {
      * Method to get minutesOfWaiting
      * @return minutesOfWaiting
      */
-    public float getMinutesOfWaiting() {
+    public static float getMinutesOfWaiting() {
         return minutesOfWaiting;
     }
 
