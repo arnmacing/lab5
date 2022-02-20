@@ -1,11 +1,12 @@
 package utility;
 
 import exceptions.*;
-import exceptions.NotInDeclaredLimitsException;
 import run.App;
 import sourse.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.lang.IllegalStateException;
+import java.lang.NullPointerException;
 
 /**
  * Запрашивает у пользователя данные человека.
@@ -169,27 +170,41 @@ public class HumanAsker {
         String strRealHero;
         boolean realHero;
         while (true) {
-            try {Console.println("Он реальный герой или пиздит?");
+            try {
+                Console.println("Он реальный герой или пиздит?");
                 Console.println(App.PS2);
                 strRealHero = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strRealHero); //?????????????
                 if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
                     realHero = true;
                     //ошибка пустого ввода?
-                } catch (NoSuchElementException) {
-                    Console.printerror("Ответ не распознан!");
-                    if (fileMode) throw new IncorrectInputInScriptException();
-                } catch (NotInDeclaredLimitsException) {
-                    Console.printerror("Ответ не может быть пустым вводом!");
-                    if (fileMode) throw new IncorrectInputInScriptException();
-                } catch (NullPointerException | IllegalStateException exceptions) {
-                    Console.printerror("Непредвиденная ошибка!");
-                    System.exit(0);
                 }
             }
+            catch (NoSuchElementException e) {
+                Console.printerror("Ответ не распознан!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NullPointerException | IllegalStateException e) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+            /*
+            catch (NotInDeclaredLimitsException e) {
+                Console.printerror("Ответ не может быть пустым вводом!");
+                if (fileMode) throw new IncorrectInputInScriptException();
+            }
+
+            vot etot blok nichego ne vizivaet
+             */
         }
-        return realHero;
+        /*
+        return realHero; // do etogo nikogda ne doidet iz za while (true)
+
+
+         zachem method boolean tut, luchse ego sdelai void'om
+         */
         // в пизду
+
+        // etot method dolzhn chto to throw'it', pri etom on boolean, i nichego ne vikidivaet. zachem?
     }
 
     /**

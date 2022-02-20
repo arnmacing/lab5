@@ -1,5 +1,7 @@
 package commands;
 
+import exceptions.CollectionIsEmptyException;
+import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 
