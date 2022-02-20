@@ -1,14 +1,10 @@
 package utility;
 
-import exceptions.IncorrectInputInScriptException;
-import exceptions.MustBeNotEmptyException;
-import exceptions.NoSuchElementException;
+import exceptions.*;
 import exceptions.NotInDeclaredLimitsException;
 import run.App;
-import sourse.Car;
-import sourse.Coordinates;
-import sourse.WeaponType;
-
+import sourse.*;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -180,10 +176,10 @@ public class HumanAsker {
                 if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
                     realHero = true;
                     //ошибка пустого ввода?
-                } catch (NoSuchElementException exceptions) {
+                } catch (NoSuchElementException) {
                     Console.printerror("Ответ не распознан!");
                     if (fileMode) throw new IncorrectInputInScriptException();
-                } catch (NotInDeclaredLimitsException exceptions) {
+                } catch (NotInDeclaredLimitsException) {
                     Console.printerror("Ответ не может быть пустым вводом!");
                     if (fileMode) throw new IncorrectInputInScriptException();
                 } catch (NullPointerException | IllegalStateException exceptions) {
@@ -218,7 +214,7 @@ public class HumanAsker {
                 } catch (NoSuchElementException exception) {
                         Console.printerror("Ответ не распознан!");
                         if (fileMode) throw new IncorrectInputInScriptException();
-                    } catch (NotInDeclaredLimitsException exception) {
+                    } catch (MustBeNotEmptyException exception) {
                         Console.printerror("Ответ не может быть пустым вводом!");
                         if (fileMode) throw new IncorrectInputInScriptException();
                     } catch (NullPointerException | IllegalStateException exception) {
