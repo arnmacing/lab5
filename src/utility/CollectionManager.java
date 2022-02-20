@@ -21,6 +21,10 @@ public class CollectionManager<T> {
         loadCollection();
     }
 
+    /**
+     * Загружает коллекцию из файла.
+     */
+
     private void loadCollection() {
         humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
@@ -135,6 +139,10 @@ public class CollectionManager<T> {
         humanCollection.clear();
     }
 
+    /**
+     * Удаление людей, которых больше, чем выбранный.
+     * @param human Человек, с которым можно сравнить.
+     */
 
     public void removeGreater(HumanBeing human) {
         Integer impactSpeed = human.getImpactSpeed();
@@ -164,6 +172,10 @@ public class CollectionManager<T> {
             lastSaveTime = ZonedDateTime.now();
     }
 
+    /**
+     * @return Среднее значение поля minutesOfWaiting для всех элементов коллекции.
+     */
+
     public double getAverageOfMin() {
     double averageOfMin = 0;
     int n = 0;
@@ -174,18 +186,4 @@ public class CollectionManager<T> {
     return averageOfMin/n;
     }
 }
-
-//    public int generateNextId();
-//    public void sort();
-//    public String getHelp();
-//    public String getInfo();
-//    public String show();
-//    public void add(T element);
-//    public void updateByID(Integer id, T newElement);
-//    public void removeByID(Integer id);
-//    public void clear();
-//    public void save();
-//    public void addIfMax(T element);
-//    public void printStartsWithName(String start);
-//    public boolean deserializeCollection(String json);
 
