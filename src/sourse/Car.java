@@ -9,6 +9,7 @@ public class Car {
         this.cool = cool;
     }
 
+
     /**
      * @return Name of the car.
      */

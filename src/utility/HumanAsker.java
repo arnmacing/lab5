@@ -165,15 +165,28 @@ public class HumanAsker {
      */
 
 //TODO
-    public boolean askRealHero() /*throws ..........*/ {
+    public boolean askRealHero() throws IncorrectInputInScriptException {
         String strRealHero;
-        boolean realHero = false;
-        Console.println("Он реальный герой или пиздит?");
-        Console.println(App.PS2);
-        strRealHero = userScanner.nextLine().trim();
-        if (fileMode) Console.println(strRealHero); //?????????????
-        if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
-            realHero = true;
+        boolean realHero;
+        while (true) {
+            try {Console.println("Он реальный герой или пиздит?");
+                Console.println(App.PS2);
+                strRealHero = userScanner.nextLine().trim();
+                if (fileMode) Console.println(strRealHero); //?????????????
+                if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
+                    realHero = true;
+                    //ошибка пустого ввода?
+                } catch (NoSuchElementException exception) {
+                    Console.printerror("Ответ не распознан!");
+                    if (fileMode) throw new IncorrectInputInScriptException();
+                } catch (NotInDeclaredLimitsException exception) {
+                    Console.printerror("Ответ не может быть пустым вводом!");
+                    if (fileMode) throw new IncorrectInputInScriptException();
+                } catch (NullPointerException | IllegalStateException exception) {
+                    Console.printerror("Непредвиденная ошибка!");
+                    System.exit(0);
+                }
+            }
         }
         return realHero;
         // в пизду
@@ -186,16 +199,29 @@ public class HumanAsker {
      */
 
 //TODO
-    public boolean askHasToothPick() /*throws ..........*/ {
+    public boolean askHasToothPick() throws IncorrectInputInScriptException {
         String strhasHoothpick;
         boolean hasToothpick = false;
-        Console.println("Зубачистка в зубах есть? чи не?");
-        Console.println(App.PS2);
-        strhasHoothpick = userScanner.nextLine().trim();
-        if (fileMode) Console.println(strhasHoothpick); //?????????????
-        if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда")){
-            hasToothpick = true;
-        }
+        while (true) {
+            try {
+                Console.println("Зубачистка в зубах есть? чи не?");
+                Console.println(App.PS2);
+                strhasHoothpick = userScanner.nextLine().trim();
+                if (fileMode) Console.println(strhasHoothpick); //?????????????
+                if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда"))
+                    hasToothpick = true;
+                    //ошибка пустого ввода?
+                } catch (NoSuchElementException exception) {
+                        Console.printerror("Ответ не распознан!");
+                        if (fileMode) throw new IncorrectInputInScriptException();
+                    } catch (NotInDeclaredLimitsException exception) {
+                        Console.printerror("Ответ не может быть пустым вводом!");
+                        if (fileMode) throw new IncorrectInputInScriptException();
+                    } catch (NullPointerException | IllegalStateException exception) {
+                        Console.printerror("Непредвиденная ошибка!");
+                        System.exit(0);
+                    }
+                }
         return hasToothpick;
     }
 
@@ -293,30 +319,61 @@ public class HumanAsker {
         }
         return minutesOfWaiting;
     }
-    //TODO А ЧТО ПИСАТЬ БЛЯТЬ
-    public WeaponType askWeaponType() {
+
+    public WeaponType askWeaponType() throws IncorrectInputInScriptException {
         String strWeaponType;
-        WeaponType weaponType = null;
-        Console.println("Введите вид оружия:");
+        WeaponType weaponType;
+            while (true) {
+                try {
+        Console.println("Введите вид оружия:" + WeaponType.nameList());
         Console.println(App.PS2);
         strWeaponType = userScanner.nextLine().trim();
-        if (fileMode) Console.println(strWeaponType); //?????????????
-        if (strWeaponType == ("а что блять писать там дохуя будет и не опен клозед")) {
-            weaponType = WeaponType.AXE; //meme
-        }
+        if (fileMode) Console.println(strWeaponType);
+                    weaponType = WeaponType.valueOf(strWeaponType.toUpperCase());
+                    break;
+                } catch (NoSuchElementException exception) {
+                    Console.printerror("Оружие не распознано!");
+                    if (fileMode) throw new IncorrectInputInScriptException();
+                } catch (IllegalArgumentException exception) {
+                    Console.printerror("Оружия нет в списке!");
+                    if (fileMode) throw new IncorrectInputInScriptException();
+                } catch (IllegalStateException exception) {
+                    Console.printerror("Непредвиденная ошибка!");
+                    System.exit(0);
+                }
+            }
         return  weaponType;
     }
 
-    public Car askCar() {
-        String strCar;
+        /**
+         * Запрашивает у пользователя название машины.
+         * @return Название машины.
+         * @throws IncorrectInputInScriptException Если скрипт запущен и что-то идет не так.
+         */
+
+    public Car askCar() throws IncorrectInputInScriptException {
+        String name;
         Car car = null;
-        Console.println("Введите ВИД мАШИНЫ???????????????????");
+            while (true) {
+                try {
+        Console.println("Введите название машины");
         Console.println(App.PS2);
-        strCar = userScanner.nextLine().trim();
-        if (fileMode) Console.println(strCar);
-        if (strCar == "pupupu") {
-            //car = // do not understand
+        name = userScanner.nextLine().trim();
+            if (fileMode) Console.println(name);
+            if (name.equals("")) throw new MustBeNotEmptyException(); //ошибка пустого ввода
+                    car = new Car(name, true);
+            break;
+        } catch (NoSuchElementException exception) { //не найдено
+            Console.printerror("Название машины не распознано!");
+            if (fileMode) throw new IncorrectInputInScriptException();
+        } catch (MustBeNotEmptyException exception) {
+            Console.printerror("Название машины не может быть пустым!");
+            if (fileMode) throw new IncorrectInputInScriptException();
+        } catch (IllegalStateException exception) {
+            Console.printerror("Непредвиденная ошибка!");
+            System.exit(0);
         }
+            }
         return car;
     }
 
