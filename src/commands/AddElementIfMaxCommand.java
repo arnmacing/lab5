@@ -1,11 +1,8 @@
 package commands;
 
-import exceptions.IncorrectInputInScriptException;
-import exceptions.WrongAmountOfElementsException;
+import exceptions.*;
 import sourse.HumanBeing;
-import utility.CollectionManager;
-import utility.Console;
-import utility.HumanAsker;
+import utility.*;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
@@ -50,6 +47,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
                     humanAsker.askWeaponType(),
                     humanAsker.askCar()
             );
+            //TODO add e if max problem
             if (collectionManager.collectionSize() == 0 ||  humanToAdd.) ) { // условие ???????
                 collectionManager.addToCollection(humanToAdd);
                 Console.println("Человек успешно добавлен!");

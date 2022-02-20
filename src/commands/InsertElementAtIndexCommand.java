@@ -1,12 +1,8 @@
 package commands;
 
-import exceptions.CollectionIsEmptyException;
-import exceptions.HumanNotFoundException;
-import exceptions.WrongAmountOfElementsException;
+import exceptions.*;
 import sourse.HumanBeing;
-import utility.CollectionManager;
-import utility.Console;
-import utility.HumanAsker;
+import utility.*;
 
 import java.util.ArrayList;
 
@@ -33,6 +29,7 @@ public boolean execute(String argument) {
             ArrayList<HumanBeing>
 
 
+                    //todo human to insert
             if (humanToInsert == null) throw new HumanNotFoundException();
             collectionManager.removeFromCollection(humanToInsert);
             Console.println("Человек успешно добавлен!");

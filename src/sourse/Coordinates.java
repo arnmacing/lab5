@@ -29,6 +29,7 @@ public class Coordinates {
         return "X:" + x + " Y:" + y;
     }
 }
+//todo нужен нам этот овррайд или нахуй удаляем?
     /* @Override
     public int hashCode() {
        return

@@ -52,6 +52,7 @@ public class Console {
             case "":
                 break;
             case "help":
+                //todo help in console
                 if (!commandManager.help(userCommand[1])) return 1;
                 break;
             case "info":
@@ -85,15 +86,17 @@ public class Console {
                 if (!commandManager.removeGreater(userCommand[1])) return 1;
                 break;
             case "remove_all_by_weapon_type":
-                if (!commandManager.removeByWeapomType(userCommand[1])) return 1;
+                if (!commandManager.removeAllByWeaponType(userCommand[1])) return 1;
                 break;
             case "average_of_minutes_of_waiting":
+                //todo x3 - generate methods in commandManager
                 if (!commandManager.averageOfMinutesOfWaiting(userCommand[1])) return 1;
                 break;
             case "filter_starts_with_name":
                 if (!commandManager.filterStartsWithName(userCommand[1])) return 1;
                 break;
             case "exit":
+                //todo some problem in exit (console)
                 if (!commandManager.exit(userCommand[1])) return 1;
                 else return 2;
             default:
