@@ -24,10 +24,10 @@ public class UpdateElementCommand extends AbstractCommand {
         this.humanAsker = humanAsker;
     }
 
-    @Override
-    public String getUsage() {
-        return null;
-    }
+//    @Override
+//    public String getUsage() {
+//        return null;
+//    }
 
     /**
      * Выполнение команды.
@@ -40,8 +40,8 @@ public class UpdateElementCommand extends AbstractCommand {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException(); // ошибка количества элементов
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекции
 
-            Long id = Long.parseLong(argument);
-            HumanBeing humanBeing = collectionManager.getById(id);
+            int id = Integer.parseInt(argument);
+            HumanBeing humanBeing = collectionManager.getById(Math.toIntExact(id));
             if (humanBeing == null) throw new HumanNotFoundException(); // человек не найден
 
             String name = humanBeing.setName();

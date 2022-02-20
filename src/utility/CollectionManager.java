@@ -9,7 +9,8 @@ import java.util.TreeSet;
 
 
 public class CollectionManager<T> {
-    private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+    private NavigableSet<HumanBeing> humanCollection =  new TreeSet<>();
+    //private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
     private LocalDateTime lastInitTime;
     private LocalDateTime lastSaveTime;
     private FileManager fileManager;
@@ -71,12 +72,12 @@ public class CollectionManager<T> {
      * @return Человек по его ID или null, если человек не найден.
      */
 //TODO
-//    public HumanBeing getById(Long id) {
-//        for (HumanBeing human : humanCollection) {
-//            if (human.getId().equals(id)) return human;
-//        }
-//        return null;
-//    }
+    public HumanBeing getById(int id) {
+        for (HumanBeing human : humanCollection) {
+            if ((human.getId()).equals(id)) return human;
+        }
+        return null;
+    }
 
     public HumanBeing getByValue(HumanBeing humanToFind) {
         for (HumanBeing human : humanCollection) {
@@ -125,7 +126,7 @@ public class CollectionManager<T> {
      */
     public Long generateNextId() {
         if (humanCollection.isEmpty()) return 1L;
-        return Integer.parseInt(humanCollection.last().getId() + 1L);
+        return humanCollection.last().getId() + 1L;
     }
 
     /**
@@ -134,6 +135,16 @@ public class CollectionManager<T> {
     public void saveCollection() {
             fileManager.writeCollection(humanCollection);
             lastSaveTime = LocalDateTime.now();
+    }
+
+    public double getAverageOfMin() {
+    double averageOfMin = 0;
+    int n = 0;
+    for (HumanBeing human : humanCollection) {
+        averageOfMin += human.getMinutesOfWaiting();
+        n += 1;
+    }
+    return averageOfMin/n;
     }
 }
 
