@@ -61,7 +61,9 @@ public class RemoveGreaterCommand extends AbstractCommand {
             Console.printerror("Коллекция пуста!");
         } catch (HumanNotFoundException exception) {
             Console.printerror("Человека с такими характеристиками в коллекции нет!");
-        } catch (IncorrectInputInScriptException exception) {}
+        } catch (IncorrectInputInScriptException exception) {
+            Console.printerror("какой-то текст");
+        }
         return false;
     }
 }

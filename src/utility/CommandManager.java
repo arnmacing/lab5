@@ -147,6 +147,7 @@ public class CommandManager {
         return insertAtIndexCommand.execute(stringArgument, objectArgument);
     }
 
+    //TODO
     public boolean removeAllByWeaponType(String stringArgument, Object objectArgument) {
         return removeAllByWeaponType.ex
     }

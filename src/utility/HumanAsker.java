@@ -1,5 +1,9 @@
 package utility;
 
+import exceptions.IncorrectInputInScriptException;
+import exceptions.MustBeNotEmptyException;
+import exceptions.NoSuchElementException;
+import exceptions.NotInDeclaredLimitsException;
 import run.App;
 import sourse.Car;
 import sourse.Coordinates;
@@ -176,13 +180,13 @@ public class HumanAsker {
                 if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
                     realHero = true;
                     //ошибка пустого ввода?
-                } catch (NoSuchElementException exception) {
+                } catch (NoSuchElementException exceptions) {
                     Console.printerror("Ответ не распознан!");
                     if (fileMode) throw new IncorrectInputInScriptException();
-                } catch (NotInDeclaredLimitsException exception) {
+                } catch (NotInDeclaredLimitsException exceptions) {
                     Console.printerror("Ответ не может быть пустым вводом!");
                     if (fileMode) throw new IncorrectInputInScriptException();
-                } catch (NullPointerException | IllegalStateException exception) {
+                } catch (NullPointerException | IllegalStateException exceptions) {
                     Console.printerror("Непредвиденная ошибка!");
                     System.exit(0);
                 }
