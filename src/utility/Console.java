@@ -1,9 +1,9 @@
 package utility;
 
 import run.App;
-import sourse.HumanBeing;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 
@@ -29,6 +29,20 @@ public class Console {
      */
 
     public void interactiveMode() {
+        String[] userCommand = {"", ""};
+        int commandStatus;
+        try {
+            do {
+                Console.print(App.PS1);
+                userCommand = (userScanner.nextLine().trim() + " ").split(" ", 2);
+                userCommand[1] = userCommand[1].trim();
+                commandStatus = launchCommand(userCommand);
+            } while (commandStatus != 2);
+        } catch (NoSuchElementException exception) {
+            Console.printerror("Пользовательский ввод не обнаружен!");
+        } catch (IllegalStateException exception) {
+            Console.printerror("Непредвиденная ошибка!");
+        }
     }
 
     /**
@@ -37,6 +51,7 @@ public class Console {
      * @return выход.
      */
 
+    //TODO
     public int scriptMode(String argument) {
         return 1;
     }
@@ -80,6 +95,9 @@ public class Console {
                 else return scriptMode(userCommand[1]);
             case "add_if_max":
                 if (!commandManager.addIfMax(userCommand[1])) return 1;
+                break;
+            case "insert_at index":
+                if (!commandManager.insertAtIndex(userCommand[1])) return 1;
                 break;
             case "remove_greater":
                 if (!commandManager.removeGreater(userCommand[1])) return 1;
@@ -126,6 +144,14 @@ public class Console {
     }
 
     /**
+     * Выводит форматированную таблицу из 2 элементов на консоль
+     */
+
+    public static void printtable(Object element1, Object element2) {
+        System.out.printf("%-37s%-1s%n", element1, element2);
+    }
+
+    /**
      * Выводит toOut.toString() + \n на консоль.
      * @param toOut Объект для печати.
      */
@@ -134,3 +160,5 @@ public class Console {
         System.out.println(toOut);
     }
 }
+
+

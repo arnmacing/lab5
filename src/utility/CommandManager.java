@@ -83,72 +83,94 @@ public class CommandManager {
     }
 
     /**
-    * Вывод информации обо всех командах.
-    */
+     * Выводит информацию обо всех командах.
+     * @param argument Аргумент.
+     * @return Статус выхода команды.
+     */
 
-//    public boolean help(String stringArgument, Object objectArgument) {
-//        if (helpCommand.execute(String argument)) {
-//            for (Command command : commands) {
-//                ResponseOutputer.appendtable(command.getName() + " " + command.getUsage(), command.getDescription());
-//            }
-//            return true;
-//        } else return false;
-//    }
+    public boolean help(String argument) {
+        if (helpCommand.execute(argument)) {
+            for (Command command : commands) {
+                Console.printtable(command.getName(), command.getDescription());
+            }
+            return true;
+        } else return false;
+    }
+
+    /**
+     * Выводит сообщение о том, что команда не найдена.
+     * @param command Команда, которая не найдена.
+     * @return Статус выхода команды.
+     */
+
+    public boolean noSuchCommand(String command) {
+        Console.println("Команда '" + command + "' не найдена. Наберите 'help' для справки.");
+        return false;
+    }
 
     /**
     * Выполнение необходимых команд.
+     * @param argument Аргумент.
+     * @return Статус выхода команды.
     */
 
-    public boolean info(String stringArgument, Object objectArgument) {
-        return infoCommand.execute(stringArgument, objectArgument);
+    public boolean info(String argument) {
+        return infoCommand.execute(argument);
     }
 
-    public boolean show(String stringArgument, Object objectArgument) {
-        return showCommand.execute(stringArgument, objectArgument);
+    public boolean show(String argument) {
+        return showCommand.execute(argument);
     }
 
-    public boolean add(String stringArgument, Object objectArgument) {
-        return addCommand.execute(stringArgument, objectArgument);
+    public boolean add(String argument) {
+        return addCommand.execute(argument);
     }
 
-    public boolean update(String stringArgument, Object objectArgument) {
-        return updateCommand.execute(stringArgument, objectArgument);
+    public boolean update(String argument) {
+        return updateCommand.execute(argument);
     }
 
-    public boolean removeByID(String stringArgument, Object objectArgument) {
-        return removeByIDCommand.execute(stringArgument, objectArgument);
+    public boolean removeByID(String argument) {
+        return removeByIDCommand.execute(argument);
     }
 
-    public boolean clear(String stringArgument, Object objectArgument) {
-        return clearCommand.execute(stringArgument, objectArgument);
+    public boolean clear(String argument) {
+        return clearCommand.execute(argument);
     }
 
-    public boolean save(String stringArgument, Object objectArgument) {
-        return saveCommand.execute(stringArgument, objectArgument);
+    public boolean save(String argument) {
+        return saveCommand.execute(argument);
     }
 
-    public boolean exit(String stringArgument, Object objectArgument) {
-        return exitCommand.execute(stringArgument, objectArgument);
+    public boolean exit(String argument) {
+        return exitCommand.execute(argument);
     }
 
-    public boolean executeScript(String stringArgument, Object objectArgument) {
-        return executeScriptCommand.execute(stringArgument, objectArgument);
+    public boolean executeScript(String argument) {
+        return executeScriptCommand.execute(argument);
     }
 
-    public boolean addIfMax(String stringArgument, Object objectArgument) {
-        return addIfMaxCommand.execute(stringArgument, objectArgument);
+    public boolean addIfMax(String argument) {
+        return addIfMaxCommand.execute(argument);
     }
 
-    public boolean removeGreater(String stringArgument, Object objectArgument) {
-        return removeGreaterCommand.execute(stringArgument, objectArgument);
+    public boolean removeGreater(String argument) {
+        return removeGreaterCommand.execute(argument);
     }
 
-    public boolean insertAtIndex(String stringArgument, Object objectArgument) {
-        return insertAtIndexCommand.execute(stringArgument, objectArgument);
+    public boolean insertAtIndex(String argument) {
+        return insertAtIndexCommand.execute(argument);
     }
 
-    //TODO
-    public boolean removeAllByWeaponType(String stringArgument, Object objectArgument) {
-        return removeAllByWeaponType.ex
+    public boolean removeByWeapomType(String argument) {
+        return removeAllByWeaponTypeCommand.execute(argument);
+    }
+
+    public boolean averageOfMinutesOfWaiting(String argument) {
+        return averageOfMinutesOfWaitingCommand.execute(argument);
+    }
+
+    public boolean filterStartsWithName(String argument){
+        return filterStartsWithNameCommand.execute(argument);
     }
 }
