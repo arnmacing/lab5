@@ -1,13 +1,8 @@
 package utility;
 
-import exceptions.IncorrectInputInScriptException;
-import exceptions.MustBeNotEmptyException;
-import exceptions.NoSuchElementException;
-import exceptions.NotInDeclaredLimitsException;
 import run.App;
-import sourse.Car;
-import sourse.Coordinates;
-import sourse.WeaponType;
+import sourse.*;
+import exceptions.*;
 
 import java.util.Scanner;
 
