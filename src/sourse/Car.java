@@ -11,14 +11,14 @@ public class Car {
 
 
     /**
-     * @return Name of the car.
+     * @return Название машины.
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return Cool car.
+     * @return Крутая машина - ДА, ПОТОМУ ЧТО ЭТО ГТА.
      */
 
     public boolean checkCool() {

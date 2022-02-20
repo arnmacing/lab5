@@ -1,9 +1,10 @@
 package commands;
 
 import utility.CollectionManager;
+import utility.Console;
 
 /**
- * Command 'clear'. Clears the collection.
+ * Команда 'clear'. Очищает коллекцию.
  */
 
 public class ClearCommand extends AbstractCommand {
@@ -15,14 +16,13 @@ public class ClearCommand extends AbstractCommand {
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Command exit status.
+     * Выполнение команды.
+     * @return Статус выхода из команды.
      * @param argument
      */
+
     @Override
     public boolean execute(String argument) {
-        /*
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             collectionManager.clearCollection();
@@ -30,7 +30,7 @@ public class ClearCommand extends AbstractCommand {
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
-        } */
+        }
         return false;
     }
 }
