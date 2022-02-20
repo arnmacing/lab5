@@ -1,6 +1,9 @@
 package sourse;
 
-public class HumanBeing {
+import java.util.Comparator;
+import java.util.Objects;
+
+public class HumanBeing implements Comparable<HumanBeing> {
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -9,7 +12,7 @@ public class HumanBeing {
     private Boolean hasToothpick; //Поле не может быть null
     private Integer impactSpeed; //Поле не может быть null
     private String soundtrackName; //Поле не может быть null
-    private float minutesOfWaiting;
+    private static float minutesOfWaiting;
     private WeaponType weaponType; //Поле не может быть null
     private Car car; //Поле не может быть null
 
@@ -238,6 +241,30 @@ public class HumanBeing {
         return string;
     }
 
+<<<<<<< HEAD
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HumanBeing that = (HumanBeing) o;
+        return id == that.id && Objects.equals(name, that.name) && Objects.equals(coordinates, that.coordinates) && Objects.equals(creationDate, that.creationDate) && Objects.equals(realHero, that.realHero) && Objects.equals(hasToothpick, that.hasToothpick) && Objects.equals(impactSpeed, that.impactSpeed) && Objects.equals(soundtrackName, that.soundtrackName) && weaponType == that.weaponType && Objects.equals(car, that.car);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, coordinates, creationDate, realHero, hasToothpick, impactSpeed, soundtrackName, weaponType, car);
+    }
+
+
+    @Override
+    public int compareTo(HumanBeing human) {
+        return Integer.compare(impactSpeed, human.impactSpeed);
+    }
+
+
+
+
     public Coordinates getCoordinates() { return coordinates;
     }
+
 }

@@ -2,17 +2,16 @@ package utility;
 
 import sourse.HumanBeing;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.NavigableSet;
-import java.util.TreeSet;
+
 
 
 public class CollectionManager<T> {
-    private NavigableSet<HumanBeing> humanCollection =  new TreeSet<>();
-    //private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
-    private LocalDateTime lastInitTime;
-    private LocalDateTime lastSaveTime;
+    private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+    private ZonedDateTime lastInitTime;
+    private ZonedDateTime lastSaveTime;
     private FileManager fileManager;
 
     public CollectionManager(FileManager fileManager) {
@@ -25,7 +24,7 @@ public class CollectionManager<T> {
 
     private void loadCollection() {
         humanCollection = fileManager.readCollection();
-        lastInitTime = LocalDateTime.now();
+        lastInitTime = ZonedDateTime.now();
     }
 
     /**
@@ -33,14 +32,14 @@ public class CollectionManager<T> {
      */
 
     public ArrayList<HumanBeing> getCollection() {
-        return humanCollection;
+        return (ArrayList<HumanBeing>) humanCollection;
     }
 
     /**
      * @return Время последней инициализации или null, если инициализации не было.
      */
 
-    public LocalDateTime getLastInitTime() {
+    public ZonedDateTime getLastInitTime() {
         return lastInitTime;
     }
 
@@ -48,7 +47,7 @@ public class CollectionManager<T> {
      * @return Время последнего сохранения или null, если сохранения не было.
      */
 
-    public LocalDateTime getLastSaveTime() {
+    public ZonedDateTime getLastSaveTime() {
         return lastSaveTime;
     }
 
@@ -73,11 +72,11 @@ public class CollectionManager<T> {
      */
 
 
-    public HumanBeing getById(Long id) {
+    public HumanBeing getById(int id) {
         for (HumanBeing human : humanCollection) {
-        if (human.getId().equals(id)) return human;
+            if (human.equals(id)) return human;
         }
-    return null;
+        return null;
     }
 
     public HumanBeing getByValue(HumanBeing humanToFind) {
@@ -123,10 +122,6 @@ public class CollectionManager<T> {
     /**
      * Удалить из коллекции человека, превышающего заданный.
      */
-//TODO
-//    public void removeGreater(HumanBeing humanToCompare) {
-//        humanCollection.removeIf(human -> human. > 0);
-//    }
 
     /**
      * Clears the collection.
@@ -134,8 +129,15 @@ public class CollectionManager<T> {
     public void clearCollection() {
         humanCollection.clear();
     }
-     public void removeGreater(HumanBeing humanToCompare) {
-        humanCollection.removeIf(human -> human.compareTo(humanToCompare) > 0);
+
+
+    public void removeGreater(HumanBeing human) {
+        Integer impactSpeed = human.getImpactSpeed();
+        for(HumanBeing human1:humanCollection){
+            if (human1.getImpactSpeed() > impactSpeed){
+                humanCollection.remove(human1);
+            }
+        }
     }
 
     /**
@@ -144,7 +146,7 @@ public class CollectionManager<T> {
      */
     public Long generateNextId() {
         if (humanCollection.isEmpty()) return 1L;
-        return humanCollection.last().getId() + 1L;
+        return humanCollection.getId() + 1L;
     }
 
     /**
@@ -152,7 +154,7 @@ public class CollectionManager<T> {
      */
     public void saveCollection() {
             fileManager.writeCollection(humanCollection);
-            lastSaveTime = LocalDateTime.now();
+            lastSaveTime = ZonedDateTime.now();
     }
 
     public double getAverageOfMin() {

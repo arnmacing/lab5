@@ -36,8 +36,10 @@ public class UpdateElementCommand extends AbstractCommand {
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекции
 
             int id = Integer.parseInt(argument);
+
             HumanBeing oldHuman = collectionManager.getById(id);
             if (oldHuman == null) throw new HumanNotFoundException(); // человек не найден
+
 
             String name = oldHuman.getName();
             Coordinates coordinates = oldHuman.getCoordinates();

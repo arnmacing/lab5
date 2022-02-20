@@ -5,16 +5,40 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.ArrayList;
+//import com.google.gson.Gson;
+//import com.google.gson.reflect.TypeToken;
+//import com.google.gson.JsonParseException;
 
 public class FileManager {
-     public static java.util.Date lastInit;
-     public static ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+      //private Gson gson = new Gson();
+      private String envVariable;
+      public static java.util.Date lastInit;
+      public static ArrayList<HumanBeing> humanCollection = new ArrayList<>();
 
     /**
      * Считывание коллекции из файла.
+     * @return
      */
 
     public ArrayList<HumanBeing> readCollection() {
+        if (System.getenv().get(envVariable) != null) {
+            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(envVariable)))) {
+                ArrayList<HumanBeing> collection;
+                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
+                collection = gson.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
+                Console.println("Коллекция успешна загружена!");
+                return collection;
+            } catch (FileNotFoundException exception) {
+                Console.printerror("Загрузочный файл не найден!");
+            } catch (NoSuchElementException exception) {
+                Console.printerror("Загрузочный файл пуст!");
+//            } catch (JsonParseException | NullPointerException exception) {
+//                Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
+            } catch (IllegalStateException exception) {
+                Console.printerror("Непредвиденная ошибка!");
+                System.exit(0);
+            }
+        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
         return new ArrayList<HumanBeing>();
     }
 

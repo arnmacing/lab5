@@ -1,44 +1,53 @@
 package commands;
 
+import java.time.ZonedDateTime;
+
+import sourse.HumanBeing;
+import exceptions.IncorrectInputInScriptException;
+import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
+import utility.Console;
 import utility.HumanAsker;
 
+/**
+ * Command 'add'. Adds a new element to collection.
+ */
 public class AddCommand extends AbstractCommand {
-    public AddCommand() {
-        super("Add", "добавить новый элемент в коллекцию");
-    }
-//    public AddCommand(CollectionManager collectionManager, HumanAsker humanAsker) {
-//
-//    }
-//    @Override
-//    public boolean execute(String stringArgument, Object objectArgument) {
-//        try {
-//            if (!stringArgument.isEmpty() || objectArgument == null) throw new WrongAmountOfElementsException();
-//            HumanRaw humanRaw = (HumanRaw) objectArgument;
-//            collectionManager.addToCollection(new SpaceMarine(
-//                    collectionManager.generateNextId(),
-//                    marineRaw.getName(),
-//                    marineRaw.getCoordinates(),
-//                    LocalDateTime.now(),
-//                    marineRaw.getHealth(),
-//                    marineRaw.getCategory(),
-//                    marineRaw.getWeaponType(),
-//                    marineRaw.getMeleeWeapon(),
-//                    marineRaw.getChapter()
-//            ));
-//            ResponseOutputer.appendln("Солдат успешно добавлен!");
-//            return true;
-//        } catch (WrongAmountOfElementsException exception) {
-//            ResponseOutputer.appendln("Использование: '" + getName() + "'");
-//        } catch (ClassCastException exception) {
-//            ResponseOutputer.appenderror("Переданный клиентом объект неверен!");
-//        }
-//        return false;
-//    }
+    private CollectionManager collectionManager;
+    private HumanAsker humanAsker;
 
+    public AddCommand(CollectionManager collectionManager, HumanAsker humanAsker) {
+        super("add {element}", "добавить новый элемент в коллекцию");
+        this.collectionManager = collectionManager;
+        this.humanAsker = humanAsker;
+    }
+
+    /**
+     * Executes the command.
+     * @return Command exit status.
+     */
     @Override
     public boolean execute(String argument) {
+        try {
+            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            collectionManager.addToCollection(new HumanBeing(
+                    Math.toIntExact(collectionManager.generateNextId()),
+                humanAsker.askName(),
+                humanAsker.askCoordinates(),
+                ZonedDateTime.now(),
+                humanAsker.askRealHero(),
+                humanAsker.askHasToothPick(),
+                humanAsker.askImpactSpeed(),
+                humanAsker.askSoundtrackName(),
+                humanAsker.askMinutesOfWaiting(),
+                humanAsker.askWeaponType(),
+                humanAsker.askCar()
+            ));
+            Console.println("Солдат успешно добавлен!");
+            return true;
+        } catch (WrongAmountOfElementsException exception) {
+            Console.println("Использование: '" + getName() + "'");
+        } catch (IncorrectInputInScriptException exception) {}
         return false;
     }
 }
-
