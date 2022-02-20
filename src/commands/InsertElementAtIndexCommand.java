@@ -1,5 +1,8 @@
 package commands;
 
+import exceptions.CollectionIsEmptyException;
+import exceptions.HumanNotFoundException;
+import exceptions.WrongAmountOfElementsException;
 import sourse.HumanBeing;
 import utility.CollectionManager;
 import utility.Console;

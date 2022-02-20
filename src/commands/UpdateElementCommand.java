@@ -1,5 +1,9 @@
 package commands;
 
+import exceptions.CollectionIsEmptyException;
+import exceptions.HumanNotFoundException;
+import exceptions.IncorrectInputInScriptException;
+import exceptions.WrongAmountOfElementsException;
 import sourse.Car;
 import sourse.Coordinates;
 import sourse.HumanBeing;
@@ -86,7 +90,7 @@ public class UpdateElementCommand extends AbstractCommand {
             Console.printerror("Коллекция пуста!");
         } catch (NumberFormatException exception) {
             Console.printerror("ID должен быть представлен числом!");
-        } catch (MarineNotFoundException exception) {
+        } catch (HumanNotFoundException exception) {
             Console.printerror("Солдата с таким ID в коллекции нет!");
         } catch (IncorrectInputInScriptException exception) {}
         return false;

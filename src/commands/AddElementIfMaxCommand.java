@@ -1,5 +1,7 @@
 package commands;
 
+import exceptions.IncorrectInputInScriptException;
+import exceptions.WrongAmountOfElementsException;
 import sourse.HumanBeing;
 import utility.CollectionManager;
 import utility.Console;

@@ -241,7 +241,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
         return string;
     }
 
-<<<<<<< HEAD
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -260,8 +260,6 @@ public class HumanBeing implements Comparable<HumanBeing> {
     public int compareTo(HumanBeing human) {
         return Integer.compare(impactSpeed, human.impactSpeed);
     }
-
-
 
 
     public Coordinates getCoordinates() { return coordinates;
