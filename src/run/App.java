@@ -29,10 +29,10 @@ public class App {
                     new SaveCommand(collectionManager),
                     new ExecuteScriptCommand(),
                     new ExitCommand(),
-                    new InsertElementAtIndexCommand(),
+                    new InsertElementAtIndexCommand(collectionManager, humanAsker),
                     new AddElementIfMaxCommand(collectionManager, humanAsker),
                     new RemoveGreaterCommand(collectionManager, humanAsker),
-                    new RemoveAllByWeaponTypeCommand(),
+                    new RemoveAllByWeaponTypeCommand(collectionManager),
                     new AverageOfMinutesCommand(collectionManager),
                     new FilterStartsWithNameCommand(collectionManager)
             );
