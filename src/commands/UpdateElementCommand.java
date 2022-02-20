@@ -41,7 +41,7 @@ public class UpdateElementCommand extends AbstractCommand {
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекц
           
             int id = Integer.parseInt(argument);
-            HumanBeing humanBeing = collectionManager.getById(Math.toIntExact(id));
+            HumanBeing humanBeing = collectionManager.getById(id);
             if (humanBeing == null) throw new HumanNotFoundException(); // человек не найден
 
             String name = oldHuman.setName();
