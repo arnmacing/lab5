@@ -4,6 +4,9 @@ import sourse.HumanBeing;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+
 
 public class CollectionManager<T> {
     private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
@@ -67,9 +70,17 @@ public class CollectionManager<T> {
      * @param id ID человека.
      * @return Человек по его ID или null, если человек не найден.
      */
-    public HumanBeing getById(Long id) {
+//TODO
+//    public HumanBeing getById(Long id) {
+//        for (HumanBeing human : humanCollection) {
+//            if (human.getId().equals(id)) return human;
+//        }
+//        return null;
+//    }
+
+    public HumanBeing getByValue(HumanBeing humanToFind) {
         for (HumanBeing human : humanCollection) {
-            if (human.getId().equals(id)) return human;
+            if (human.equals(humanToFind)) return human;
         }
         return null;
     }
@@ -93,33 +104,50 @@ public class CollectionManager<T> {
     /**
      * Удалить из коллекции человека, превышающего заданный.
      */
-
-    public void removeGreater(HumanBeing humanToCompare) {
-        humanCollection.removeIf(human -> human. > 0);
-    }
+//TODO
+//    public void removeGreater(HumanBeing humanToCompare) {
+//        humanCollection.removeIf(human -> human. > 0);
+//    }
 
     /**
      * Clears the collection.
      */
     public void clearCollection() {
-        marinesCollection.clear();
+        humanCollection.clear();
+    }
+     public void removeGreater(HumanBeing humanToCompare) {
+        humanCollection.removeIf(human -> human.compareTo(humanToCompare) > 0);
     }
 
+    /**
+     * Generates next ID. It will be (the bigger one + 1).
+     * @return Next ID.
+     */
+    public Long generateNextId() {
+        if (humanCollection.isEmpty()) return 1L;
+        return Integer.parseInt(humanCollection.last().getId() + 1L);
+    }
 
+    /**
+     * Saves the collection to file.
+     */
+    public void saveCollection() {
+            fileManager.writeCollection(humanCollection);
+            lastSaveTime = LocalDateTime.now();
+    }
 }
 
-/*    public int generateNextId();
-    public void sort();
-    public String getHelp();
-    public String getInfo();
-    public String show();
-    public void add(T element);
-    public void updateByID(Integer id, T newElement);
-    public void removeByID(Integer id);
-    public void clear();
-    public void save();
-    public void addIfMax(T element);
-    public void printStartsWithName(String start);
-    public boolean deserializeCollection(String json);
-*/
+//    public int generateNextId();
+//    public void sort();
+//    public String getHelp();
+//    public String getInfo();
+//    public String show();
+//    public void add(T element);
+//    public void updateByID(Integer id, T newElement);
+//    public void removeByID(Integer id);
+//    public void clear();
+//    public void save();
+//    public void addIfMax(T element);
+//    public void printStartsWithName(String start);
+//    public boolean deserializeCollection(String json);
 

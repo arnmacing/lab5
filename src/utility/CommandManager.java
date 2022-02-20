@@ -86,14 +86,14 @@ public class CommandManager {
     * Вывод информации обо всех командах.
     */
 
-    public boolean help(String stringArgument, Object objectArgument) {
-        if (helpCommand.execute(String argument)) {
-            for (Command command : commands) {
-                ResponseOutputer.appendtable(command.getName() + " " + command.getUsage(), command.getDescription());
-            }
-            return true;
-        } else return false;
-    }
+//    public boolean help(String stringArgument, Object objectArgument) {
+//        if (helpCommand.execute(String argument)) {
+//            for (Command command : commands) {
+//                ResponseOutputer.appendtable(command.getName() + " " + command.getUsage(), command.getDescription());
+//            }
+//            return true;
+//        } else return false;
+//    }
 
     /**
     * Выполнение необходимых команд.

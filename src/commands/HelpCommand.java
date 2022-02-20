@@ -1,17 +1,22 @@
 package commands;
 
+import utility.CommandManager;
+import utility.Console;
+
 public class HelpCommand extends AbstractCommand {
+    private CommandManager commandManager;
     public HelpCommand() {
         super("help", "вывести справку по доступным командам");
     }
 
-    @Override
-    public String getUsage() {
-        return null;
-    }
+//    @Override
+//    public String getUsage() {
+//        return null;
+//    }
 
     @Override
     public boolean execute(String argument) {
-        return false;
+        Console.println(commandManager.getCommands());
+        return true;
     }
 }

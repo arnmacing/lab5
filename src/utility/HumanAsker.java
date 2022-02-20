@@ -1,7 +1,9 @@
 package utility;
 
 import run.App;
+import sourse.Car;
 import sourse.Coordinates;
+import sourse.WeaponType;
 
 import java.util.Scanner;
 
@@ -162,9 +164,18 @@ public class HumanAsker {
      * @throws
      */
 
-    public boolean askRealHero() throws .......... {
+//TODO
+    public boolean askRealHero() /*throws ..........*/ {
         String strRealHero;
-        boolean realHero;
+        boolean realHero = false;
+        Console.println("Он реальный герой или пиздит?");
+        Console.println(App.PS2);
+        strRealHero = userScanner.nextLine().trim();
+        if (fileMode) Console.println(strRealHero); //?????????????
+        if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
+            realHero = true;
+        }
+        return realHero;
         // в пизду
     }
 
@@ -174,10 +185,18 @@ public class HumanAsker {
      * @throws
      */
 
-    public boolean askHasToothpick() throws .......... {
+//TODO
+    public boolean askHasToothPick() /*throws ..........*/ {
         String strhasHoothpick;
-        boolean hasToothpick;
-        // в пизду x2
+        boolean hasToothpick = false;
+        Console.println("Зубачистка в зубах есть? чи не?");
+        Console.println(App.PS2);
+        strhasHoothpick = userScanner.nextLine().trim();
+        if (fileMode) Console.println(strhasHoothpick); //?????????????
+        if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда")){
+            hasToothpick = true;
+        }
+        return hasToothpick;
     }
 
     /**
@@ -274,6 +293,33 @@ public class HumanAsker {
         }
         return minutesOfWaiting;
     }
+    //TODO А ЧТО ПИСАТЬ БЛЯТЬ
+    public WeaponType askWeaponType() {
+        String strWeaponType;
+        WeaponType weaponType = null;
+        Console.println("Введите вид оружия:");
+        Console.println(App.PS2);
+        strWeaponType = userScanner.nextLine().trim();
+        if (fileMode) Console.println(strWeaponType); //?????????????
+        if (strWeaponType == ("а что блять писать там дохуя будет и не опен клозед")) {
+            weaponType = WeaponType.AXE; //meme
+        }
+        return  weaponType;
+    }
+
+    public Car askCar() {
+        String strCar;
+        Car car = null;
+        Console.println("Введите ВИД мАШИНЫ???????????????????");
+        Console.println(App.PS2);
+        strCar = userScanner.nextLine().trim();
+        if (fileMode) Console.println(strCar);
+        if (strCar == "pupupu") {
+            //car = // do not understand
+        }
+        return car;
+    }
+
     /**
      * Задает пользователю вопрос.
      * @return Ответ.

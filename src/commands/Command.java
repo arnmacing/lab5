@@ -7,6 +7,5 @@ package commands;
 public interface Command {
     String getDescription();
     String getName();
-    String getUsage();
     boolean execute(String argument);
 }
