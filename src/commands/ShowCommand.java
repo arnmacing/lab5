@@ -9,10 +9,6 @@ public class ShowCommand extends AbstractCommand {
 
     }
 
-//    @Override
-//    public String getUsage() {
-//        return null;
-//    }
 
     @Override
     public boolean execute(String argument) {

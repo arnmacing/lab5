@@ -1,16 +1,8 @@
 package commands;
 
-import exceptions.CollectionIsEmptyException;
-import exceptions.HumanNotFoundException;
-import exceptions.IncorrectInputInScriptException;
-import exceptions.WrongAmountOfElementsException;
-import sourse.Car;
-import sourse.Coordinates;
-import sourse.HumanBeing;
-import sourse.WeaponType;
-import utility.CollectionManager;
-import utility.Console;
-import utility.HumanAsker;
+import exceptions.*;
+import sourse.*;
+import utility.*;
 import java.time.ZonedDateTime;
 
 /**

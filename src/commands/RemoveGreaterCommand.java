@@ -3,13 +3,8 @@ package commands;
 import java.time.ZonedDateTime;
 
 import sourse.HumanBeing;
-import exceptions.CollectionIsEmptyException;
-import exceptions.IncorrectInputInScriptException;
-import exceptions.HumanNotFoundException;
-import exceptions.WrongAmountOfElementsException;
-import utility.CollectionManager;
-import utility.Console;
-import utility.HumanAsker;
+import exceptions.*;
+import utility.*;
 
 /**
  * Command 'remove_greater'. Removes elements greater than user entered.
@@ -50,9 +45,8 @@ public class RemoveGreaterCommand extends AbstractCommand {
             //TODO get by value
             HumanBeing humanFromCollection = collectionManager.getByValue(humanToFind);
             if (humanFromCollection == null) throw new HumanNotFoundException();
-            //TODO remove greater
             collectionManager.removeGreater(humanFromCollection);
-            //TODO text
+            //TODO text to console
             Console.println("а что писать ну.. хуй");
             return true;
         } catch (WrongAmountOfElementsException exception) {
@@ -62,6 +56,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
         } catch (HumanNotFoundException exception) {
             Console.printerror("Человека с такими характеристиками в коллекции нет!");
         } catch (IncorrectInputInScriptException exception) {
+            //todo text 2 to console
             Console.printerror("какой-то текст");
         }
         return false;

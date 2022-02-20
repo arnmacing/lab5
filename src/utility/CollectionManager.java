@@ -158,9 +158,10 @@ public class CollectionManager<T> {
      * @return Cледующий ID.
      */
 
-    public Long generateNextId() {
-        if (humanCollection.isEmpty()) return 1L;
-        return humanCollection.getId() + 1L;
+    //TODO getId() wtf why dont u work
+    public int generateNextId() {
+        if (humanCollection.isEmpty()) return 1;
+        return humanCollection.getId() + 1;
     }
 
     /**

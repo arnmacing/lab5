@@ -1,9 +1,10 @@
 import sourse.HumanBeing;
 import utility.HumanAsker;
-
+//todo написать dao & update collection manager)))))0
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.json.*;
 
 /**
@@ -28,10 +29,10 @@ class DAOHumanBeign implements DAO {
         JsonArray dragons = description.getJsonArray("elements");
 
         for (int i = 0; i < description.getInt("size"); ++i)
-            collection.add(new Dragon(dragons.getJsonObject(i)));
+            humanCcollection.add(new Dragon(dragons.getJsonObject(i)));
 
         int maxId = -1;
-        for(Dragon d: collection)
+        for(Dragon d: humanCcollection)
             maxId = d.getId() > maxId?d.getId():maxId;
 
         availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
@@ -52,7 +53,7 @@ class DAOHumanBeign implements DAO {
      * */
     @Override
     public int update(int id, HumanAsker properties) {
-        for(Dragon dragon1 : collection){
+        for(Dragon dragon1 : humanCcollection){
             if (id == dragon1.getId()) {
                 dragon1.update(properties);
                 return 0;
@@ -66,7 +67,7 @@ class DAOHumanBeign implements DAO {
      * */
     @Override
     public int delete(int id) {
-        if (collection.removeIf(dragon -> dragon.getId() == id))
+        if (humanCcollection.removeIf(dragon -> dragon.getId() == id))
             return 0;
         return -1;
     }
@@ -77,7 +78,7 @@ class DAOHumanBeign implements DAO {
      * */
     @Override
     public Dragon get(int id) {
-        for(Dragon dragon : collection){
+        for(Dragon dragon : humanCcollection){
             if (dragon.getId() == id) {
                 return dragon;
             }
@@ -89,9 +90,9 @@ class DAOHumanBeign implements DAO {
      * @return outputCollection - копия коллекции
      * */
     @Override
-    public List<Dragon> getAll(){
-        List<Dragon> outputCollection = new LinkedList<>();
-        outputCollection.addAll(collection);
+    public ArrayList<HumanBeing> getAll(){
+        ArrayList<HumanBeing> outputCollection = new ArrayList<>();
+        outputCollection.addAll(humanCcollection);
         return outputCollection;
     }
     /**
@@ -99,7 +100,7 @@ class DAOHumanBeign implements DAO {
      * */
     @Override
     public int clear() {
-        collection.clear();
+        humanCcollection.clear();
         return 0;
     }
     /**
@@ -110,12 +111,12 @@ class DAOHumanBeign implements DAO {
     public JsonObject getJSONDescription() {
 
         JsonArrayBuilder dragons = Json.createArrayBuilder();
-        for (Dragon d: collection)
+        for (Dragon d: humanCcollection)
             dragons.add(d.getJSONDescription());
 
         JsonObject output = Json.createObjectBuilder().
-                add("type", collection.getClass().getSimpleName()).
-                add("size", collection.size()).
+                add("type", humanCcollection.getClass().getSimpleName()).
+                add("size", humanCcollection.size()).
                 add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
                 add("availableId", availableId).
                 add("elements", dragons.build()).build();
@@ -127,6 +128,6 @@ class DAOHumanBeign implements DAO {
      * */
     @Override
     public void sort() {
-        Collections.sort(collection);
+        Collections.sort(humanCcollection);
     }
 }

@@ -1,8 +1,7 @@
 package commands;
 
-import exceptions.WrongAmountOfElementsException;
-import utility.CollectionManager;
-import utility.Console;
+import exceptions.*;
+import utility.*;
 
 /**
  * Команда 'save'. Сохраняет коллекцию в файл.

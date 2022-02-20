@@ -5,6 +5,7 @@ public class ExitCommand extends AbstractCommand {
         super("exit", "завершение программы (без сохранения в файл)");
     }
 
+    //TODO safer exit
     @Override
     public boolean execute(String argument) {
         System.exit(0);

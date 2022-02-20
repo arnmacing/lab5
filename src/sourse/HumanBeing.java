@@ -12,7 +12,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
     private Boolean hasToothpick; //Поле не может быть null
     private Integer impactSpeed; //Поле не может быть null
     private String soundtrackName; //Поле не может быть null
-    private static float minutesOfWaiting;
+    private float minutesOfWaiting;
     private WeaponType weaponType; //Поле не может быть null
     private Car car; //Поле не может быть null
 
@@ -211,7 +211,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
      * Method to get minutesOfWaiting
      * @return minutesOfWaiting
      */
-    public static float getMinutesOfWaiting() {
+    public float getMinutesOfWaiting() {
         return minutesOfWaiting;
     }
 

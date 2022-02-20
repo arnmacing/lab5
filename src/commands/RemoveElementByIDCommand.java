@@ -1,11 +1,8 @@
 package commands;
 
-import exceptions.CollectionIsEmptyException;
-import exceptions.HumanNotFoundException;
-import exceptions.WrongAmountOfElementsException;
+import exceptions.*;
 import sourse.HumanBeing;
-import utility.CollectionManager;
-import utility.Console;
+import utility.*;
 
 /**
  * Команда 'remove_by_id'. Удаляет элемент по его ID.

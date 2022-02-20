@@ -5,9 +5,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.ArrayList;
-//import com.google.gson.Gson;
-//import com.google.gson.reflect.TypeToken;
-//import com.google.gson.JsonParseException;
+import javax.json.*;
 
 public class FileManager {
       //private Gson gson = new Gson();
@@ -24,7 +22,9 @@ public class FileManager {
         if (System.getenv().get(envVariable) != null) {
             try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(envVariable)))) {
                 ArrayList<HumanBeing> collection;
+                //todo typetoken in file manager
                 Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
+                //todo json why do not import????????? solve
                 collection = gson.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
                 Console.println("Коллекция успешна загружена!");
                 return collection;
