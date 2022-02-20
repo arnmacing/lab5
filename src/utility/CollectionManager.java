@@ -70,13 +70,18 @@ public class CollectionManager<T> {
      * @return Человек по его ID или null, если человек не найден.
      */
 
-
     public HumanBeing getById(int id) {
         for (HumanBeing human : humanCollection) {
             if (human.equals(id)) return human;
         }
         return null;
     }
+
+
+    /**
+     * @param humanToFind Найти человека, чья ценность будет найдена.
+     * @return Человека по его значению или null, если человек не найден.
+     */
 
     public HumanBeing getByValue(HumanBeing humanToFind) {
         for (HumanBeing human : humanCollection) {
@@ -123,8 +128,9 @@ public class CollectionManager<T> {
      */
 
     /**
-     * Clears the collection.
+     * Очистка колекции.
      */
+
     public void clearCollection() {
         humanCollection.clear();
     }
@@ -140,17 +146,19 @@ public class CollectionManager<T> {
     }
 
     /**
-     * Generates next ID. It will be (the bigger one + 1).
-     * @return Next ID.
+     * Генерирует следующий идентификатор. Это будет (больший + 1).
+     * @return Cледующий ID.
      */
+
     public Long generateNextId() {
         if (humanCollection.isEmpty()) return 1L;
         return humanCollection.getId() + 1L;
     }
 
     /**
-     * Saves the collection to file.
+     * Сохраняет коллекцию в файл.
      */
+
     public void saveCollection() {
             fileManager.writeCollection(humanCollection);
             lastSaveTime = ZonedDateTime.now();
