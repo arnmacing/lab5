@@ -4,7 +4,7 @@ public enum WeaponType {
     AXE,
     PISTOL,
     SHOTGUN;
-}
+
 
     /**
      * Генерирует список строковых значений enum'a.

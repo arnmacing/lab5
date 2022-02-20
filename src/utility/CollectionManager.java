@@ -21,6 +21,10 @@ public class CollectionManager<T> {
         loadCollection();
     }
 
+    /**
+     * Загружает коллекцию из файла.
+     */
+
     private void loadCollection() {
         humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
@@ -70,13 +74,18 @@ public class CollectionManager<T> {
      * @return Человек по его ID или null, если человек не найден.
      */
 
-
     public HumanBeing getById(int id) {
         for (HumanBeing human : humanCollection) {
             if (human.equals(id)) return human;
         }
         return null;
     }
+
+
+    /**
+     * @param humanToFind Найти человека, чья ценность будет найдена.
+     * @return Человека по его значению или null, если человек не найден.
+     */
 
     public HumanBeing getByValue(HumanBeing humanToFind) {
         for (HumanBeing human : humanCollection) {
@@ -123,12 +132,17 @@ public class CollectionManager<T> {
      */
 
     /**
-     * Clears the collection.
+     * Очистка колекции.
      */
+
     public void clearCollection() {
         humanCollection.clear();
     }
 
+    /**
+     * Удаление людей, которых больше, чем выбранный.
+     * @param human Человек, с которым можно сравнить.
+     */
 
     public void removeGreater(HumanBeing human) {
         Integer impactSpeed = human.getImpactSpeed();
@@ -140,21 +154,27 @@ public class CollectionManager<T> {
     }
 
     /**
-     * Generates next ID. It will be (the bigger one + 1).
-     * @return Next ID.
+     * Генерирует следующий идентификатор. Это будет (больший + 1).
+     * @return Cледующий ID.
      */
+
     public Long generateNextId() {
         if (humanCollection.isEmpty()) return 1L;
         return humanCollection.getId() + 1L;
     }
 
     /**
-     * Saves the collection to file.
+     * Сохраняет коллекцию в файл.
      */
+
     public void saveCollection() {
             fileManager.writeCollection(humanCollection);
             lastSaveTime = ZonedDateTime.now();
     }
+
+    /**
+     * @return Среднее значение поля minutesOfWaiting для всех элементов коллекции.
+     */
 
     public double getAverageOfMin() {
     double averageOfMin = 0;
@@ -166,18 +186,4 @@ public class CollectionManager<T> {
     return averageOfMin/n;
     }
 }
-
-//    public int generateNextId();
-//    public void sort();
-//    public String getHelp();
-//    public String getInfo();
-//    public String show();
-//    public void add(T element);
-//    public void updateByID(Integer id, T newElement);
-//    public void removeByID(Integer id);
-//    public void clear();
-//    public void save();
-//    public void addIfMax(T element);
-//    public void printStartsWithName(String start);
-//    public boolean deserializeCollection(String json);
 
