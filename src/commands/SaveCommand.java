@@ -1,9 +1,10 @@
 package commands;
 
 import utility.CollectionManager;
+import utility.Console;
 
 /**
- * Command 'save'. Saves the collection to a file.
+ * Команда 'save'. Сохраняет коллекцию в файл.
  */
 
 public class SaveCommand extends AbstractCommand {
@@ -15,19 +16,19 @@ public class SaveCommand extends AbstractCommand {
     }
 
     /**
-     * Executes the command.
-     * @return Command exit status.
+     * Выполняет команду.
+     * @return Статус выхода команды.
      */
 
     @Override
-    public boolean execute(String argument) { /*
+    public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             collectionManager.saveCollection();
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
-        } */
+        }
         return false;
     }
 }

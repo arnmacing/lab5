@@ -86,6 +86,23 @@ public class CollectionManager<T> {
     }
 
     /**
+     * @return Первый элемент коллекции или null, если коллекция пуста.
+     */
+
+    public HumanBeing getFirst() {
+        if (humanCollection.isEmpty()) return null;
+        return humanCollection.get(0);
+    }
+
+    /**
+     * @return Последний элемент коллекции или null, если коллекция пуста.
+     */
+
+    public HumanBeing getLast() {
+        if (humanCollection.isEmpty()) return null;
+        return humanCollection.get(humanCollection.size()-1);
+    }
+    /**
      * Добавление нового человека в коллекцию.
      */
 

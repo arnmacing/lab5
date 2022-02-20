@@ -7,8 +7,7 @@ import sourse.WeaponType;
 import utility.CollectionManager;
 import utility.Console;
 import utility.HumanAsker;
-
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 /**
  * Команда "обновить" обновляет информацию о человеке.
@@ -24,10 +23,6 @@ public class UpdateElementCommand extends AbstractCommand {
         this.humanAsker = humanAsker;
     }
 
-    @Override
-    public String getUsage() {
-        return null;
-    }
 
     /**
      * Выполнение команды.
@@ -40,18 +35,18 @@ public class UpdateElementCommand extends AbstractCommand {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException(); // ошибка количества элементов
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекции
 
-            Long id = Long.parseLong(argument);
+            int id = Integer.parseInt(argument);
             HumanBeing oldHuman = collectionManager.getById(id);
             if (oldHuman == null) throw new HumanNotFoundException(); // человек не найден
 
-            String name = oldHuman.setName();
-            Coordinates coordinates = oldHuman.setCoordinates();
-            LocalDateTime creationDate = oldHuman.setCreationDate();
-            boolean realHero = oldHuman.setRealHero();
-            Boolean hasToothpick = oldHuman.setHasToothpick();
-            Integer impactSpeed = oldHuman.setImpactSpeed();
-            String soundtrackName = oldHuman.setSoundtrackName();
-            float minutesOfWaiting = oldHuman.setMinutesOfWaiting();
+            String name = oldHuman.getName();
+            Coordinates coordinates = oldHuman.getCoordinates();
+            ZonedDateTime creationDate = oldHuman.getCreationDate();
+            boolean realHero = oldHuman.checkRealHero();
+            Boolean hasToothpick = oldHuman.checkHasToothpick();
+            Integer impactSpeed = oldHuman.getImpactSpeed();
+            String soundtrackName = oldHuman.getSoundtrackName();
+            float minutesOfWaiting = oldHuman.getMinutesOfWaiting();
             WeaponType weaponType = oldHuman.getWeaponType();
             Car car = oldHuman.getCar();
 

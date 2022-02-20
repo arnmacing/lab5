@@ -144,7 +144,7 @@ public class HumanBeing {
      * Method to get name
      * @return name
      */
-    public String name() {
+    public String getName() {
         return name;
     }
 
@@ -236,5 +236,8 @@ public class HumanBeing {
                 "\n soundtrackName: " + soundtrackName + "\n minutesOfWaiting: " + minutesOfWaiting +
                 "\n weaponType: " + weaponType + "\n Car: " + car + "\n\n";
         return string;
+    }
+
+    public Coordinates getCoordinates() { return coordinates;
     }
 }
