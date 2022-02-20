@@ -41,30 +41,32 @@ public class UpdateElementCommand extends AbstractCommand {
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекции
 
             Long id = Long.parseLong(argument);
-            HumanBeing humanBeing = collectionManager.getById(id);
-            if (humanBeing == null) throw new HumanNotFoundException(); // человек не найден
+            HumanBeing oldHuman = collectionManager.getById(id);
+            if (oldHuman == null) throw new HumanNotFoundException(); // человек не найден
 
-            String name = humanBeing.setName();
-            Coordinates coordinates = humanBeing.setCoordinates();
-            LocalDateTime creationDate = humanBeing.setCreationDate();
-            boolean realHero = humanBeing.setRealHero();
-            Boolean hasToothpick = humanBeing.setHasToothpick();
-            Integer impactSpeed = humanBeing.setImpactSpeed();
-            String soundtrackName = humanBeing.setSoundtrackName();
-            float minutesOfWaiting = humanBeing.setMinutesOfWaiting();
-            WeaponType weaponType = humanBeing.getWeaponType();
-            Car car = humanBeing.getCar();
+            String name = oldHuman.setName();
+            Coordinates coordinates = oldHuman.setCoordinates();
+            LocalDateTime creationDate = oldHuman.setCreationDate();
+            boolean realHero = oldHuman.setRealHero();
+            Boolean hasToothpick = oldHuman.setHasToothpick();
+            Integer impactSpeed = oldHuman.setImpactSpeed();
+            String soundtrackName = oldHuman.setSoundtrackName();
+            float minutesOfWaiting = oldHuman.setMinutesOfWaiting();
+            WeaponType weaponType = oldHuman.getWeaponType();
+            Car car = oldHuman.getCar();
 
 
-            collectionManager.removeFromCollection(humanBeing);
+            collectionManager.removeFromCollection(oldHuman);
 
-            if (humanAsker.askQuestion("Хотите изменить имя солдата?")) name = humanAsker.askName();
-            if (humanAsker.askQuestion("Хотите изменить координаты солдата?")) coordinates = humanAsker.askCoordinates();
-            if (humanAsker.askQuestion("Хотите изменить здоровье солдата?")) health = marineAsker.askHealth();
-            if (humanAsker.askQuestion("Хотите изменить категорию солдата?")) category = marineAsker.askCategory();
-            if (humanAsker.askQuestion("Хотите изменить оружие дальнего боя солдата?")) weaponType = marineAsker.askWeaponType();
-            if (humanAsker.askQuestion("Хотите изменить оружие ближнего боя солдата?")) meleeWeapon = marineAsker.askMeleeWeapon();
-            if (humanAsker.askQuestion("Хотите изменить орден солдата?")) chapter = marineAsker.askChapter();
+            if (humanAsker.askQuestion("Хотите изменить имя человека?")) name = humanAsker.askName();
+            if (humanAsker.askQuestion("Хотите изменить координаты человека?")) coordinates = humanAsker.askCoordinates();
+            if (humanAsker.askQuestion("Хотите изменить статус человека?")) realHero = humanAsker.askRealHero();
+            if (humanAsker.askQuestion("Хотите изменить наличие зубочистки?")) hasToothpick = humanAsker.askHasToothPick();
+            if (humanAsker.askQuestion("Хотите изменить оружие?")) weaponType = humanAsker.askWeaponType();
+            if (humanAsker.askQuestion("Хотите изменить скорость удара?")) impactSpeed = humanAsker.askImpactSpeed();
+            if (humanAsker.askQuestion("Хотите изменить саундтрек?")) soundtrackName = humanAsker.askSoundtrackName();
+            if (humanAsker.askQuestion("Хотите изменить количество минут ожидания?")) minutesOfWaiting = humanAsker.askMinutesOfWaiting();
+            if (humanAsker.askQuestion("Хотите изменить машину?")) car = humanAsker.askCar();
 
             collectionManager.addToCollection(new HumanBeing(
             id,
@@ -79,7 +81,7 @@ public class UpdateElementCommand extends AbstractCommand {
             weaponType,
             car
             ));
-            Console.println("Солдат успешно изменен!");
+            Console.println("Человек успешно изменен!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");

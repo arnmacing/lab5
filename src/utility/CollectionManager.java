@@ -70,13 +70,13 @@ public class CollectionManager<T> {
      * @param id ID человека.
      * @return Человек по его ID или null, если человек не найден.
      */
-//TODO
-//    public HumanBeing getById(Long id) {
-//        for (HumanBeing human : humanCollection) {
-//            if (human.getId().equals(id)) return human;
-//        }
-//        return null;
-//    }
+
+    public HumanBeing getById(Long id) {
+        for (HumanBeing human : humanCollection) {
+        if (human.getId().equals(id)) return human;
+        }
+    return null;
+    }
 
     public HumanBeing getByValue(HumanBeing humanToFind) {
         for (HumanBeing human : humanCollection) {
