@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class App {
 
-//    public static final String PS1 = "$ ";
-//    public static final String PS2 = "> ";
     private final DAO dao;
 
     public App(DAO dao) {

@@ -2,7 +2,7 @@ package utility;
 //todo x26 exception ?? human asker
 
 import exceptions.*;
-import run.App;
+import
 import sourse.*;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -16,6 +16,7 @@ import java.lang.NullPointerException;
 public class HumanAsker {
     private Scanner userScanner;
     private boolean fileMode;
+    public static final String PS2 = "> ";
 
     public HumanAsker(Scanner userScanner) {
         this.userScanner = userScanner;
@@ -64,7 +65,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите имя:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 name = userScanner.nextLine().trim();
                 if (fileMode) Console.println(name);
                 if (name.equals("")) throw new MustBeNotEmptyException(); //ошибка пустого ввода
@@ -95,7 +96,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите координату X:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 strX = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strX);
                 x = Double.parseDouble(strX);
@@ -127,7 +128,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите координату Y:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 strY = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strY);
                 y = Double.parseDouble(strY);
@@ -173,7 +174,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Он реальный герой или пиздит?");
-                Console.println(App.PS2);
+                Console.println(PS2);
                 strRealHero = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strRealHero); //?????????????
                 if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
@@ -221,7 +222,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Зубачистка в зубах есть? чи не?");
-                Console.println(App.PS2);
+                Console.println(PS2);
                 strhasHoothpick = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strhasHoothpick); //?????????????
                 if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда"))
@@ -253,7 +254,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите cкорость удара:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 strSpeed = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strSpeed);
                 speed = Integer.parseInt(strSpeed);
@@ -287,7 +288,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите название песни:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 soundtrackName = userScanner.nextLine().trim();
                 if (fileMode) Console.println(soundtrackName);
                 if (soundtrackName.equals("")) throw new MustBeNotEmptyException();
@@ -318,7 +319,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println("Введите количество минут ожидания:");
-                Console.print(App.PS2);
+                Console.print(PS2);
                 strMinutesOfWaiting = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strMinutesOfWaiting);
                 minutesOfWaiting = Float.parseFloat(strMinutesOfWaiting);
@@ -342,7 +343,7 @@ public class HumanAsker {
             while (true) {
                 try {
         Console.println("Введите вид оружия:" + WeaponType.nameList());
-        Console.println(App.PS2);
+        Console.println(PS2);
         strWeaponType = userScanner.nextLine().trim();
         if (fileMode) Console.println(strWeaponType);
                     weaponType = WeaponType.valueOf(strWeaponType.toUpperCase());
@@ -373,7 +374,7 @@ public class HumanAsker {
             while (true) {
                 try {
         Console.println("Введите название машины");
-        Console.println(App.PS2);
+        Console.println(PS2);
         name = userScanner.nextLine().trim();
             if (fileMode) Console.println(name);
             if (name.equals("")) throw new MustBeNotEmptyException(); //ошибка пустого ввода
@@ -406,7 +407,7 @@ public class HumanAsker {
         while (true) {
             try {
                 Console.println(finalQuestion);
-                Console.print(App.PS2);
+                Console.print(PS2);
                 answer = userScanner.nextLine().trim();
                 if (fileMode) Console.println(answer);
                 if (!answer.equals("+") && !answer.equals("-")) throw new NotInDeclaredLimitsException(); //выход за пределы

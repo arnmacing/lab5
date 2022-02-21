@@ -16,6 +16,7 @@ public class Console {
     private Scanner userScanner;
     private HumanAsker humanAsker;
     private List<String> scriptStack = new ArrayList<>();
+    public static final String PS1 = "$ ";
 
     public Console(CommandManager commandManager, Scanner userScanner, HumanAsker humanAsker) {
         this.commandManager = commandManager;
@@ -32,7 +33,7 @@ public class Console {
         int commandStatus;
         try {
             do {
-                Console.print(App.PS1);
+                Console.print(PS1);
                 userCommand = (userScanner.nextLine().trim() + " ").split(" ", 2);
                 userCommand[1] = userCommand[1].trim();
                 commandStatus = launchCommand(userCommand);
