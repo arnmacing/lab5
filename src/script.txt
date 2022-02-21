@@ -1,0 +1,16 @@
+help
+info
+show
+add
+update id {element}
+remove_by_id
+clear
+save
+execute_script
+exit
+insert_at
+add_if_max
+remove_greater
+remove_all_by_weapon_type
+average_of_minutes_of_waiting
+filter_starts_with_name

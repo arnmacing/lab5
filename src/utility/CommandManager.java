@@ -162,7 +162,7 @@ public class CommandManager {
         return insertAtIndexCommand.execute(argument);
     }
 
-    public boolean removeByWeapomType(String argument) {
+    public boolean removeAllByWeaponType(String argument) {
         return removeAllByWeaponTypeCommand.execute(argument);
     }
 
