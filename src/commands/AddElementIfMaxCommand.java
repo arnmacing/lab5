@@ -15,10 +15,8 @@ import java.util.Collections;
 public class AddElementIfMaxCommand extends AbstractCommand {
     private CollectionManager collectionManager;
     private HumanAsker humanAsker;
-    private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
 
-    public AddElementIfMaxCommand (CollectionManager collectionManager, HumanAsker humanAsker)
-    {
+    public AddElementIfMaxCommand (CollectionManager collectionManager, HumanAsker humanAsker)  {
         super("add_if_max {element}", "добавить новый элемент, если его значение больше, чем у наибольшего");
         this.collectionManager = collectionManager;
         this.humanAsker = humanAsker;
@@ -27,7 +25,6 @@ public class AddElementIfMaxCommand extends AbstractCommand {
     /**
      * Выполнение команды.
      * @return Статус выхода команды.
-     * @param argument
      */
 
     @Override

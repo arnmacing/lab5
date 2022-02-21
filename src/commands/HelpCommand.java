@@ -1,5 +1,6 @@
 package commands;
 
+import exceptions.WrongAmountOfElementsException;
 import utility.CommandManager;
 import utility.Console;
 
@@ -16,12 +17,16 @@ public class HelpCommand extends AbstractCommand {
     /**
      * Выполнение команды.
      * @return Статус выхода из команды.
-     * @param argument
      */
 
     @Override
     public boolean execute(String argument) {
-        Console.println(commandManager.getCommands());
-        return true;
+        try {
+            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            return true;
+        } catch (WrongAmountOfElementsException exception) {
+            Console.println("Использование: '" + getName() + "'");
+        }
+        return false;
     }
 }
