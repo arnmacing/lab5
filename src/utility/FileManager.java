@@ -4,14 +4,24 @@ import sourse.HumanBeing;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
-import java.util.ArrayList;
 import javax.json.*;
+import javax.json.stream.JsonParser;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.JsonParseException;
+
+
 
 public class FileManager {
-      //private Gson gson = new Gson();
+
       private String envVariable;
       public static java.util.Date lastInit;
-      public static ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+      public static final Gson gson = new Gson();
+
+      public FileManager(String envVariable) {
+        this.envVariable = envVariable;
+    }
 
     /**
      * Считывание коллекции из файла.
@@ -22,9 +32,7 @@ public class FileManager {
         if (System.getenv().get(envVariable) != null) {
             try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(envVariable)))) {
                 ArrayList<HumanBeing> collection;
-                //todo typetoken in file manager
                 Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-                //todo json why do not import????????? solve
                 collection = gson.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
                 Console.println("Коллекция успешна загружена!");
                 return collection;
@@ -32,8 +40,8 @@ public class FileManager {
                 Console.printerror("Загрузочный файл не найден!");
             } catch (NoSuchElementException exception) {
                 Console.printerror("Загрузочный файл пуст!");
-//            } catch (JsonParseException | NullPointerException exception) {
-//                Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
+            } catch (JsonParseException | NullPointerException exception) {
+                Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
             } catch (IllegalStateException exception) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
@@ -46,14 +54,15 @@ public class FileManager {
         lastInit = new Date();
     }
 
-    public static ArrayList<HumanBeing> getCollection(){
-        return humanCollection;
-    }
-
-
-
     public void writeCollection(Collection<?> collection) {
-
+        if (System.getenv().get(envVariable) != null) {
+            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(envVariable)))) {
+                collectionFileWriter.write(gson.toJson(collection));
+                Console.println("Коллекция успешна сохранена в файл!");
+            } catch (IOException exception) {
+                Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
+            }
+        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
     }
 
     @Override

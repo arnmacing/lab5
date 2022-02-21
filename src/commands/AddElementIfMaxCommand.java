@@ -3,7 +3,6 @@ package commands;
 import exceptions.*;
 import sourse.HumanBeing;
 import utility.*;
-import java.util.Collections;
 
 /**
  * Команда 'add_if_max'. Добавляет новый элемент в коллекцию, если он больше самого большого.

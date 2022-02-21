@@ -19,5 +19,16 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" exported="" name="gradle-wrapper" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/gradle/wrapper/gradle-wrapper.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="gson-2.8.6-sources" level="project" />
   </component>
 </module>
