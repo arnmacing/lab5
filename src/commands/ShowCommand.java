@@ -24,7 +24,7 @@ public class ShowCommand extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            Console.println(collectionManager);
+            Console.println(collectionManager.getCollectionForUser());
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");

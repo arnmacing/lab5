@@ -17,7 +17,7 @@ public class App {
             final String envVariable = "LABA";
 
             HumanAsker humanAsker = new HumanAsker(userScanner);
-            FileManager fileManager = new FileManager();
+            FileManager fileManager = new FileManager(envVariable);
             CollectionManager collectionManager = new CollectionManager(fileManager);
 
             CommandManager commandManager = new CommandManager(

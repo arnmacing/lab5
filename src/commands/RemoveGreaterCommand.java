@@ -31,7 +31,6 @@ public class RemoveGreaterCommand extends AbstractCommand {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
             HumanBeing humanToFind = new HumanBeing(
-                    //TODO generate next id
                 Math.toIntExact(collectionManager.generateNextId()),
                 humanAsker.askName(),
                 humanAsker.askCoordinates(),
@@ -44,7 +43,6 @@ public class RemoveGreaterCommand extends AbstractCommand {
                 humanAsker.askWeaponType(),
                 humanAsker.askCar()
             );
-            //TODO get by value
             HumanBeing humanFromCollection = collectionManager.getByValue(humanToFind);
             if (humanFromCollection == null) throw new HumanNotFoundException();
             collectionManager.removeGreater(humanFromCollection);

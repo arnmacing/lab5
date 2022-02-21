@@ -1,8 +1,10 @@
 package commands;
 
-import exceptions.CollectionIsEmptyException;
-import exceptions.WrongAmountOfElementsException;
+
+import exceptions.*;
+
 import sourse.HumanBeing;
+
 import sourse.WeaponType;
 import utility.CollectionManager;
 import utility.Console;
@@ -30,6 +32,7 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
 
+
         ArrayList<HumanBeing> collection = collectionManager.getCollection(); // пол
 
         for (HumanBeing human : collection) {
@@ -55,5 +58,6 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
             Console.println("Список оружия - " + WeaponType.nameList());
         }
         return false;
+
     }
 }

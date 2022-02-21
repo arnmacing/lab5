@@ -1,6 +1,4 @@
 package commands;
-//TODO execute script command
-
 
 import exceptions.WrongAmountOfElementsException;
 import utility.Console;
@@ -19,14 +17,14 @@ public class ExecuteScriptCommand extends AbstractCommand {
      * @return Статус выхода из команды.
      */
 
+    //todo execute script
     @Override
     public boolean execute(String argument) {
         try {
-            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-            Console.println("Выполняю скрипт '" + argument + "'...");
+            if (stringArgument.isEmpty() || objectArgument != null) throw new WrongAmountOfElementsException();
             return true;
         } catch (WrongAmountOfElementsException exception) {
-            Console.println("Использование: '" + getName() + "'");
+            ResponseOutputer.appendln("Использование: '" + getName() + " " + getUsage() + "'");
         }
         return false;
     }
