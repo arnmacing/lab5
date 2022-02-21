@@ -4,6 +4,7 @@ import sourse.HumanBeing;
 
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 
@@ -157,17 +158,15 @@ public class CollectionManager<T> {
      * Генерирует следующий идентификатор. Это будет (больший + 1).
      * @return Cледующий ID.
      */
-
-    //TODO getId() wtf why dont u work
+    
     public int generateNextId() {
         if (humanCollection.isEmpty()) return 1;
-        return humanCollection.getId() + 1;
+        return Collections.max(humanCollection).getId() + 1;
     }
 
     /**
      * Сохраняет коллекцию в файл.
      */
-
     public void saveCollection() {
             fileManager.writeCollection(humanCollection);
             lastSaveTime = ZonedDateTime.now();

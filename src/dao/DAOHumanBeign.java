@@ -1,40 +1,21 @@
+package dao;
+
 import sourse.*;
 
-//todo написать dao & update collection manager)))))0
+//todo update collection manager)))))0
+import javax.json.*;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+
 /**
-*Класс, который имплементируется от DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию */
+*Класс, который имплементируется от dao.DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию */
 public final class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
     private final ArrayList<HumanBeing> humanCcollection = new ArrayList<>();
 
-    //todo это что?
-    public DAOHumanBeign() {
-        initDateTime = ZonedDateTime.now();
-    }
-
-//    public DAOHumanBeign(JsonObject description) {
-//        String initTime = description.getString("init date");
-//
-//        if (initTime == null)
-//            initDateTime = ZonedDateTime.now();
-//        else
-//            initDateTime = ZonedDateTime.parse(initTime, DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"));
-//
-//        JsonArray dragons = description.getJsonArray("elements");
-//
-//        for (int i = 0; i < description.getInt("size"); ++i)
-//            humanCcollection.add(new Dragon(dragons.getJsonObject(i)));
-//
-//        int maxId = -1;
-//        for(Dragon d: humanCcollection)
-//            maxId = d.getId() > maxId?d.getId():maxId;
-//
-//        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
-//    }
     /**
     * Метод добавления элемента в коллекцию
     * */
@@ -104,6 +85,7 @@ public final class DAOHumanBeign implements DAO {
         outputCollection.addAll(humanCcollection);
         return outputCollection;
     }
+
     /**
      * Метод очистки всей коллекции
      * */
@@ -117,24 +99,49 @@ public final class DAOHumanBeign implements DAO {
 
     }
 
-    /**
-     * Метод возвращения информации о коллекции
-     * @return output - информация о коллекции
-     * */
+    //todo это что?
+    public DAOHumanBeign() {
+        initDateTime = ZonedDateTime.now();
+    }
+
+//    public dao.DAOHumanBeign(JsonObject description) {
+//        String initTime = description.getString("init date");
+//
+//        if (initTime == null)
+//            initDateTime = ZonedDateTime.now();
+//        else
+//            initDateTime = ZonedDateTime.parse(initTime, DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"));
+//
+//        JsonArray human = description.getJsonArray("elements");
+//
+//        for (int i = 0; i < description.getInt("size"); ++i)
+//            humanCcollection.add(new HumanBeing(human.getJsonObject(i)));
+//
+//        int maxId = -1;
+//        for(HumanBeing d: humanCcollection)
+//            maxId = d.getId() > maxId?d.getId():maxId;
+//
+//        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
+//    }
+
+//    /**
+//     * Метод возвращения информации о коллекции
+//     * @return output - информация о коллекции
+//     * */
 
 //    @Override
 //    public JsonObject getJSONDescription() {
 //
-//        JsonArrayBuilder dragons = Json.createArrayBuilder();
-//        for (Dragon d: humanCcollection)
-//            dragons.add(d.getJSONDescription());
+//        JsonArrayBuilder human = Json.createArrayBuilder();
+//        for (HumanBeing h: humanCcollection)
+//            human.add(h.getJSONDescription());
 //
 //        JsonObject output = Json.createObjectBuilder().
 //                add("type", humanCcollection.getClass().getSimpleName()).
 //                add("size", humanCcollection.size()).
 //                add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
 //                add("availableId", availableId).
-//                add("elements", dragons.build()).build();
+//                add("elements", human.build()).build();
 //
 //        return output;
 //    }
