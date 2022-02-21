@@ -343,7 +343,7 @@ public class HumanAsker {
         WeaponType weaponType;
             while (true) {
                 try {
-        Console.println("Введите вид оружия:" + WeaponType.nameList());
+        Console.println("Введите вид оружия: " + WeaponType.nameList());
         Console.println(PS2);
         strWeaponType = userScanner.nextLine().trim();
         if (fileMode) Console.println(strWeaponType);

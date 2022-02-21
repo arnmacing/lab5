@@ -1,9 +1,12 @@
 package utility;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import exceptions.*;
 
 
 /**
@@ -49,9 +52,45 @@ public class Console {
      * @param argument Это сам аргумент.
      * @return выход.
      */
-
-    //TODO
     public int scriptMode(String argument) {
+        String[] userCommand = {"", ""};
+        int commandStatus;
+        scriptStack.add(argument);
+        try (Scanner scriptScanner = new Scanner(new File(argument))) {
+            if (!scriptScanner.hasNext()) throw new NoSuchElementException();
+            Scanner tmpScanner = humanAsker.getUserScanner();
+            humanAsker.setUserScanner(scriptScanner);
+            humanAsker.setFileMode();
+            do {
+                userCommand = (scriptScanner.nextLine().trim() + " ").split(" ", 2);
+                userCommand[1] = userCommand[1].trim();
+                while (scriptScanner.hasNextLine() && userCommand[0].isEmpty()) {
+                    userCommand = (scriptScanner.nextLine().trim() + " ").split(" ", 2);
+                    userCommand[1] = userCommand[1].trim();
+                }
+                Console.println(Console.PS1 + String.join(" ", userCommand));
+                if (userCommand[0].equals("execute_script")) {
+                    for (String script : scriptStack) {
+                        if (userCommand[1].equals(script)) throw new IllegalStateException();
+                    }
+                }
+                commandStatus = launchCommand(userCommand);
+            } while (commandStatus == 0 && scriptScanner.hasNextLine());
+            humanAsker.setUserScanner(tmpScanner);
+            humanAsker.setUserMode();
+            if (commandStatus == 1 && !(userCommand[0].equals("execute_script") && !userCommand[1].isEmpty()))
+                Console.println("Проверьте скрипт на корректность введенных данных!");
+            return commandStatus;
+        } catch (FileNotFoundException exception) {
+            Console.printerror("Файл со скриптом не найден!");
+        } catch (NoSuchElementException exception) {
+            Console.printerror("Файл со скриптом пуст!");
+        } catch (IllegalStateException exception) {
+            Console.printerror("Непредвиденная ошибка!");
+            System.exit(0);
+        } finally {
+            scriptStack.remove(scriptStack.size()-1);
+        }
         return 1;
     }
 
@@ -66,7 +105,6 @@ public class Console {
             case "":
                 break;
             case "help":
-                //todo help in console
                 if (!commandManager.help(userCommand[1])) return 1;
                 break;
             case "info":
@@ -106,14 +144,12 @@ public class Console {
                 if (!commandManager.removeAllByWeaponType(userCommand[1])) return 1;
                 break;
             case "average_of_minutes_of_waiting":
-                //todo x3 - generate methods in commandManager
                 if (!commandManager.averageOfMinutesOfWaiting(userCommand[1])) return 1;
                 break;
             case "filter_starts_with_name":
                 if (!commandManager.filterStartsWithName(userCommand[1])) return 1;
                 break;
             case "exit":
-                //todo some problem in exit (console)
                 if (!commandManager.exit(userCommand[1])) return 1;
                 else return 2;
             default:

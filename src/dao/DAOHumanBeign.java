@@ -1,5 +1,6 @@
 package dao;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import sourse.*;
 
 //todo update collection manager)))))0
@@ -7,6 +8,7 @@ import javax.json.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
     /**
@@ -96,9 +98,12 @@ import java.util.ArrayList;
         humanCcollection.clear();
     }
 
+    /**
+     * метод сдля сортировки коллекции
+     */
     @Override
     public void sort() {
-
+        Collections.sort(humanCcollection);
     }
 
     //todo это что?
