@@ -1,75 +1,84 @@
-import sourse.HumanBeing;
-import utility.HumanAsker;
+import sourse.*;
+
 //todo написать dao & update collection manager)))))0
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Collections;
-import javax.json.*;
 
 /**
 *Класс, который имплементируется от DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию */
-class DAOHumanBeign implements DAO {
+public final class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
-    private int availableId = 1;
+    private static int availableId = 1;
     private final ArrayList<HumanBeing> humanCcollection = new ArrayList<>();
 
+    //todo это что?
     public DAOHumanBeign() {
         initDateTime = ZonedDateTime.now();
     }
 
-    public DAOHumanBeign(JsonObject description) {
-        String initTime = description.getString("init date");
-
-        if (initTime == null)
-            initDateTime = ZonedDateTime.now();
-        else
-            initDateTime = ZonedDateTime.parse(initTime, DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"));
-
-        JsonArray dragons = description.getJsonArray("elements");
-
-        for (int i = 0; i < description.getInt("size"); ++i)
-            humanCcollection.add(new Dragon(dragons.getJsonObject(i)));
-
-        int maxId = -1;
-        for(Dragon d: humanCcollection)
-            maxId = d.getId() > maxId?d.getId():maxId;
-
-        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
-    }
+//    public DAOHumanBeign(JsonObject description) {
+//        String initTime = description.getString("init date");
+//
+//        if (initTime == null)
+//            initDateTime = ZonedDateTime.now();
+//        else
+//            initDateTime = ZonedDateTime.parse(initTime, DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"));
+//
+//        JsonArray dragons = description.getJsonArray("elements");
+//
+//        for (int i = 0; i < description.getInt("size"); ++i)
+//            humanCcollection.add(new Dragon(dragons.getJsonObject(i)));
+//
+//        int maxId = -1;
+//        for(Dragon d: humanCcollection)
+//            maxId = d.getId() > maxId?d.getId():maxId;
+//
+//        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
+//    }
     /**
     * Метод добавления элемента в коллекцию
-    * @param properties - свойства элемента
     * */
     @Override
-    public int create(HumanAsker properties) {
-        humanCcollection.add(new (availableId++, properties));
-        return 0;
+    public int create(HumanBeing human) {
+        humanCcollection.add(new HumanBeing(availableId, human.getName(),human.getCoordinates(), human.getCreationDate(),
+                human.checkRealHero(), human.checkHasToothpick(), human.getImpactSpeed(), human.getSoundtrackName(),
+                human.getMinutesOfWaiting(), human.getWeaponType(), human.getCar()));
+        return availableId++;
     }
+
+
     /**
      * Метод обновления элемента в коллекции по его id
-     * @param properties - свойства элемента
-     * @param id - id элемента, который пользователь хочет обновить
+
      * */
     @Override
-    public int update(int id, HumanAsker properties) {
-        for(Dragon dragon1 : humanCcollection){
-            if (id == dragon1.getId()) {
-                dragon1.update(properties);
-                return 0;
-            }
+    public void update(HumanBeing human) {
+        HumanBeing existedHuman = get(human.getId());
+
+        if (existedHuman != null) {
+            existedHuman.setName(human.getName());
+            existedHuman.setCoordinates(human.getCoordinates());
+            existedHuman.setCreationDate(human.getCreationDate());
+            existedHuman.setRealHero(human.checkRealHero());
+            existedHuman.setHasToothpick(human.checkHasToothpick());
+            existedHuman.setImpactSpeed(human.getImpactSpeed());
+            existedHuman.setSoundtrackName(human.getSoundtrackName());
+            existedHuman.setMinutesOfWaiting(human.getMinutesOfWaiting());
+            existedHuman.setWeaponType(human.getWeaponType());
+            existedHuman.setCar(human.getCar());
         }
-        return -1;
     }
     /**
      * Метод удаления элемента из коллекции по его id
      * @param id - id элемента, который пользователь хочет удалить
      * */
     @Override
-    public int delete(int id) {
-        if (humanCcollection.removeIf(dragon -> dragon.getId() == id))
-            return 0;
-        return -1;
+    public void delete(int id) {
+        HumanBeing existedHuman = get(id);
+
+        if (existedHuman != null) {
+            humanCcollection.remove(existedHuman);
+        }
     }
     /**
      * Метод получения элемента из коллекции по его id
@@ -77,8 +86,8 @@ class DAOHumanBeign implements DAO {
      * @return dragon - элемент коллекции
      * */
     @Override
-    public Dragon get(int id) {
-        for(Dragon dragon : humanCcollection){
+    public HumanBeing get(int id) {
+        for(HumanBeing dragon : humanCcollection){
             if (dragon.getId() == id) {
                 return dragon;
             }
@@ -99,35 +108,35 @@ class DAOHumanBeign implements DAO {
      * Метод очистки всей коллекции
      * */
     @Override
-    public int clear() {
+    public void clear() {
         humanCcollection.clear();
-        return 0;
     }
+
+    @Override
+    public void sort() {
+
+    }
+
     /**
      * Метод возвращения информации о коллекции
      * @return output - информация о коллекции
      * */
-    @Override
-    public JsonObject getJSONDescription() {
 
-        JsonArrayBuilder dragons = Json.createArrayBuilder();
-        for (Dragon d: humanCcollection)
-            dragons.add(d.getJSONDescription());
+//    @Override
+//    public JsonObject getJSONDescription() {
+//
+//        JsonArrayBuilder dragons = Json.createArrayBuilder();
+//        for (Dragon d: humanCcollection)
+//            dragons.add(d.getJSONDescription());
+//
+//        JsonObject output = Json.createObjectBuilder().
+//                add("type", humanCcollection.getClass().getSimpleName()).
+//                add("size", humanCcollection.size()).
+//                add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
+//                add("availableId", availableId).
+//                add("elements", dragons.build()).build();
+//
+//        return output;
+//    }
 
-        JsonObject output = Json.createObjectBuilder().
-                add("type", humanCcollection.getClass().getSimpleName()).
-                add("size", humanCcollection.size()).
-                add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
-                add("availableId", availableId).
-                add("elements", dragons.build()).build();
-
-        return output;
-    }
-    /**
-     * Метод сортировки коллекции
-     * */
-    @Override
-    public void sort() {
-        Collections.sort(humanCcollection);
-    }
 }

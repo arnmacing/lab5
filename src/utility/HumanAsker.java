@@ -210,7 +210,7 @@ public class HumanAsker {
                 if (fileMode) Console.println(strhasHoothpick); //?????????????
                 if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда"))
                     hasToothpick = true;
-                    //ошибка пустого ввода?
+                    // todo ошибка пустого ввода?
                 } catch (NoSuchElementException exception) {
                         Console.printerror("Ответ не распознан!");
                         if (fileMode) throw new IncorrectInputInScriptException();
