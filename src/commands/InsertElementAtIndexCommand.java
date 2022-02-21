@@ -26,7 +26,7 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
      */
 
     @Override
-public boolean execute(String argument) {
+    public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();

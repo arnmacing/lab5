@@ -2,9 +2,12 @@ package commands;
 
 import exceptions.CollectionIsEmptyException;
 import exceptions.WrongAmountOfElementsException;
+import sourse.HumanBeing;
 import sourse.WeaponType;
 import utility.CollectionManager;
 import utility.Console;
+
+import java.util.ArrayList;
 
 /**
  * Команда 'remove_all_by_weapon_type weaponType'. Удаляет из коллекции все элементы, значение поля weaponType которого эквивалентно заданному.
@@ -26,14 +29,23 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
 
     @Override
     public boolean execute(String argument) {
+
+        ArrayList<HumanBeing> collection = collectionManager.getCollection(); // пол
+
+        for (HumanBeing human : collection) {
+            if (human.getWeaponType() == WeaponType.valueOf(argument)) {
+                collectionManager.removeFromCollection(human);
+                collectionManager.saveCollection();
+            }
+            //if (human.getId() == Integer.parseInt(argument)) collectionManager.removeFromCollection(human);
+        }
+
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
-            WeaponType weaponType = WeaponType.valueOf(argument.toUpperCase());
-
-
-                return true;
-            } else Console.println("В коллекции нет человека с выбранным типом оружия!");
+            if (collectionManager.collectionSize() == 0) {
+                throw new CollectionIsEmptyException();
+            } else
+                Console.println("В коллекции нет человека с выбранным типом оружия!");
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
         } catch (CollectionIsEmptyException e) {
