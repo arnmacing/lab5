@@ -1,22 +1,20 @@
 package utility;
 
-import run.App;
 import sourse.HumanBeing;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 /**
  * Управление вводом команд.
  */
-
 public class Console {
     private CommandManager commandManager;
     private Scanner userScanner;
     private HumanAsker humanAsker;
     private List<String> scriptStack = new ArrayList<>();
+    public static final String PS1 = "$ ";
+    public static final String PS2 = "> ";
 
     public Console(CommandManager commandManager, Scanner userScanner, HumanAsker humanAsker) {
         this.commandManager = commandManager;
@@ -27,7 +25,6 @@ public class Console {
     /**
      * Получение команд от клиента.
      */
-
     public void interactiveMode() {
     }
 
@@ -46,13 +43,11 @@ public class Console {
      * @param userCommand Команда для запуска.
      * @return Выход.
      */
-
     private int launchCommand(String[] userCommand) {
         switch (userCommand[0]) {
             case "":
                 break;
             case "help":
-                //todo help in console
                 if (!commandManager.help(userCommand[1])) return 1;
                 break;
             case "info":
@@ -89,7 +84,6 @@ public class Console {
                 if (!commandManager.removeAllByWeaponType(userCommand[1])) return 1;
                 break;
             case "average_of_minutes_of_waiting":
-                //todo x3 - generate methods in commandManager
                 if (!commandManager.averageOfMinutesOfWaiting(userCommand[1])) return 1;
                 break;
             case "filter_starts_with_name":
@@ -123,6 +117,15 @@ public class Console {
         System.out.println("error: " + toOut);
     }
 
+    /**
+     * Prints formatted 2-element table to Console
+     * @param element1 Left element of the row.
+     * @param element2 Right element of the row.
+     */
+    public static void printtable(Object element1, Object element2) {
+        System.out.printf("%-37s%-1s%n", element1, element2);
+    }
+
     @Override
     public String toString() {
         return "Console (класс для обработки ввода команд)";
@@ -132,7 +135,6 @@ public class Console {
      * Выводит toOut.toString() + \n на консоль.
      * @param toOut Объект для печати.
      */
-
     public static void println(Object toOut) {
         System.out.println(toOut);
     }

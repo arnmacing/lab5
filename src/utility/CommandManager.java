@@ -1,7 +1,6 @@
 package utility;
 
 import java.util.ArrayList;
-//todo нахуй нам лист?
 import java.util.List;
 
 import commands.*;
@@ -79,7 +78,6 @@ public class CommandManager {
      * @return Список команд.
      */
 
-    //todo это что...
     public List<Command> getCommands() {
         return commands;
     }
@@ -87,24 +85,23 @@ public class CommandManager {
     /**
     * Вывод информации обо всех командах.
     */
-
-    //todo ???????
-//    public boolean help(String stringArgument, Object objectArgument) {
-//        if (helpCommand.execute(String argument)) {
-//            for (Command command : commands) {
-//                ResponseOutputer.appendtable(command.getName() + " " + command.getUsage(), command.getDescription());
-//            }
-//            return true;
-//        } else return false;
-//    }
+    public boolean help(String argument) {
+        if (helpCommand.execute(argument)) {
+            for (Command command : commands) {
+                Console.printtable(command.getName(), command.getDescription());
+            }
+            return true;
+        } else return false;
+    }
 
     /**
     * Выполнение необходимых команд.
     */
 
-    //todo чистка? что за аргументы? разобраться
-    public boolean info(String stringArgument, Object objectArgument) {
-        return infoCommand.execute(stringArgument, objectArgument);
+    //todo чистка? что за аргументы? разобраться.
+    // если в менеджере команд убирать втрой аргумент (Object) то все ок работает но я хз можно так или нет
+    public boolean info(String stringArgument) {
+        return infoCommand.execute(stringArgument);
     }
 
     public boolean show(String stringArgument, Object objectArgument) {
@@ -153,5 +150,23 @@ public class CommandManager {
 
     public boolean removeAllByWeaponType(String stringArgument, Object objectArgument) {
         return removeAllByWeaponTypeCommand.execute(stringArgument, objectArgument);
+    }
+
+    public boolean averageOfMinutesOfWaiting(String stringArgument, Object objectArgument) {
+        return averageOfMinutesOfWaitingCommand.execute(stringArgument, objectArgument);
+    }
+
+    public boolean filterStartsWithName(String stringArgument, Object objectArgument) {
+        return filterStartsWithNameCommand.execute(stringArgument,objectArgument);
+    }
+
+    /**
+     * Prints that command is not found.
+     * @param command Comand, which is not found.
+     * @return Command exit status.
+     */
+    public boolean noSuchCommand(String command) {
+        Console.println("Команда '" + command + "' не найдена. Наберите 'help' для справки.");
+        return false;
     }
 }

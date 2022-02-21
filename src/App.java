@@ -1,16 +1,13 @@
-package run;
-
-
 import commands.*;
+import dao.DAO;
 import utility.*;
 
 import java.util.Scanner;
 
 public class App {
 
-    //todo why do not work dao import wtf
-    public static final String PS1 = "$ ";
-    public static final String PS2 = "> ";
+//    public static final String PS1 = "$ ";
+//    public static final String PS2 = "> ";
     private final DAO dao;
 
     public App(DAO dao) {
