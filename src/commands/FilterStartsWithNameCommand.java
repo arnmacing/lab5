@@ -41,14 +41,14 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
                 collectionManager.saveCollection();
                 }
             return true;
-        } else Console.println("В коллекции нет человека с выбранным типом оружия!");
+        } else Console.println("В коллекции нет такого человека!");
     } catch (WrongAmountOfElementsException exception) {
         Console.println("Использование: '" + getName() + "'");
     } catch (CollectionIsEmptyException exception) {
         Console.printerror("Коллекция пуста!");
     } catch (IllegalArgumentException exception) {
-        Console.printerror("Оружия нет в списке!");
-        Console.println("Список оружия  - " + WeaponType.nameList());
+        Console.printerror("Такого имени нет в списке!");
+        Console.println("Список имён  - " + HumanBeing.nameList());
     }
         return false;
 }
