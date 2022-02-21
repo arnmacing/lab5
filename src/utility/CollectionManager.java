@@ -30,6 +30,19 @@ public class CollectionManager<T> {
         humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
     }
+    public HumanBeing getMax(){
+        if (humanCollection.isEmpty()) {
+            return null;
+        }
+        return Collections.max(humanCollection);
+    }
+
+    public HumanBeing getMin(){
+        if (humanCollection.isEmpty()) {
+            return null;
+        }
+        return Collections.min(humanCollection);
+    }
 
     /**
      * @return Коллекция.
