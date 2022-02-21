@@ -31,24 +31,26 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
      * @return Статус выхода команды.
      */
 
-//    @Override
-//public boolean execute(String argument) {
-//        try {
-//            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-//            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
-//
-//                    //todo human to insert
-//            if (humanToInsert == null) throw new HumanNotFoundException();
-//            collectionManager.removeFromCollection(humanToInsert);
-//            Console.println("Человек успешно добавлен!");
-//            return true;
-//        } catch (WrongAmountOfElementsException exception) {
-//            Console.println("Использование: '" + getName() + "'");
-//        } catch (NumberFormatException exception) {
-//            Console.printerror("Индекс должен быть представлен числом!");
-//        }
-//        return false;
-//    }
+
+    @Override
+    public boolean execute(String argument) {
+        try {
+            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+
+                    //todo human to insert
+            if (humanToInsert == null) throw new HumanNotFoundException();
+            collectionManager.removeFromCollection(humanToInsert);
+            Console.println("Человек успешно добавлен!");
+            return true;
+        } catch (WrongAmountOfElementsException exception) {
+            Console.println("Использование: '" + getName() + "'");
+        } catch (NumberFormatException exception) {
+            Console.printerror("Индекс должен быть представлен числом!");
+        }
+        return false;
+    }
+
 }
 
 /*
