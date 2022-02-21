@@ -82,7 +82,6 @@ public class CollectionManager<T> {
         return null;
     }
 
-
     /**
      * @param humanToFind Найти человека, чья ценность будет найдена.
      * @return Человека по его значению или null, если человек не найден.
@@ -112,6 +111,7 @@ public class CollectionManager<T> {
         if (humanCollection.isEmpty()) return null;
         return humanCollection.get(humanCollection.size()-1);
     }
+
     /**
      * Добавление нового человека в коллекцию.
      */

@@ -46,9 +46,7 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.weaponType = weaponType;
         this.car = car;
     }
-    public HumanBeing( String name, Coordinates coordinates, java.time.ZonedDateTime creationDate,
-                      Boolean realHero,Boolean hasToothpick,Integer impactSpeed, String soundtrackName,
-                      float minutesOfWaiting, WeaponType weaponType, Car car) {
+    public HumanBeing(Integer impactSpeed) {
         this.id = -1;
         this.name = name;
         this.coordinates = coordinates;
