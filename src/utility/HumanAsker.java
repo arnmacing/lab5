@@ -1,5 +1,4 @@
 package utility;
-//todo x26 exception ?? human asker
 
 import exceptions.*;
 import sourse.*;
