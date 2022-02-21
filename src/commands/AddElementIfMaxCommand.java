@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Command 'add_if_max'. Adds a new element to collection if it's more than the largest.
+ * Команда 'add_if_max'. Добавляет новый элемент в коллекцию, если он больше самого большого.
  */
 
 public class AddElementIfMaxCommand extends AbstractCommand {

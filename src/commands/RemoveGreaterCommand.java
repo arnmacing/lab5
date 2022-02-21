@@ -9,6 +9,7 @@ import utility.*;
 /**
  * Command 'remove_greater'. Removes elements greater than user entered.
  */
+
 public class RemoveGreaterCommand extends AbstractCommand {
     private CollectionManager collectionManager;
     private HumanAsker humanAsker;
@@ -23,6 +24,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
      * Executes the command.
      * @return Command exit status.
      */
+
     @Override
     public boolean execute(String argument) {
         try {

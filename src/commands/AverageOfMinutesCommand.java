@@ -5,6 +5,10 @@ import exceptions.WrongAmountOfElementsException;
 import utility.CollectionManager;
 import utility.Console;
 
+/**
+ * Команда 'average_of_minutes_of_waiting'. Выводит среднее время ожидания.
+ */
+
 public class AverageOfMinutesCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
@@ -14,17 +18,18 @@ public class AverageOfMinutesCommand extends AbstractCommand {
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Command exit status.
+     * Выполнение команды.
+     * @return Статус выхода команды.
+     * @param argument
      */
+
     @Override
     public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             double averageOfMin = collectionManager.getAverageOfMin();
             if (averageOfMin == 0) throw new CollectionIsEmptyException();
-            Console.println("Сумма здоровья всех солдат: " + averageOfMin);
+            Console.println("Среднее время ожидания: " + averageOfMin);
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");

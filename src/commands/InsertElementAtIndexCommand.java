@@ -6,6 +6,10 @@ import utility.*;
 
 import java.util.ArrayList;
 
+/**
+ * Команда 'insert_at index {element}'. Добавление нового элемента в заданную позицию.
+ */
+
 public class InsertElementAtIndexCommand extends AbstractCommand {
     private CollectionManager collectionManager;
     private HumanAsker humanAsker;

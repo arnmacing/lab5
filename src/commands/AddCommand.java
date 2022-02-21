@@ -10,8 +10,9 @@ import utility.Console;
 import utility.HumanAsker;
 
 /**
- * Command 'add'. Adds a new element to collection.
+ * Команда 'add'. Добавляет новый элемент в коллекцию.
  */
+
 public class AddCommand extends AbstractCommand {
     private CollectionManager collectionManager;
     private HumanAsker humanAsker;
@@ -23,9 +24,10 @@ public class AddCommand extends AbstractCommand {
     }
 
     /**
-     * Executes the command.
-     * @return Command exit status.
+     * Выполнение команды.
+     * @return Статус выхода команды.
      */
+
     @Override
     public boolean execute(String argument) {
         try {
@@ -43,7 +45,7 @@ public class AddCommand extends AbstractCommand {
                 humanAsker.askWeaponType(),
                 humanAsker.askCar()
             ));
-            Console.println("Солдат успешно добавлен!");
+            Console.println("Человек успешно добавлен!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
