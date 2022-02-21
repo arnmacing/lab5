@@ -7,7 +7,7 @@ import exceptions.*;
 import utility.*;
 
 /**
- * Command 'remove_greater'. Removes elements greater than user entered.
+ * Command 'remove_greater'. Удаляет элементы, размер которых превышает введенный пользователем.
  */
 
 public class RemoveGreaterCommand extends AbstractCommand {
@@ -21,8 +21,8 @@ public class RemoveGreaterCommand extends AbstractCommand {
     }
 
     /**
-     * Executes the command.
-     * @return Command exit status.
+     * Выполняет команду.
+     * @return Статус выхода команды.
      */
 
     @Override
@@ -48,8 +48,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
             HumanBeing humanFromCollection = collectionManager.getByValue(humanToFind);
             if (humanFromCollection == null) throw new HumanNotFoundException();
             collectionManager.removeGreater(humanFromCollection);
-            //TODO text to console
-            Console.println("а что писать ну.. хуй");
+            Console.println("Удаление прошло успешно!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
@@ -58,8 +57,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
         } catch (HumanNotFoundException exception) {
             Console.printerror("Человека с такими характеристиками в коллекции нет!");
         } catch (IncorrectInputInScriptException exception) {
-            //todo text 2 to console
-            Console.printerror("какой-то текст");
+            Console.printerror("Неверный ввод в скрипте");
         }
         return false;
     }
