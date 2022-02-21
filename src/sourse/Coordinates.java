@@ -1,5 +1,7 @@
 package sourse;
 
+import java.util.Objects;
+
 public class Coordinates {
     private Double x; //Поле не может быть null
     private Double y; //Поле не может быть null
@@ -28,21 +30,21 @@ public class Coordinates {
     public String toString() {
         return "X:" + x + " Y:" + y;
     }
-}
-//todo нужен нам этот овррайд или нахуй удаляем?
-    /* @Override
-    public int hashCode() {
-       return
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Coordinates that = (Coordinates) o;
+        return Objects.equals(x, that.x) && Objects.equals(y, that.y);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj instanceof Sourse.Coordinates) {
-            Sourse.Coordinates coordinatesObj = (Sourse.Coordinates) obj;
-            return (x == coordinatesObj.getX()) && y.equals(coordinatesObj.getY());
-        }
-        return false;
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
-    */
+}
+
+
+
 

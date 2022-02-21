@@ -1,14 +1,18 @@
-package run;
-
 import commands.*;
+import dao.DAO;
 import utility.*;
 
 import java.util.Scanner;
 
 public class App {
 
-    public static final String PS1 = "$ ";
-    public static final String PS2 = "> ";
+//    public static final String PS1 = "$ ";
+//    public static final String PS2 = "> ";
+    private final DAO dao;
+
+    public App(DAO dao) {
+        this.dao = dao;
+    }
 
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {

@@ -1,15 +1,19 @@
+package dao;
+
 import sourse.HumanBeing;
 import utility.HumanAsker;
 import javax.json.*;
 import java.util.ArrayList;
 
 public interface DAO {
-    int create(HumanAsker properties);
-    int update(int id, HumanAsker properties);
-    int delete(int id);
+    int create(HumanBeing human);
+    void update(HumanBeing human);
+    void delete(int id);
+    void clear();
+    void sort();
     HumanBeing get(int id);
     ArrayList<HumanBeing> getAll();
-    int clear();
-    JsonObject getJSONDescription();
-    //void sort();
+
+    //JsonObject getJSONDescription();
+
 }
