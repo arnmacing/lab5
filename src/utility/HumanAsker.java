@@ -2,8 +2,8 @@ package utility;
 //todo x26 exception ?? human asker
 
 import exceptions.*;
-import
 import sourse.*;
+
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.lang.IllegalStateException;
@@ -167,46 +167,40 @@ public class HumanAsker {
      * @throws
      */
 
-//TODO
+
     public boolean askRealHero() throws IncorrectInputInScriptException {
         String strRealHero;
         boolean realHero;
         while (true) {
             try {
-                Console.println("Он реальный герой или пиздит?");
+                Console.println("Он реальный герой?");
                 Console.println(PS2);
-                strRealHero = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strRealHero); //?????????????
-                if (strRealHero.equals("yes") || strRealHero.equals("Yes") || strRealHero.equals("да") || strRealHero.equals("Да") || strRealHero.equals("пизда")){
+                strRealHero = userScanner.nextLine().trim().toLowerCase();
+                if (fileMode) Console.println(strRealHero);
+                if (strRealHero.equalsIgnoreCase("yes") || strRealHero.equalsIgnoreCase("да")) {
                     realHero = true;
-                    //ошибка пустого ввода?
+                    break;
+                } else {
+                    if (strRealHero.equals("no") || strRealHero.equals("нет")) {
+                        realHero = false;
+                        break;
+                    } else {
+                        if (strRealHero.isEmpty()) throw new NotInDeclaredLimitsException();
+                        else throw new NoSuchElementException();
+                    }
                 }
-            }
-            catch (NoSuchElementException e) {
+            } catch (NoSuchElementException e) {
                 Console.printerror("Ответ не распознан!");
                 if (fileMode) throw new IncorrectInputInScriptException();
+            } catch (NotInDeclaredLimitsException e) {
+            Console.printerror("Ответ не может быть пустым вводом!");
             } catch (NullPointerException | IllegalStateException e) {
                 Console.printerror("Непредвиденная ошибка!");
                 System.exit(0);
             }
-            /*
-            catch (NotInDeclaredLimitsException e) {
-                Console.printerror("Ответ не может быть пустым вводом!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            }
-
-            vot etot blok nichego ne vizivaet
-             */
         }
-        /*
-        return realHero; // do etogo nikogda ne doidet iz za while (true)
 
-
-         zachem method boolean tut, luchse ego sdelai void'om
-         */
-        // в пизду
-
-        // etot method dolzhn chto to throw'it', pri etom on boolean, i nichego ne vikidivaet. zachem?
+        return realHero;
     }
 
     /**
@@ -215,30 +209,37 @@ public class HumanAsker {
      * @throws
      */
 
-//TODO
     public boolean askHasToothPick() throws IncorrectInputInScriptException {
-        String strhasHoothpick;
-        boolean hasToothpick = false;
+        String strHasToothpick;
+        boolean hasToothpick;
         while (true) {
             try {
-                Console.println("Зубачистка в зубах есть? чи не?");
+                Console.println("Зубочистка в зубах есть?");
                 Console.println(PS2);
-                strhasHoothpick = userScanner.nextLine().trim();
-                if (fileMode) Console.println(strhasHoothpick); //?????????????
-                if (strhasHoothpick.equals("yes") || strhasHoothpick.equals("Yes") || strhasHoothpick.equals("да") || strhasHoothpick.equals("Да") || strhasHoothpick.equals("пизда"))
-                    hasToothpick = true;
-                    //ошибка пустого ввода?
-                } catch (NoSuchElementException exception) {
-                        Console.printerror("Ответ не распознан!");
-                        if (fileMode) throw new IncorrectInputInScriptException();
-                    } catch (MustBeNotEmptyException exception) {
-                        Console.printerror("Ответ не может быть пустым вводом!");
-                        if (fileMode) throw new IncorrectInputInScriptException();
-                    } catch (NullPointerException | IllegalStateException exception) {
-                        Console.printerror("Непредвиденная ошибка!");
-                        System.exit(0);
+                strHasToothpick = userScanner.nextLine().trim().toLowerCase();
+                if (fileMode) Console.println(strHasToothpick);
+                if (strHasToothpick.equalsIgnoreCase("yes") || strHasToothpick.equalsIgnoreCase("да")) {
+                hasToothpick = true;
+                break;
+                } else {
+                    if (strHasToothpick.equals("no") || strHasToothpick.equals("нет")) {
+                        hasToothpick = false;
+                        break;
+                    } else {
+                        if (strHasToothpick.isEmpty()) throw new NotInDeclaredLimitsException();
+                        else throw new NoSuchElementException();
                     }
                 }
+        } catch (NoSuchElementException e) {
+            Console.printerror("Ответ не распознан!");
+            if (fileMode) throw new IncorrectInputInScriptException();
+        } catch (NotInDeclaredLimitsException e) {
+            Console.printerror("Ответ не может быть пустым вводом!");
+        } catch (NullPointerException | IllegalStateException e) {
+            Console.printerror("Непредвиденная ошибка!");
+            System.exit(0);
+        }
+    }
         return hasToothpick;
     }
 
@@ -323,6 +324,7 @@ public class HumanAsker {
                 strMinutesOfWaiting = userScanner.nextLine().trim();
                 if (fileMode) Console.println(strMinutesOfWaiting);
                 minutesOfWaiting = Float.parseFloat(strMinutesOfWaiting);
+                break;
             } catch (NoSuchElementException exception) {
                 Console.printerror("Количество минут ожидания не распознано!");
                 if (fileMode) throw new IncorrectInputInScriptException();
