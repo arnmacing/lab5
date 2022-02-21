@@ -40,7 +40,7 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
             Console.printerror("Коллекция пуста!");
         } catch (IllegalArgumentException e) {
             Console.printerror("Оружия нет в списке!");
-            Console.println("Список оружия дальнего боя - " + WeaponType.nameList());
+            Console.println("Список оружия - " + WeaponType.nameList());
         }
         return false;
     }

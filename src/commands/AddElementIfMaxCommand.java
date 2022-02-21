@@ -3,6 +3,8 @@ package commands;
 import exceptions.*;
 import sourse.HumanBeing;
 import utility.*;
+
+import java.time.ZonedDateTime;
 import java.util.Collections;
 
 /**
@@ -28,7 +30,20 @@ public class AddElementIfMaxCommand extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            HumanBeing humanToAdd = new HumanBeing(humanAsker.askImpactSpeed());
+            HumanBeing humanToAdd = new HumanBeing(
+                    collectionManager.generateNextId(),
+                    humanAsker.askName(),
+                    humanAsker.askCoordinates(),
+                    ZonedDateTime.now(),
+                    humanAsker.askRealHero(),
+                    humanAsker.askHasToothPick(),
+                    humanAsker.askImpactSpeed(),
+                    humanAsker.askSoundtrackName(),
+                    humanAsker.askMinutesOfWaiting(),
+                    humanAsker.askWeaponType(),
+                    humanAsker.askCar()
+
+            );
             if (collectionManager.collectionSize() == 0 ||  collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) {
                 collectionManager.addToCollection(humanToAdd);
                 Console.println("Человек успешно добавлен!");
