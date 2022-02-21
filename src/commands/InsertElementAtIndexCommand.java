@@ -30,8 +30,6 @@ public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
-            ArrayList<HumanBeing>
-
 
                     //todo human to insert
             if (humanToInsert == null) throw new HumanNotFoundException();

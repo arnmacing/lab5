@@ -29,8 +29,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             HumanBeing humanToAdd = new HumanBeing(humanAsker.askImpactSpeed());
-            //TODO add e if max problem
-            if (collectionManager.collectionSize() == 0 ||  collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) { // условие ???????
+            if (collectionManager.collectionSize() == 0 ||  collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) {
                 collectionManager.addToCollection(humanToAdd);
                 Console.println("Человек успешно добавлен!");
                 return true;
