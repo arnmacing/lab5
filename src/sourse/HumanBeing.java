@@ -60,7 +60,6 @@ public class HumanBeing implements Comparable<HumanBeing> {
         this.car = car;
     }
 
-
     /**
      * Method to set id
      * @param id id
