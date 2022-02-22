@@ -99,7 +99,7 @@ public class Console {
      * @param userCommand Команда для запуска.
      * @return Выход.
      */
-
+//todo
     private int launchCommand(String[] userCommand) {
         switch (userCommand[0]) {
             case "":

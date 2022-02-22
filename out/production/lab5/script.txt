@@ -2,15 +2,15 @@ help
 info
 show
 add
-update id {element}
-remove_by_id
+update
+removeById
 clear
 save
-execute_script
+executeScript
 exit
-insert_at
-add_if_max
-remove_greater
-remove_all_by_weapon_type
-average_of_minutes_of_waiting
-filter_starts_with_name
+insertAtIndex
+addIfMax
+removeGreater
+removeAllByWeaponType
+averageOfMinutesOfWaiting
+filterStartsWithName

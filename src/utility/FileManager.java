@@ -17,7 +17,7 @@ public class FileManager {
 
       private String envVariable;
       public static java.util.Date lastInit;
-      public static final Gson gson = new Gson();
+      public static final Gson GSON= new Gson();
 
       public FileManager(String envVariable) {
         this.envVariable = envVariable;
@@ -33,7 +33,7 @@ public class FileManager {
             try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(envVariable)))) {
                 ArrayList<HumanBeing> collection;
                 Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-                collection = gson.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
+                collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
                 Console.println("Коллекция успешна загружена!");
                 return collection;
             } catch (FileNotFoundException exception) {
@@ -57,7 +57,7 @@ public class FileManager {
     public void writeCollection(Collection<?> collection) {
         if (System.getenv().get(envVariable) != null) {
             try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(envVariable)))) {
-                collectionFileWriter.write(gson.toJson(collection));
+                collectionFileWriter.write(GSON.toJson(collection));
                 Console.println("Коллекция успешна сохранена в файл!");
             } catch (IOException exception) {
                 Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
