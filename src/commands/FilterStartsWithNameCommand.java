@@ -13,8 +13,6 @@ import java.util.ArrayList;
 /**
  * Команда 'filter_starts_with_name name'. Выводит элементы, значение поля name которых начинается с заданной подстроки.
  */
-
-//TODO filter starts with name command
 public class FilterStartsWithNameCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
