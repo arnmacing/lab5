@@ -2,8 +2,11 @@
   <library name="gradle-wrapper">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../gson-2.8.6.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../gson-2.8.6-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

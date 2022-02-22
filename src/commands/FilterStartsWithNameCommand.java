@@ -31,25 +31,31 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
 
     @Override
     public boolean execute (String argument){
+        boolean isDeleted = false;
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
             ArrayList<HumanBeing> arrayColection = collectionManager.getCollection();
             for (HumanBeing human : arrayColection) {
                 if (human.getName().startsWith(argument)) {
-                collectionManager.removeFromCollection(human);
-                collectionManager.saveCollection();
+                    collectionManager.removeFromCollection(human);
+                    isDeleted = true;
+                    collectionManager.saveCollection();
                 }
-            return true;
-        } else Console.println("В коллекции нет такого человека!");
-    } catch (WrongAmountOfElementsException exception) {
-        Console.println("Использование: '" + getName() + "'");
-    } catch (CollectionIsEmptyException exception) {
-        Console.printerror("Коллекция пуста!");
-    } catch (IllegalArgumentException exception) {
-        Console.printerror("Такого имени нет в списке!");
-        Console.println("Список имён  - " + HumanBeing.nameList());
-    }
+            }
+            if (isDeleted) {
+                Console.println("Удаление прошло успешно!");
+            }
+            else Console.println("В коллекции нет такого человека!");
+        } catch (WrongAmountOfElementsException exception) {
+            Console.println("Использование: '" + getName() + "'");
+        } catch (CollectionIsEmptyException exception) {
+            Console.printerror("Коллекция пуста!");
+        } catch (IllegalArgumentException exception) {
+            Console.printerror("Такого имени нет в списке!");
+        }
         return false;
+    }
 }
-}
+
+// todo cделать список имён

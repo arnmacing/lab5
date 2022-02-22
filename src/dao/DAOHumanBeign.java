@@ -20,6 +20,7 @@ import java.util.Collections;
     private static int availableId = 1;
     private final ArrayList<HumanBeing> humanCcollection = new ArrayList<>();
 
+
     /**
     * Метод добавления элемента в коллекцию
     * */
@@ -99,7 +100,7 @@ import java.util.Collections;
     }
 
     /**
-     * метод сдля сортировки коллекции
+     * метод для сортировки коллекции
      */
     @Override
     public void sort() {
