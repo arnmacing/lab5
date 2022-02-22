@@ -21,10 +21,11 @@ public class ExecuteScriptCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         try {
-            if (stringArgument.isEmpty() || objectArgument != null) throw new WrongAmountOfElementsException();
+            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
+            Console.println("Выполняю скрипт '" + argument + "'...");
             return true;
         } catch (WrongAmountOfElementsException exception) {
-            ResponseOutputer.appendln("Использование: '" + getName() + " " + getUsage() + "'");
+            Console.println("Использование: '" + getName() + "'");
         }
         return false;
     }
