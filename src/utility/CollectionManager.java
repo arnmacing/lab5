@@ -198,5 +198,20 @@ public class CollectionManager<T> {
     }
     return averageOfMin/n;
     }
+
+    /**
+     * Method to sort collection
+     */
+    public void sortCollection(){
+        Collections.sort(humanCollection);
+    }
+
+    /**
+     * Method to get collection for user
+     */
+    public ArrayList<HumanBeing> getCollectionForUser(){
+        sortCollection();
+        return (humanCollection);
+    }
 }
 
