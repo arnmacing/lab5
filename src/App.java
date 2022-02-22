@@ -14,6 +14,7 @@ public class App {
 
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
+            // System.getenv("LABA")
             final String envVariable = "LABA";
 
             HumanAsker humanAsker = new HumanAsker(userScanner);

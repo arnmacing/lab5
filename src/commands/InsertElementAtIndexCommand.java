@@ -20,11 +20,11 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
         this.humanAsker = humanAsker;
     }
 
-    @Override
-    public boolean execute(String argument) {
-        Console.printerror("solve this!");
-        return true;
-    }
+//    @Override
+//    public boolean execute(String argument) {
+//        Console.printerror("solve this!");
+//        return true;
+//    }
 
     /**
      * Выполняет команду.
