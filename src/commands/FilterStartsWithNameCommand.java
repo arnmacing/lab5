@@ -1,7 +1,11 @@
 package commands;
 
+import exceptions.CollectionIsEmptyException;
+import exceptions.WrongAmountOfElementsException;
 import sourse.HumanBeing;
+import sourse.WeaponType;
 import utility.CollectionManager;
+import utility.Console;
 
 import java.util.ArrayList;
 
@@ -27,13 +31,25 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
 
     @Override
     public boolean execute (String argument){
-        ArrayList<HumanBeing> arrayColection = collectionManager.getCollection();
-        for (HumanBeing human : arrayColection) {
-            if (human.getName().startsWith(argument)) {
+        try {
+            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            ArrayList<HumanBeing> arrayColection = collectionManager.getCollection();
+            for (HumanBeing human : arrayColection) {
+                if (human.getName().startsWith(argument)) {
                 collectionManager.removeFromCollection(human);
                 collectionManager.saveCollection();
-            }
-        }
-        return true;
+                }
+            return true;
+        } else Console.println("В коллекции нет такого человека!");
+    } catch (WrongAmountOfElementsException exception) {
+        Console.println("Использование: '" + getName() + "'");
+    } catch (CollectionIsEmptyException exception) {
+        Console.printerror("Коллекция пуста!");
+    } catch (IllegalArgumentException exception) {
+        Console.printerror("Такого имени нет в списке!");
+        Console.println("Список имён  - " + HumanBeing.nameList());
     }
+        return false;
+}
 }
