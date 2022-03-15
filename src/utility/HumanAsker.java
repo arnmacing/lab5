@@ -31,7 +31,7 @@ public class HumanAsker {
     }
 
     /**
-     * @return Сканер, который используется для ввода пользователем..
+     * @return Сканер, который используется для ввода пользователем.
      */
 
     public Scanner getUserScanner() {

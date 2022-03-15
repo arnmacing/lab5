@@ -18,15 +18,16 @@ import java.util.Collections;
     public final class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
-    private final ArrayList<HumanBeing> humanCcollection = new ArrayList<>();
+    private final ArrayList<HumanBeing> humanCollection = new ArrayList<>();
 
 
     /**
     * Метод добавления элемента в коллекцию
     * */
+
     @Override
     public int create(HumanBeing human) {
-        humanCcollection.add(new HumanBeing(availableId, human.getName(),human.getCoordinates(), human.getCreationDate(),
+        humanCollection.add(new HumanBeing(availableId, human.getName(),human.getCoordinates(), human.getCreationDate(),
                 human.checkRealHero(), human.checkHasToothpick(), human.getImpactSpeed(), human.getSoundtrackName(),
                 human.getMinutesOfWaiting(), human.getWeaponType(), human.getCar()));
         return availableId++;
@@ -63,7 +64,7 @@ import java.util.Collections;
         HumanBeing existedHuman = get(id);
 
         if (existedHuman != null) {
-            humanCcollection.remove(existedHuman);
+            humanCollection.remove(existedHuman);
         }
     }
     /**
@@ -73,7 +74,7 @@ import java.util.Collections;
      * */
     @Override
     public HumanBeing get(int id) {
-        for(HumanBeing dragon : humanCcollection){
+        for(HumanBeing dragon : humanCollection){
             if (dragon.getId() == id) {
                 return dragon;
             }
@@ -87,7 +88,7 @@ import java.util.Collections;
     @Override
     public ArrayList<HumanBeing> getAll(){
         ArrayList<HumanBeing> outputCollection = new ArrayList<>();
-        outputCollection.addAll(humanCcollection);
+        outputCollection.addAll(humanCollection);
         return outputCollection;
     }
 
@@ -96,7 +97,7 @@ import java.util.Collections;
      * */
     @Override
     public void clear() {
-        humanCcollection.clear();
+        humanCollection.clear();
     }
 
     /**
@@ -104,7 +105,7 @@ import java.util.Collections;
      */
     @Override
     public void sort() {
-        Collections.sort(humanCcollection);
+        Collections.sort(humanCollection);
     }
 
     //todo это что?
@@ -123,10 +124,10 @@ import java.util.Collections;
 //        JsonArray human = description.getJsonArray("elements");
 //
 //        for (int i = 0; i < description.getInt("size"); ++i)
-//            humanCcollection.add(new HumanBeing(human.getJsonObject(i)));
+//            humanCollection.add(new HumanBeing(human.getJsonObject(i)));
 //
 //        int maxId = -1;
-//        for(HumanBeing d: humanCcollection)
+//        for(HumanBeing d: humanCollection)
 //            maxId = d.getId() > maxId?d.getId():maxId;
 //
 //        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
@@ -141,12 +142,12 @@ import java.util.Collections;
 //    public JsonObject getJSONDescription() {
 //
 //        JsonArrayBuilder human = Json.createArrayBuilder();
-//        for (HumanBeing h: humanCcollection)
+//        for (HumanBeing h: humanCollection)
 //            human.add(h.getJSONDescription());
 //
 //        JsonObject output = Json.createObjectBuilder().
-//                add("type", humanCcollection.getClass().getSimpleName()).
-//                add("size", humanCcollection.size()).
+//                add("type", humanCollection.getClass().getSimpleName()).
+//                add("size", humanCollection.size()).
 //                add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
 //                add("availableId", availableId).
 //                add("elements", human.build()).build();

@@ -141,9 +141,6 @@ public class CollectionManager<T> {
         humanCollection.remove(human);
     }
 
-    /**
-     * Удалить из коллекции человека, превышающего заданный.
-     */
 
     /**
      * Очистка колекции.

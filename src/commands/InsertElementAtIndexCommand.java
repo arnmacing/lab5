@@ -4,7 +4,7 @@ import exceptions.*;
 import sourse.HumanBeing;
 import utility.*;
 
-import java.util.ArrayList;
+import java.time.ZonedDateTime;
 
 /**
  * Команда 'insert_at index {element}'. Добавление нового элемента в заданную позицию.
@@ -20,32 +20,39 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
         this.humanAsker = humanAsker;
     }
 
-//    @Override
-//    public boolean execute(String argument) {
-//        Console.printerror("solve this!");
-//        return true;
-//    }
 
     /**
      * Выполняет команду.
      * @return Статус выхода команды.
      */
 
-
     @Override
     public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
+            collectionManager.getCollection().remove(Integer.parseInt(argument));
 
-                    //todo human to insert
-            if (humanToInsert == null) throw new HumanNotFoundException();
-            collectionManager.removeFromCollection(humanToInsert);
+            HumanBeing humanToInsert = new HumanBeing(
+                    Math.toIntExact(collectionManager.generateNextId()),
+                    humanAsker.askName(),
+                    humanAsker.askCoordinates(),
+                    ZonedDateTime.now(),
+                    humanAsker.askRealHero(),
+                    humanAsker.askHasToothPick(),
+                    humanAsker.askImpactSpeed(),
+                    humanAsker.askSoundtrackName(),
+                    humanAsker.askMinutesOfWaiting(),
+                    humanAsker.askWeaponType(),
+                    humanAsker.askCar()
+            );
+
+            collectionManager.getCollection().set(Integer.parseInt(argument), humanToInsert);
+            collectionManager.saveCollection();
             Console.println("Человек успешно добавлен!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
-        } catch (NumberFormatException exception) {
+        } catch (NumberFormatException | IncorrectInputInScriptException exception) {
             Console.printerror("Индекс должен быть представлен числом!");
         }
         return false;
@@ -53,28 +60,3 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
 
 }
 
-/*
- case ("insert"):
-                    try {
-                        if (FileController.getCollection().get(Long.parseLong(command[1])) != null) {
-                            System.out.println("Элемент с таким айди уже есть. Хотите заменить его?(Да/Нет)");
-                            String temp = scanner.nextLine().toLowerCase(Locale.ROOT);
-                            if (temp.equals("да")) {
-                                if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
-                                new CollectionController(command[1]);
-                                System.out.println("Успешно удалено!");
-                            } else if (temp.equals("нет")) break;
-                            else System.out.println("Такой ответ не предусмотрен большим братом");
-                        } else {
-                            if (Integer.parseInt(command[1]) <= 0) throw new IncorrectIdException();
-                            new CollectionController(command[1]);
-                        }
-                    } catch (ArrayIndexOutOfBoundsException e) {
-                        System.err.println("Ошибка. Вы не ввели аргумент команды.");
-                    } catch (NumberFormatException e) {
-                        System.err.println("Ошибка. Ввёден неправильный аргумент команды");
-                    }catch (IncorrectIdException e){
-                        System.err.println("Ошибка. Id должен быть больше нуля.");
-                    }
-                    break;
- */
