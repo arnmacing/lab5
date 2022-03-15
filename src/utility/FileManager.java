@@ -25,7 +25,7 @@ public class FileManager {
 
     /**
      * Считывание коллекции из файла.
-     * @return
+     * @return Коллекция.
      */
 
     public ArrayList<HumanBeing> readCollection() {

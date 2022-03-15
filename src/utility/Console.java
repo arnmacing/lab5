@@ -52,6 +52,7 @@ public class Console {
      * @param argument Это сам аргумент.
      * @return выход.
      */
+
     public int scriptMode(String argument) {
         String[] userCommand = {"", ""};
         int commandStatus;

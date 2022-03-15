@@ -1,7 +1,5 @@
 package sourse;
 
-import java.util.ArrayList;
-
 public enum WeaponType {
     AXE,
     PISTOL,

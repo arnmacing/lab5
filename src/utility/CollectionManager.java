@@ -197,15 +197,17 @@ public class CollectionManager<T> {
     }
 
     /**
-     * Method to sort collection
+     * Метод сортировки коллекции.
      */
+
     public void sortCollection(){
         Collections.sort(humanCollection);
     }
 
     /**
-     * Method to get collection for user
+     * Метод, чтобы получить коллекцию для пользователя.
      */
+
     public ArrayList<HumanBeing> getCollectionForUser(){
         sortCollection();
         return (humanCollection);
