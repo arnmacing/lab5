@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+
+import commands.Command;
 import exceptions.*;
 
 
@@ -44,6 +46,8 @@ public class Console {
             Console.printerror("Пользовательский ввод не обнаружен!");
         } catch (IllegalStateException exception) {
             Console.printerror("Непредвиденная ошибка!");
+        } catch (CommandNotFoundException e) {
+            // todo
         }
     }
 
@@ -89,6 +93,8 @@ public class Console {
         } catch (IllegalStateException exception) {
             Console.printerror("Непредвиденная ошибка!");
             System.exit(0);
+        } catch (CommandNotFoundException e) {
+            // todo
         } finally {
             scriptStack.remove(scriptStack.size()-1);
         }
@@ -97,67 +103,15 @@ public class Console {
 
     /**
      * Запуск команды.
-     * @param userCommand Команда для запуска.
-     * @return Выход.
      */
 //todo
-    private int launchCommand(String[] userCommand) {
-        switch (userCommand[0]) {
-            case "":
-                break;
-            case "help":
-                if (!commandManager.help(userCommand[1])) return 1;
-                break;
-            case "info":
-                if (!commandManager.info(userCommand[1])) return 1;
-                break;
-            case "show":
-                if (!commandManager.show(userCommand[1])) return 1;
-                break;
-            case "add":
-                if (!commandManager.add(userCommand[1])) return 1;
-                break;
-            case "update":
-                if (!commandManager.update(userCommand[1])) return 1;
-                break;
-            case "remove_by_id":
-                if (!commandManager.removeByID(userCommand[1])) return 1;
-                break;
-            case "clear":
-                if (!commandManager.clear(userCommand[1])) return 1;
-                break;
-            case "save":
-                if (!commandManager.save(userCommand[1])) return 1;
-                break;
-            case "execute_script":
-                if (!commandManager.executeScript(userCommand[1])) return 1;
-                else return scriptMode(userCommand[1]);
-            case "add_if_max":
-                if (!commandManager.addIfMax(userCommand[1])) return 1;
-                break;
-            case "insert_at index":
-                if (!commandManager.insertAtIndex(userCommand[1])) return 1;
-                break;
-            case "remove_greater":
-                if (!commandManager.removeGreater(userCommand[1])) return 1;
-                break;
-            case "remove_all_by_weapon_type":
-                if (!commandManager.removeAllByWeaponType(userCommand[1])) return 1;
-                break;
-            case "average_of_minutes_of_waiting":
-                if (!commandManager.averageOfMinutesOfWaiting(userCommand[1])) return 1;
-                break;
-            case "filter_starts_with_name":
-                if (!commandManager.filterStartsWithName(userCommand[1])) return 1;
-                break;
-            case "exit":
-                if (!commandManager.exit(userCommand[1])) return 1;
-                else return 2;
-            default:
-                if (!commandManager.noSuchCommand(userCommand[0])) return 1;
-        }
-        return 0;
+    public int launchCommand(String[] userCommand) throws CommandNotFoundException {
+        Command command = commandManager.getCommandByName(userCommand[0]);
+        if (command == null) throw new CommandNotFoundException();
+        else command.execute(userCommand[1]);
+        return 1;
     }
+
 
     /**
      * Выводит toOut.toString() на консоль.

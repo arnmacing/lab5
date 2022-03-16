@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import commands.*;
+import exceptions.CommandNotFoundException;
 
 /**
  * Управление командами.
@@ -172,5 +173,14 @@ public class CommandManager {
 
     public boolean filterStartsWithName(String argument){
         return filterStartsWithNameCommand.execute(argument);
+    }
+
+    public Command getCommandByName(String name) {
+        Command var = null;
+
+        for (Command command : commands) {
+            if (command.getName().equals(name)) return command;
+        }
+        return var;
     }
 }
