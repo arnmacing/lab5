@@ -18,7 +18,6 @@ public class CollectionManager<T> {
         this.lastInitTime = null;
         this.lastSaveTime = null;
         this.fileManager = fileManager;
-
         loadCollection();
     }
 
@@ -30,6 +29,7 @@ public class CollectionManager<T> {
         humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
     }
+
     public HumanBeing getMax(){
         if (humanCollection.isEmpty()) {
             return null;

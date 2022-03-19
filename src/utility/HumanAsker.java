@@ -9,7 +9,7 @@ import java.lang.IllegalStateException;
 import java.lang.NullPointerException;
 
 /**
- * Запрашивает у пользователя данные человека.
+ * Класс HumanAsker, отвечающий за создание объектов HumanBeing с консоли.
  */
 
 public class HumanAsker {

@@ -17,6 +17,11 @@ public class FileManager {
 
       private String envVariable;
       public static java.util.Date lastInit;
+
+    /**
+     * Поле объект Gson
+     */
+
       public static final Gson GSON= new Gson();
 
       public FileManager(String envVariable) {
