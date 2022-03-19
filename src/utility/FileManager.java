@@ -11,21 +11,22 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.JsonParseException;
 
-
+/**
+ * Класс FileManager, отвечающий за работу с файлом.
+ */
 
 public class FileManager {
-
-      private String envVariable;
-      public static java.util.Date lastInit;
+    private String filePath;
+    public static java.util.Date lastInit;
 
     /**
      * Поле объект Gson
      */
 
-      public static final Gson GSON= new Gson();
+    private Gson GSON= new Gson();
 
-      public FileManager(String envVariable) {
-        this.envVariable = envVariable;
+    public FileManager(String fileName) {
+        this.filePath = fileName;
     }
 
     /**
@@ -34,24 +35,21 @@ public class FileManager {
      */
 
     public ArrayList<HumanBeing> readCollection() {
-        if (System.getenv().get(envVariable) != null) {
-            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(envVariable)))) {
-                ArrayList<HumanBeing> collection;
-                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-                collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
-                Console.println("Коллекция успешна загружена!");
-                return collection;
-            } catch (FileNotFoundException exception) {
-                Console.printerror("Загрузочный файл не найден!");
-            } catch (NoSuchElementException exception) {
-                Console.printerror("Загрузочный файл пуст!");
-            } catch (JsonParseException | NullPointerException exception) {
-                Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
-            } catch (IllegalStateException exception) {
-                Console.printerror("Непредвиденная ошибка!");
-                System.exit(0);
-            }
-        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
+        try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get("LABA")))) {
+            ArrayList<HumanBeing> collection;
+            Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
+            collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
+            Console.println("Коллекция успешна загружена!");
+            return collection;
+        } catch (FileNotFoundException exception) {
+            Console.printerror("Загрузочный файл не найден!");
+        } catch (NoSuchElementException exception) {
+            Console.printerror("Загрузочный файл пуст!");
+        } catch (NullPointerException e){
+            Console.printerror("Искомая коллекция отсутствует в файле!");
+        } catch (JsonParseException exception) {
+            Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
+        }
         return new ArrayList<HumanBeing>();
     }
 
@@ -59,16 +57,22 @@ public class FileManager {
         lastInit = new Date();
     }
 
-    public void writeCollection(Collection<?> collection) {
-        if (System.getenv().get(envVariable) != null) {
-            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(envVariable)))) {
-                collectionFileWriter.write(GSON.toJson(collection));
-                Console.println("Коллекция успешна сохранена в файл!");
-            } catch (IOException exception) {
-                Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
-            }
-        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
-    }
+    /**
+     * Функция записи в файл.
+     * @param data - коллекция для записи в файл.
+     */
+
+    public void writeCollection(Collection<HumanBeing> data) {
+        if (System.getenv().get("LABA") != null) {
+        try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get("LABA")))) {
+            collectionFileWriter.write(GSON.toJson(data));
+            collectionFileWriter.close();
+            Console.println("Коллекция успешна сохранена в файл!");
+        } catch (IOException exception) {
+            Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
+        }
+    } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
+}
 
     @Override
     public boolean equals(Object o){

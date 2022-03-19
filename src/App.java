@@ -1,8 +1,11 @@
 import commands.*;
 import dao.DAO;
 import utility.*;
-
 import java.util.Scanner;
+
+/**
+ * Класс App, запускающий программу.
+ */
 
 public class App {
 
@@ -34,8 +37,7 @@ public class App {
                     new RemoveGreaterCommand(collectionManager, humanAsker),
                     new RemoveAllByWeaponTypeCommand(collectionManager),
                     new AverageOfMinutesCommand(collectionManager),
-                    new FilterStartsWithNameCommand(collectionManager)
-            );
+                    new FilterStartsWithNameCommand(collectionManager));
             Console console = new Console(commandManager, userScanner, humanAsker);
             console.interactiveMode();
         }
