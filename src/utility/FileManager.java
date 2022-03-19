@@ -4,8 +4,6 @@ import sourse.HumanBeing;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
-import javax.json.*;
-import javax.json.stream.JsonParser;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -35,21 +33,24 @@ public class FileManager {
      */
 
     public ArrayList<HumanBeing> readCollection() {
-        try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(filePath)))) {
-            ArrayList<HumanBeing> collection;
-            Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-            collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
-            Console.println("Коллекция успешна загружена!");
-            return collection;
-        } catch (FileNotFoundException exception) {
-            Console.printerror("Загрузочный файл не найден!");
-        } catch (NoSuchElementException exception) {
-            Console.printerror("Загрузочный файл пуст!");
-        } catch (NullPointerException e){
-            Console.printerror("Искомая коллекция отсутствует в файле!");
-        } catch (JsonParseException exception) {
-            Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
-        }
+        if (System.getenv().get(filePath) != null) {
+            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(filePath)))) {
+                ArrayList<HumanBeing> collection;
+                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {
+                }.getType();
+                collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
+                Console.println("Коллекция успешна загружена!");
+                return collection;
+            } catch (FileNotFoundException exception) {
+                Console.printerror("Загрузочный файл не найден!");
+            } catch (NoSuchElementException exception) {
+                Console.printerror("Загрузочный файл пуст!");
+            } catch (NullPointerException e) {
+                Console.printerror("Искомая коллекция отсутствует в файле!");
+            } catch (JsonParseException exception) {
+                Console.printerror("В загрузочном файле не обнаружена необходимая коллекция!");
+            }
+        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
         return new ArrayList<HumanBeing>();
     }
 

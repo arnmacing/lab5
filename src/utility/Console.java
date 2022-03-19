@@ -52,16 +52,16 @@ public class Console {
     }
 
     /**
-     * Перехват команды.
-     * @param argument Это сам аргумент.
-     * @return выход.
+     * Режим работы приложения - скрипт.
+     * @param fileName
+     * @return Статуса выполения.
      */
 
-    public int scriptMode(String argument) {
+    public int scriptMode(String fileName) {
         String[] userCommand = {"", ""};
         int commandStatus;
-        scriptStack.add(argument);
-        try (Scanner scriptScanner = new Scanner(new File(argument))) {
+        scriptStack.add(fileName);
+        try (Scanner scriptScanner = new Scanner(new File(fileName))) {
             if (!scriptScanner.hasNext()) throw new NoSuchElementException();
             Scanner tmpScanner = humanAsker.getUserScanner();
             humanAsker.setUserScanner(scriptScanner);
