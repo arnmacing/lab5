@@ -16,14 +16,14 @@ import com.google.gson.JsonParseException;
  */
 
 public class FileManager {
-    private String filePath;
+    private final String filePath;
     public static java.util.Date lastInit;
 
     /**
      * Поле объект Gson
      */
 
-    private Gson GSON= new Gson();
+    private final Gson GSON= new Gson();
 
     public FileManager(String fileName) {
         this.filePath = fileName;
@@ -35,7 +35,7 @@ public class FileManager {
      */
 
     public ArrayList<HumanBeing> readCollection() {
-        try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get("LABA")))) {
+        try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(filePath)))) {
             ArrayList<HumanBeing> collection;
             Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
             collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
@@ -63,8 +63,8 @@ public class FileManager {
      */
 
     public void writeCollection(Collection<HumanBeing> data) {
-        if (System.getenv().get("LABA") != null) {
-        try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get("LABA")))) {
+        if (System.getenv().get(filePath) != null) {
+        try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(filePath)))) {
             collectionFileWriter.write(GSON.toJson(data));
             collectionFileWriter.close();
             Console.println("Коллекция успешна сохранена в файл!");
