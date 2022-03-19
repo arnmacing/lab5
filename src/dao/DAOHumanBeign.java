@@ -36,8 +36,8 @@ import java.util.Collections;
 
     /**
      * Метод обновления элемента в коллекции по его id
+     */
 
-     * */
     @Override
     public void update(HumanBeing human) {
         HumanBeing existedHuman = get(human.getId());
@@ -55,10 +55,12 @@ import java.util.Collections;
             existedHuman.setCar(human.getCar());
         }
     }
+
     /**
      * Метод удаления элемента из коллекции по его id
      * @param id - id элемента, который пользователь хочет удалить
-     * */
+     */
+
     @Override
     public void delete(int id) {
         HumanBeing existedHuman = get(id);
@@ -67,11 +69,13 @@ import java.util.Collections;
             humanCollection.remove(existedHuman);
         }
     }
+
     /**
      * Метод получения элемента из коллекции по его id
      * @param id - id элемента, который пользователь хочет получить
      * @return dragon - элемент коллекции
-     * */
+     */
+
     @Override
     public HumanBeing get(int id) {
         for(HumanBeing dragon : humanCollection){
@@ -81,10 +85,12 @@ import java.util.Collections;
         }
         return null;
     }
+
     /**
      * Метод получения всей коллекции
      * @return outputCollection - копия коллекции
      * */
+
     @Override
     public ArrayList<HumanBeing> getAll(){
         ArrayList<HumanBeing> outputCollection = new ArrayList<>();
@@ -95,14 +101,16 @@ import java.util.Collections;
     /**
      * Метод очистки всей коллекции
      * */
+
     @Override
     public void clear() {
         humanCollection.clear();
     }
 
     /**
-     * метод для сортировки коллекции
+     * Метод для сортировки коллекции
      */
+
     @Override
     public void sort() {
         Collections.sort(humanCollection);

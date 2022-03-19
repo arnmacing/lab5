@@ -83,7 +83,7 @@ public class UpdateElementCommand extends AbstractCommand {
         } catch (NumberFormatException exception) {
             Console.printerror("ID должен быть представлен числом!");
         } catch (HumanNotFoundException exception) {
-            Console.printerror("Солдата с таким ID в коллекции нет!");
+            Console.printerror("Человека с таким ID в коллекции нет!");
         } catch (IncorrectInputInScriptException exception) {}
         return false;
     }

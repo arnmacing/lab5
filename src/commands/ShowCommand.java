@@ -7,6 +7,7 @@ import utility.Console;
 /**
  * Команда 'show'. Выводит все элементы коллекции в строковом представлении.
  */
+
 public class ShowCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 

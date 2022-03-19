@@ -14,13 +14,10 @@ public class App {
 
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
-            // System.getenv("LABA")
-            final String envVariable = "LABA";
-
+            System.out.println("Начало работы программы!");
             HumanAsker humanAsker = new HumanAsker(userScanner);
-            FileManager fileManager = new FileManager(envVariable);
+            FileManager fileManager = new FileManager(System.getenv("LABA"));
             CollectionManager collectionManager = new CollectionManager(fileManager);
-
             CommandManager commandManager = new CommandManager(
                     new HelpCommand(),
                     new InfoCommand(collectionManager),
@@ -39,9 +36,7 @@ public class App {
                     new AverageOfMinutesCommand(collectionManager),
                     new FilterStartsWithNameCommand(collectionManager)
             );
-
             Console console = new Console(commandManager, userScanner, humanAsker);
-
             console.interactiveMode();
         }
     }
