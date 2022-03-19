@@ -1,6 +1,7 @@
 package utility;
 
 import sourse.HumanBeing;
+
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.*;
@@ -21,7 +22,7 @@ public class FileManager {
      * Поле объект Gson
      */
 
-    private final Gson GSON= new Gson();
+    private final Gson GSON = new Gson();
 
     public FileManager(String fileName) {
         this.filePath = fileName;
@@ -29,6 +30,7 @@ public class FileManager {
 
     /**
      * Считывание коллекции из файла.
+     *
      * @return Коллекция.
      */
 
@@ -54,29 +56,30 @@ public class FileManager {
         return new ArrayList<HumanBeing>();
     }
 
-    public void lastInit(){
+    public void lastInit() {
         lastInit = new Date();
     }
 
     /**
      * Функция записи в файл.
+     *
      * @param data - коллекция для записи в файл.
      */
 
     public void writeCollection(Collection<HumanBeing> data) {
         if (System.getenv().get(filePath) != null) {
-        try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(filePath)))) {
-            collectionFileWriter.write(GSON.toJson(data));
-            collectionFileWriter.close();
-            Console.println("Коллекция успешна сохранена в файл!");
-        } catch (IOException exception) {
-            Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
-        }
-    } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
-}
+            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(filePath)))) {
+                collectionFileWriter.write(GSON.toJson(data));
+                collectionFileWriter.close();
+                Console.println("Коллекция успешна сохранена в файл!");
+            } catch (IOException exception) {
+                Console.printerror("Загрузочный файл является директорией/не может быть открыт!");
+            }
+        } else Console.printerror("Системная переменная с загрузочным файлом не найдена!");
+    }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         return this == o;
     }
 }

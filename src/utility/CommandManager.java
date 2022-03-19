@@ -85,6 +85,7 @@ public class CommandManager {
 
     /**
      * Выводит информацию обо всех командах.
+     *
      * @param argument Аргумент.
      * @return Статус выхода команды.
      */
@@ -100,6 +101,7 @@ public class CommandManager {
 
     /**
      * Выводит сообщение о том, что команда не найдена.
+     *
      * @param command Команда, которая не найдена.
      * @return Статус выхода команды.
      */
@@ -110,10 +112,11 @@ public class CommandManager {
     }
 
     /**
-    * Выполнение необходимых команд.
+     * Выполнение необходимых команд.
+     *
      * @param argument Аргумент.
      * @return Статус выхода команды.
-    */
+     */
 
     public boolean info(String argument) {
         return infoCommand.execute(argument);
@@ -171,16 +174,14 @@ public class CommandManager {
         return averageOfMinutesOfWaitingCommand.execute(argument);
     }
 
-    public boolean filterStartsWithName(String argument){
+    public boolean filterStartsWithName(String argument) {
         return filterStartsWithNameCommand.execute(argument);
     }
 
     public Command getCommandByName(String name) {
-        Command var = null;
-
         for (Command command : commands) {
             if (command.getName().equals(name)) return command;
         }
-        return var;
+        throw new IllegalStateException("Хочу пиво, баунти и ашкудишку");
     }
 }

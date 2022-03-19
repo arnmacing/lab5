@@ -24,11 +24,12 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода из команды.
      */
 
     @Override
-    public boolean execute (String argument){
+    public boolean execute(String argument) {
         boolean isDeleted = false;
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
@@ -43,8 +44,7 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
             }
             if (isDeleted) {
                 Console.println("Удаление прошло успешно!");
-            }
-            else Console.println("В коллекции нет такого человека!");
+            } else Console.println("В коллекции нет такого человека!");
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
         } catch (CollectionIsEmptyException exception) {

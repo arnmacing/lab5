@@ -14,13 +14,14 @@ import java.time.ZonedDateTime;
 public class InfoCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
-    public InfoCommand(CollectionManager collectionManager){
-        super("info","вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)" );
+    public InfoCommand(CollectionManager collectionManager) {
+        super("info", "вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов и т.д.)");
         this.collectionManager = collectionManager;
     }
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода из команды.
      */
 

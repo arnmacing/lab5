@@ -14,7 +14,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
     private CollectionManager collectionManager;
     private HumanAsker humanAsker;
 
-    public AddElementIfMaxCommand (CollectionManager collectionManager, HumanAsker humanAsker)  {
+    public AddElementIfMaxCommand(CollectionManager collectionManager, HumanAsker humanAsker) {
         super("add_if_max {element}", "добавить новый элемент, если его значение больше, чем у наибольшего");
         this.collectionManager = collectionManager;
         this.humanAsker = humanAsker;
@@ -22,6 +22,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода команды.
      */
 
@@ -43,14 +44,15 @@ public class AddElementIfMaxCommand extends AbstractCommand {
                     humanAsker.askCar()
 
             );
-            if (collectionManager.collectionSize() == 0 ||  collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) {
+            if (collectionManager.collectionSize() == 0 || collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) {
                 collectionManager.addToCollection(humanToAdd);
                 Console.println("Человек успешно добавлен!");
                 return true;
             } else Console.printerror("Значение меньше, чем значение наибольшего человека!");
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
-        } catch (IncorrectInputInScriptException exception) {}
+        } catch (IncorrectInputInScriptException exception) {
+        }
         return false;
     }
 }

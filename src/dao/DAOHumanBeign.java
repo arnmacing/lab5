@@ -11,23 +11,23 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-    /**
-    *Класс, который имплементируется от dao.DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию
-    */
+/**
+ * Класс, который имплементируется от dao.DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию
+ */
 
-    public final class DAOHumanBeign implements DAO {
+public final class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
     private final ArrayList<HumanBeing> humanCollection = new ArrayList<>();
 
 
     /**
-    * Метод добавления элемента в коллекцию
-    * */
+     * Метод добавления элемента в коллекцию
+     */
 
     @Override
     public int create(HumanBeing human) {
-        humanCollection.add(new HumanBeing(availableId, human.getName(),human.getCoordinates(), human.getCreationDate(),
+        humanCollection.add(new HumanBeing(availableId, human.getName(), human.getCoordinates(), human.getCreationDate(),
                 human.checkRealHero(), human.checkHasToothpick(), human.getImpactSpeed(), human.getSoundtrackName(),
                 human.getMinutesOfWaiting(), human.getWeaponType(), human.getCar()));
         return availableId++;
@@ -58,6 +58,7 @@ import java.util.Collections;
 
     /**
      * Метод удаления элемента из коллекции по его id
+     *
      * @param id - id элемента, который пользователь хочет удалить
      */
 
@@ -72,13 +73,14 @@ import java.util.Collections;
 
     /**
      * Метод получения элемента из коллекции по его id
+     *
      * @param id - id элемента, который пользователь хочет получить
      * @return dragon - элемент коллекции
      */
 
     @Override
     public HumanBeing get(int id) {
-        for(HumanBeing dragon : humanCollection){
+        for (HumanBeing dragon : humanCollection) {
             if (dragon.getId() == id) {
                 return dragon;
             }
@@ -88,11 +90,12 @@ import java.util.Collections;
 
     /**
      * Метод получения всей коллекции
+     *
      * @return outputCollection - копия коллекции
-     * */
+     */
 
     @Override
-    public ArrayList<HumanBeing> getAll(){
+    public ArrayList<HumanBeing> getAll() {
         ArrayList<HumanBeing> outputCollection = new ArrayList<>();
         outputCollection.addAll(humanCollection);
         return outputCollection;
@@ -100,7 +103,7 @@ import java.util.Collections;
 
     /**
      * Метод очистки всей коллекции
-     * */
+     */
 
     @Override
     public void clear() {

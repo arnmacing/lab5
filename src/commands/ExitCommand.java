@@ -14,6 +14,7 @@ public class ExitCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода из команды.
      */
 

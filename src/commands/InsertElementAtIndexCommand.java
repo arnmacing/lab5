@@ -23,6 +23,7 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
 
     /**
      * Выполняет команду.
+     *
      * @return Статус выхода команды.
      */
 

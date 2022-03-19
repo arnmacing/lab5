@@ -17,8 +17,9 @@ public class ClearCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
-     * @return Статус выхода из команды.
+     *
      * @param argument
+     * @return Статус выхода из команды.
      */
 
     @Override

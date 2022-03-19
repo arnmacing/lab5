@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 
-
 public class CollectionManager<T> {
     private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
     private ZonedDateTime lastInitTime;
@@ -30,14 +29,14 @@ public class CollectionManager<T> {
         lastInitTime = ZonedDateTime.now();
     }
 
-    public HumanBeing getMax(){
+    public HumanBeing getMax() {
         if (humanCollection.isEmpty()) {
             return null;
         }
         return Collections.max(humanCollection);
     }
 
-    public HumanBeing getMin(){
+    public HumanBeing getMin() {
         if (humanCollection.isEmpty()) {
             return null;
         }
@@ -122,7 +121,7 @@ public class CollectionManager<T> {
 
     public HumanBeing getLast() {
         if (humanCollection.isEmpty()) return null;
-        return humanCollection.get(humanCollection.size()-1);
+        return humanCollection.get(humanCollection.size() - 1);
     }
 
     /**
@@ -152,13 +151,14 @@ public class CollectionManager<T> {
 
     /**
      * Удаление людей, которых больше, чем выбранный.
+     *
      * @param human Человек, с которым можно сравнить.
      */
 
     public void removeGreater(HumanBeing human) {
         Integer impactSpeed = human.getImpactSpeed();
-        for(HumanBeing human1:humanCollection){
-            if (human1.getImpactSpeed() > impactSpeed){
+        for (HumanBeing human1 : humanCollection) {
+            if (human1.getImpactSpeed() > impactSpeed) {
                 humanCollection.remove(human1);
             }
         }
@@ -166,9 +166,10 @@ public class CollectionManager<T> {
 
     /**
      * Генерирует следующий идентификатор. Это будет (больший + 1).
+     *
      * @return Cледующий ID.
      */
-    
+
     public int generateNextId() {
         if (humanCollection.isEmpty()) return 1;
         return Collections.max(humanCollection).getId() + 1;
@@ -178,8 +179,8 @@ public class CollectionManager<T> {
      * Сохраняет коллекцию в файл.
      */
     public void saveCollection() {
-            fileManager.writeCollection(humanCollection);
-            lastSaveTime = ZonedDateTime.now();
+        fileManager.writeCollection(humanCollection);
+        lastSaveTime = ZonedDateTime.now();
     }
 
     /**
@@ -187,20 +188,20 @@ public class CollectionManager<T> {
      */
 
     public double getAverageOfMin() {
-    double averageOfMin = 0;
-    int n = 0;
-    for (HumanBeing human : humanCollection) {
-        averageOfMin += human.getMinutesOfWaiting();
-        n += 1;
-    }
-    return averageOfMin/n;
+        double averageOfMin = 0;
+        int n = 0;
+        for (HumanBeing human : humanCollection) {
+            averageOfMin += human.getMinutesOfWaiting();
+            n += 1;
+        }
+        return averageOfMin / n;
     }
 
     /**
      * Метод сортировки коллекции.
      */
 
-    public void sortCollection(){
+    public void sortCollection() {
         Collections.sort(humanCollection);
     }
 
@@ -208,7 +209,7 @@ public class CollectionManager<T> {
      * Метод, чтобы получить коллекцию для пользователя.
      */
 
-    public ArrayList<HumanBeing> getCollectionForUser(){
+    public ArrayList<HumanBeing> getCollectionForUser() {
         sortCollection();
         return (humanCollection);
     }

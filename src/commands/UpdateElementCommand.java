@@ -3,6 +3,7 @@ package commands;
 import exceptions.*;
 import sourse.*;
 import utility.*;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -22,6 +23,7 @@ public class UpdateElementCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода команды.
      */
 
@@ -29,7 +31,8 @@ public class UpdateElementCommand extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException(); // ошибка количества элементов
-            if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException(); // ошибка пустой коллекции
+            if (collectionManager.collectionSize() == 0)
+                throw new CollectionIsEmptyException(); // ошибка пустой коллекции
 
             int id = Integer.parseInt(argument);
 
@@ -52,27 +55,30 @@ public class UpdateElementCommand extends AbstractCommand {
             collectionManager.removeFromCollection(oldHuman);
 
             if (humanAsker.askQuestion("Хотите изменить имя человека?")) name = humanAsker.askName();
-            if (humanAsker.askQuestion("Хотите изменить координаты человека?")) coordinates = humanAsker.askCoordinates();
+            if (humanAsker.askQuestion("Хотите изменить координаты человека?"))
+                coordinates = humanAsker.askCoordinates();
             if (humanAsker.askQuestion("Хотите изменить статус человека?")) realHero = humanAsker.askRealHero();
-            if (humanAsker.askQuestion("Хотите изменить наличие зубочистки?")) hasToothpick = humanAsker.askHasToothPick();
+            if (humanAsker.askQuestion("Хотите изменить наличие зубочистки?"))
+                hasToothpick = humanAsker.askHasToothPick();
             if (humanAsker.askQuestion("Хотите изменить оружие?")) weaponType = humanAsker.askWeaponType();
             if (humanAsker.askQuestion("Хотите изменить скорость удара?")) impactSpeed = humanAsker.askImpactSpeed();
             if (humanAsker.askQuestion("Хотите изменить саундтрек?")) soundtrackName = humanAsker.askSoundtrackName();
-            if (humanAsker.askQuestion("Хотите изменить количество минут ожидания?")) minutesOfWaiting = humanAsker.askMinutesOfWaiting();
+            if (humanAsker.askQuestion("Хотите изменить количество минут ожидания?"))
+                minutesOfWaiting = humanAsker.askMinutesOfWaiting();
             if (humanAsker.askQuestion("Хотите изменить машину?")) car = humanAsker.askCar();
 
             collectionManager.addToCollection(new HumanBeing(
-            id,
-            name,
-            coordinates,
-            creationDate,
-            realHero,
-            hasToothpick,
-            impactSpeed,
-            soundtrackName,
-            minutesOfWaiting,
-            weaponType,
-            car
+                    id,
+                    name,
+                    coordinates,
+                    creationDate,
+                    realHero,
+                    hasToothpick,
+                    impactSpeed,
+                    soundtrackName,
+                    minutesOfWaiting,
+                    weaponType,
+                    car
             ));
             Console.println("Человек успешно изменен!");
             return true;
@@ -84,7 +90,8 @@ public class UpdateElementCommand extends AbstractCommand {
             Console.printerror("ID должен быть представлен числом!");
         } catch (HumanNotFoundException exception) {
             Console.printerror("Человека с таким ID в коллекции нет!");
-        } catch (IncorrectInputInScriptException exception) {}
+        } catch (IncorrectInputInScriptException exception) {
+        }
         return false;
     }
 }
