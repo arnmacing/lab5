@@ -5,11 +5,12 @@ import sourse.HumanBeing;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import dao.DAOHumanBeign;
 
 
 
-public class CollectionManager<T> {
-    private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+public class CollectionManager<T> extends DAOHumanBeign {
+    //private ArrayList<HumanBeing> humanCollection = new ArrayList<>();
     private ZonedDateTime lastInitTime;
     private ZonedDateTime lastSaveTime;
     private FileManager fileManager;

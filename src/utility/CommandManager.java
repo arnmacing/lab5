@@ -28,6 +28,7 @@ public class CommandManager {
     private Command removeAllByWeaponTypeCommand;
     private Command averageOfMinutesOfWaitingCommand;
     private Command filterStartsWithNameCommand;
+    // todo for what?
     private Command serverExitCommand;
 
     public CommandManager(Command helpCommand, Command infoCommand, Command showCommand, Command addCommand, Command updateCommand,

@@ -15,10 +15,10 @@ import java.util.Collections;
     *Класс, который имплементируется от dao.DAO. В нём мы реализуем методы для работы с коллекцией и инициализируем саму коллекцию
     */
 
-    public final class DAOHumanBeign implements DAO {
+    public class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
-    private final ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+    protected ArrayList<HumanBeing> humanCollection = new ArrayList<>();
 
 
     /**
@@ -78,9 +78,9 @@ import java.util.Collections;
 
     @Override
     public HumanBeing get(int id) {
-        for(HumanBeing dragon : humanCollection){
-            if (dragon.getId() == id) {
-                return dragon;
+        for(HumanBeing human : humanCollection){
+            if (human.getId() == id) {
+                return human;
             }
         }
         return null;
