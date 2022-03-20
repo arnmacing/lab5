@@ -13,7 +13,7 @@ public class AverageOfMinutesCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
     public AverageOfMinutesCommand(CollectionManager collectionManager) {
-        super("Average of minutes", "вывести среднее значение поля minutesOfWaiting для всех элементов коллекции");
+        super("average_of_minutes_of_waiting", "вывести среднее значение поля minutesOfWaiting для всех элементов коллекции");
         this.collectionManager = collectionManager;
     }
 
