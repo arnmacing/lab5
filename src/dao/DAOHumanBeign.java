@@ -1,5 +1,5 @@
 package dao;
-
+// ты кто
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import sourse.*;
 
@@ -121,46 +121,8 @@ import java.util.Collections;
         initDateTime = ZonedDateTime.now();
     }
 
-//    public dao.DAOHumanBeign(JsonObject description) {
-//        String initTime = description.getString("init date");
-//
-//        if (initTime == null)
-//            initDateTime = ZonedDateTime.now();
-//        else
-//            initDateTime = ZonedDateTime.parse(initTime, DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"));
-//
-//        JsonArray human = description.getJsonArray("elements");
-//
-//        for (int i = 0; i < description.getInt("size"); ++i)
-//            humanCollection.add(new HumanBeing(human.getJsonObject(i)));
-//
-//        int maxId = -1;
-//        for(HumanBeing d: humanCollection)
-//            maxId = d.getId() > maxId?d.getId():maxId;
-//
-//        availableId = maxId > description.getInt("availableId")? maxId + 1: description.getInt("availableId");
-//    }
+    public ZonedDateTime getInitDateTime() {
+        return initDateTime;
+    }
 
-//    /**
-//     * Метод возвращения информации о коллекции
-//     * @return output - информация о коллекции
-//     * */
-
-//    @Override
-//    public JsonObject getJSONDescription() {
-//
-//        JsonArrayBuilder human = Json.createArrayBuilder();
-//        for (HumanBeing h: humanCollection)
-//            human.add(h.getJSONDescription());
-//
-//        JsonObject output = Json.createObjectBuilder().
-//                add("type", humanCollection.getClass().getSimpleName()).
-//                add("size", humanCollection.size()).
-//                add("init date", initDateTime.format(DateTimeFormatter.ofPattern("dd.MM.uuuu: HH:mm:ss"))).
-//                add("availableId", availableId).
-//                add("elements", human.build()).build();
-//
-//        return output;
-//    }
-
-}
+    }

@@ -18,10 +18,8 @@ public class App {
     public static void main(String[] args) {
         try (Scanner userScanner = new Scanner(System.in)) {
             System.out.println("Начало работы программы!");
-            // System.getenv("PATH_FILE")
-            final String envVariable = "PATH_FILE";
             HumanAsker humanAsker = new HumanAsker(userScanner);
-            FileManager fileManager = new FileManager(System.getenv("LABA"));
+            FileManager fileManager = new FileManager(System.getenv("PATH_FILE"));
             CollectionManager collectionManager = new CollectionManager(fileManager);
             CommandManager commandManager = new CommandManager(
                     new HelpCommand(),
