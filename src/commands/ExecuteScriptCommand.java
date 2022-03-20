@@ -8,6 +8,7 @@ import exceptions.*;
 import utility.Console;
 import utility.*;
 
+import javax.script.ScriptContext;
 import java.io.*;
 
 
@@ -16,11 +17,14 @@ import java.io.*;
  */
 
 public class ExecuteScriptCommand extends AbstractCommand {
+
     public ExecuteScriptCommand() {
-        super("execute_script file_name", "осчитать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
+        super("execute_script file_name", "Считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
     }
-/* //todo я ещё не придумала как реализовать эту команду
+
+/*    //todo я ещё не придумала как реализовать эту команду
     public int scriptMode(String fileName) {
+        HumanAsker humanAsker = new HumanAsker();
         String[] userCommand = {"", ""};
         int commandStatus;
         scriptStack.add(fileName);
@@ -71,7 +75,6 @@ public class ExecuteScriptCommand extends AbstractCommand {
      * @return Статус выхода из команды.
      */
 
-    //todo execute script
     @Override
     public boolean execute(String argument) {
         try {

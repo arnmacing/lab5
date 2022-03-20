@@ -1,5 +1,6 @@
 package dao;
 // ты кто
+
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import sourse.*;
 
@@ -16,7 +17,7 @@ import java.util.Collections;
  */
 
 
-    public class DAOHumanBeign implements DAO {
+public class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
     protected ArrayList<HumanBeing> humanCollection = new ArrayList<>();
@@ -82,7 +83,7 @@ import java.util.Collections;
     @Override
     public HumanBeing get(int id) {
 
-        for(HumanBeing human : humanCollection){
+        for (HumanBeing human : humanCollection) {
             if (human.getId() == id) {
                 return human;
             }
@@ -130,4 +131,4 @@ import java.util.Collections;
         return initDateTime;
     }
 
-    }
+}

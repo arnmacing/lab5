@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+
 import dao.DAOHumanBeign;
 
 
@@ -33,7 +34,7 @@ public class CollectionManager<T> {
     }
 
 
-    public HumanBeing getMax(){
+    public HumanBeing getMax() {
         if (human.getAll().isEmpty()) {
             return null;
         }
@@ -41,7 +42,7 @@ public class CollectionManager<T> {
     }
 
 
-    public HumanBeing getMin(){
+    public HumanBeing getMin() {
         if (human.getAll().isEmpty()) {
             return null;
         }
@@ -127,7 +128,7 @@ public class CollectionManager<T> {
     public HumanBeing getLast() {
 
         if (human.getAll().isEmpty()) return null;
-        return human.getAll().get(human.getAll().size()-1);
+        return human.getAll().get(human.getAll().size() - 1);
     }
 
     /**
@@ -157,14 +158,14 @@ public class CollectionManager<T> {
 
     /**
      * Удаление людей, которых больше, чем выбранный.
-
+     *
      * @param humanh Человек, с которым можно сравнить.
      */
 
     public void removeGreater(HumanBeing humanh) {
         Integer impactSpeed = humanh.getImpactSpeed();
-        for(HumanBeing human1 : humanCollection){
-            if (human1.getImpactSpeed() > impactSpeed){
+        for (HumanBeing human1 : humanCollection) {
+            if (human1.getImpactSpeed() > impactSpeed) {
                 human.delete(human1.getId());
             }
         }
@@ -195,13 +196,13 @@ public class CollectionManager<T> {
 
     public double getAverageOfMin() {
 
-    double averageOfMin = 0;
-    int n = 0;
-    for (HumanBeing humanh : humanCollection) {
-        averageOfMin += humanh.getMinutesOfWaiting();
-        n += 1;
-    }
-    return averageOfMin/n;
+        double averageOfMin = 0;
+        int n = 0;
+        for (HumanBeing humanh : humanCollection) {
+            averageOfMin += humanh.getMinutesOfWaiting();
+            n += 1;
+        }
+        return averageOfMin / n;
     }
 
 //    /**
@@ -216,7 +217,7 @@ public class CollectionManager<T> {
      * Метод, чтобы получить коллекцию для пользователя.
      */
 
-    public ArrayList<HumanBeing> getCollectionForUser(){
+    public ArrayList<HumanBeing> getCollectionForUser() {
         human.sort();
         return (human.getAll());
     }
