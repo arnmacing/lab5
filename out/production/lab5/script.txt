@@ -1,0 +1,16 @@
+help
+info
+show
+add
+update
+removeById
+clear
+save
+executeScript
+exit
+insertAtIndex
+addIfMax
+removeGreater
+removeAllByWeaponType
+averageOfMinutesOfWaiting
+filterStartsWithName
