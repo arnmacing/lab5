@@ -30,7 +30,7 @@ public class RemoveElementByIDCommand extends AbstractCommand {
             Integer id = Integer.parseInt(argument);
             HumanBeing humanToRemove = collectionManager.getById(id);
             if (humanToRemove == null) throw new HumanNotFoundException();
-            collectionManager.removeFromCollection(humanToRemove);
+            collectionManager.removeFromCollection(humanToRemove.getId());
             Console.println("Человек успешно удален!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
