@@ -15,7 +15,7 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
     private HumanAsker humanAsker;
 
     public InsertElementAtIndexCommand(CollectionManager collectionManager, HumanAsker humanAsker) {
-        super("insert_at index {element}", "добавить новый элемент в заданную позицию");
+        super("insert_at_index {element}", "добавить новый элемент в заданную позицию");
         this.collectionManager = collectionManager;
         this.humanAsker = humanAsker;
     }

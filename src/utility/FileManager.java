@@ -35,8 +35,8 @@ public class FileManager {
      */
 
     public ArrayList<HumanBeing> readCollection() {
-        if (System.getenv().get(filePath) != null) {
-            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv().get(filePath)))) {
+        if (filePath != null) {
+            try (Scanner collectionFileScanner = new Scanner(new File(filePath))) {
                 ArrayList<HumanBeing> collection;
                 Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {
                 }.getType();

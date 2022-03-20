@@ -18,7 +18,7 @@ public class CollectionManager<T> {
     private ArrayList<HumanBeing> humanCollection;
 
     public CollectionManager(FileManager fileManager) {
-        this.human = null;
+        //this.human = null;
         this.lastInitTime = null;
         this.lastSaveTime = null;
         this.fileManager = fileManager;
@@ -207,11 +207,11 @@ public class CollectionManager<T> {
         return averageOfMin / n;
     }
 
-//    /**
+    //    /**
 //     * Метод сортировки коллекции.
 //     */
 //
-    public void sortCollection(){
+    public void sortCollection() {
         Collections.sort(humanCollection);
     }
 
@@ -223,7 +223,7 @@ public class CollectionManager<T> {
 //        humanCollection.sort();
 //        return (human.getAll());
         sortCollection();
-        return(humanCollection);
+        return (humanCollection);
     }
 }
 

@@ -94,7 +94,7 @@ public class Console {
             case "add_if_max":
                 if (!commandManager.addIfMax(userCommand[1])) return 1;
                 break;
-            case "insert_at index":
+            case "insert_at_index":
                 if (!commandManager.insertAtIndex(userCommand[1])) return 1;
                 break;
             case "remove_greater":
@@ -119,6 +119,9 @@ public class Console {
     }
 
     public int scriptMode(String fileName) {
+
+        //todo: это будет работать только с абсолютным путем, а не с локальным, но вроде итс ок
+
         String[] userCommand = {"", ""};
         int commandStatus;
         scriptStack.add(fileName);
@@ -207,7 +210,7 @@ public class Console {
 
     public static void run(String scriptPath) {
         Console.println("Начало работы программы!");
-        Console.println("Для получения справочной информации, наберите в командной строке команду help. На экран выведется список основных команд.");
+        Console.println("Для получения справочной информации, наберите в командной строке команду 'help'. На экран выведется список основных команд.");
         while (true) {
             try {
                 try (Scanner userScanner = new Scanner(System.in)) {
@@ -216,22 +219,23 @@ public class Console {
                     FileManager fileManager = new FileManager(System.getenv(scriptPath));
                     CollectionManager collectionManager = new CollectionManager(fileManager);
                     CommandManager commandManager = new CommandManager(
-                        new HelpCommand(collectionManager),
-                        new InfoCommand(collectionManager),
-                        new ShowCommand(collectionManager),
-                        new AddCommand(collectionManager, humanAsker),
-                        new UpdateElementCommand(collectionManager, humanAsker),
-                        new RemoveElementByIDCommand(collectionManager),
-                        new ClearCommand(collectionManager),
-                        new SaveCommand(collectionManager),
-                        new ExecuteScriptCommand(),
-                        new ExitCommand(),
-                        new InsertElementAtIndexCommand(collectionManager, humanAsker),
-                        new AddElementIfMaxCommand(collectionManager, humanAsker),
-                        new RemoveGreaterCommand(collectionManager, humanAsker),
-                        new RemoveAllByWeaponTypeCommand(collectionManager),
-                        new AverageOfMinutesCommand(collectionManager),
-                        new FilterStartsWithNameCommand(collectionManager));
+                            new HelpCommand(collectionManager),
+                            new InfoCommand(collectionManager),
+                            new ShowCommand(collectionManager),
+                            new AddCommand(collectionManager, humanAsker),
+                            new UpdateElementCommand(collectionManager, humanAsker),
+                            new RemoveElementByIDCommand(collectionManager),
+                            new ClearCommand(collectionManager),
+                            new SaveCommand(collectionManager),
+                            new ExitCommand(),
+                            new ExecuteScriptCommand(),
+                            new AddElementIfMaxCommand(collectionManager, humanAsker),
+                            new RemoveGreaterCommand(collectionManager, humanAsker),
+                            new RemoveAllByWeaponTypeCommand(collectionManager),
+                            new AverageOfMinutesCommand(collectionManager),
+                            new InsertElementAtIndexCommand(collectionManager, humanAsker),
+                            new FilterStartsWithNameCommand(collectionManager)
+                    );
                     Console console = new Console(commandManager, userScanner, humanAsker);
                     console.interactiveMode();
                 }

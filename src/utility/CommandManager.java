@@ -29,10 +29,22 @@ public class CommandManager {
     private Command averageOfMinutesOfWaitingCommand;
     private Command filterStartsWithNameCommand;
 
-    public CommandManager(Command helpCommand, Command infoCommand, Command showCommand, Command addCommand, Command updateCommand,
-                          Command removeByIDCommand, Command clearCommand, Command saveCommand, Command exitCommand, Command executeScriptCommand,
-                          Command addIfMaxCommand, Command insertAtIndexCommand, Command removeGreaterCommand, Command removeAllByWeaponTypeCommand,
-                          Command averageOfMinutesOfWaitingCommand, Command filterStartsWithNameCommand) {
+    public CommandManager(Command helpCommand,
+                          Command infoCommand,
+                          Command showCommand,
+                          Command addCommand,
+                          Command updateCommand,
+                          Command removeByIDCommand,
+                          Command clearCommand,
+                          Command saveCommand,
+                          Command exitCommand,
+                          Command executeScriptCommand,
+                          Command addIfMaxCommand,
+                          Command removeGreaterCommand,
+                          Command removeAllByWeaponTypeCommand,
+                          Command averageOfMinutesOfWaitingCommand,
+                          Command insertAtIndexCommand,
+                          Command filterStartsWithNameCommand) {
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.showCommand = showCommand;
