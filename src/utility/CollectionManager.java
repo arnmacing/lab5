@@ -169,16 +169,15 @@ public class CollectionManager<T> {
             }
         }
     }
-// нахуй нам это вообще надо?....
-//    /**
-//     * Генерирует следующий идентификатор. Это будет (больший + 1).
-//     * @return Cледующий ID.
-//     */
-//
-//    public int generateNextId() {
-//        if (humanCollection.isEmpty()) return 1;
-//        return Collections.max(humanCollection).getId() + 1;
-//    }
+    /**
+     * Генерирует следующий идентификатор. Это будет (больший + 1).
+     * @return Cледующий ID.
+     */
+
+    public int generateNextId() {
+        if (humanCollection.isEmpty()) return 1;
+        return Collections.max(humanCollection).getId() + 1;
+    }
 
 
     /**
