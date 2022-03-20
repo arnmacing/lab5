@@ -28,6 +28,7 @@ public class CollectionManager<T> {
     /**
      * Загружает коллекцию из файла.
      */
+
     private void loadCollection() {
         //humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
@@ -170,8 +171,10 @@ public class CollectionManager<T> {
             }
         }
     }
+
     /**
      * Генерирует следующий идентификатор. Это будет (больший + 1).
+     *
      * @return Cледующий ID.
      */
 
