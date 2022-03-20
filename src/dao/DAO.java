@@ -21,6 +21,4 @@ public interface DAO {
 
     ArrayList<HumanBeing> getAll();
 
-    //JsonObject getJSONDescription();
-
 }

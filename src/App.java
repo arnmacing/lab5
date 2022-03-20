@@ -19,7 +19,7 @@ public class App {
         try (Scanner userScanner = new Scanner(System.in)) {
             System.out.println("Начало работы программы!");
             HumanAsker humanAsker = new HumanAsker(userScanner);
-            FileManager fileManager = new FileManager(System.getenv("LABA"));
+            FileManager fileManager = new FileManager(System.getenv("PATH_FILE"));
             CollectionManager collectionManager = new CollectionManager(fileManager);
             CommandManager commandManager = new CommandManager(
                     new HelpCommand(),
