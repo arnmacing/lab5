@@ -1,7 +1,7 @@
 package commands;
 
 /**
- * Абстрактный классc команд содержит объектные методы, имя и описание.
+ * Абстрактный класc команд содержит объектные методы, имя и описание.
  */
 
 public abstract class AbstractCommand implements Command {

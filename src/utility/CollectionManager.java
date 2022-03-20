@@ -209,7 +209,7 @@ public class CollectionManager<T> {
 //     */
 //
 //    public void sortCollection(){
-//        Collections.sort(humanCollection);
+//        .sort(humanCollection);
 //    }
 
     /**
