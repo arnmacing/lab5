@@ -23,7 +23,7 @@ public class App {
             FileManager fileManager = new FileManager(System.getenv("PATH_FILE"));
             CollectionManager collectionManager = new CollectionManager(fileManager);
             CommandManager commandManager = new CommandManager(
-                    new HelpCommand(),
+                    new HelpCommand(collectionManager),
                     new InfoCommand(collectionManager),
                     new ShowCommand(collectionManager),
                     new AddCommand(collectionManager, humanAsker),

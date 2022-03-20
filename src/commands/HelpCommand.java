@@ -1,6 +1,7 @@
 package commands;
 
 import exceptions.WrongAmountOfElementsException;
+import utility.CollectionManager;
 import utility.CommandManager;
 import utility.Console;
 
@@ -9,10 +10,11 @@ import utility.Console;
  */
 
 public class HelpCommand extends AbstractCommand {
-    // private CommandManager commandManager;
+    private CollectionManager collectionManager;
 
-    public HelpCommand() {
+    public HelpCommand(CollectionManager collectionManager) {
         super("help", "вывести справку по доступным командам");
+        this.collectionManager = collectionManager;
     }
 
     /**
