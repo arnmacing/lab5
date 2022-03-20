@@ -22,7 +22,7 @@ public class ExecuteScriptCommand extends AbstractCommand {
         super("execute_script file_name", "Считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
     }
 
-/*    //todo я ещё не придумала как реализовать эту команду
+/*
     public int scriptMode(String fileName) {
         HumanAsker humanAsker = new HumanAsker();
         String[] userCommand = {"", ""};

@@ -30,7 +30,7 @@ public class CollectionManager<T> {
      */
 
     private void loadCollection() {
-        //humanCollection = fileManager.readCollection();
+        humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
     }
 

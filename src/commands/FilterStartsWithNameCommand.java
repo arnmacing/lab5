@@ -55,5 +55,3 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
         return false;
     }
 }
-
-// todo cделать список имён
