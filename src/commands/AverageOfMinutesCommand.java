@@ -19,8 +19,9 @@ public class AverageOfMinutesCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
-     * @return Статус выхода команды.
+     *
      * @param argument
+     * @return Статус выхода команды.
      */
 
     @Override

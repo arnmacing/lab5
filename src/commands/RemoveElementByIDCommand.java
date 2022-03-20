@@ -18,6 +18,7 @@ public class RemoveElementByIDCommand extends AbstractCommand {
 
     /**
      * Выполняет команду.
+     *
      * @return Статус выхода команды.
      */
 

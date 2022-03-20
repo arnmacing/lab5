@@ -22,6 +22,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
 
     /**
      * Выполняет команду.
+     *
      * @return Статус выхода команды.
      */
 
@@ -31,17 +32,17 @@ public class RemoveGreaterCommand extends AbstractCommand {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
             HumanBeing humanToFind = new HumanBeing(
-                Math.toIntExact(collectionManager.generateNextId()),
-                humanAsker.askName(),
-                humanAsker.askCoordinates(),
-                ZonedDateTime.now(),
-                humanAsker.askRealHero(),
-                humanAsker.askHasToothPick(),
-                humanAsker.askImpactSpeed(),
-                humanAsker.askSoundtrackName(),
-                humanAsker.askMinutesOfWaiting(),
-                humanAsker.askWeaponType(),
-                humanAsker.askCar()
+                    Math.toIntExact(collectionManager.generateNextId()),
+                    humanAsker.askName(),
+                    humanAsker.askCoordinates(),
+                    ZonedDateTime.now(),
+                    humanAsker.askRealHero(),
+                    humanAsker.askHasToothPick(),
+                    humanAsker.askImpactSpeed(),
+                    humanAsker.askSoundtrackName(),
+                    humanAsker.askMinutesOfWaiting(),
+                    humanAsker.askWeaponType(),
+                    humanAsker.askCar()
             );
             HumanBeing humanFromCollection = collectionManager.getByValue(humanToFind);
             if (humanFromCollection == null) throw new HumanNotFoundException();

@@ -25,6 +25,7 @@ public class AddCommand extends AbstractCommand {
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода команды.
      */
 
@@ -34,22 +35,23 @@ public class AddCommand extends AbstractCommand {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
             collectionManager.addToCollection(new HumanBeing(
                     Math.toIntExact(collectionManager.generateNextId()),
-                humanAsker.askName(),
-                humanAsker.askCoordinates(),
-                ZonedDateTime.now(),
-                humanAsker.askRealHero(),
-                humanAsker.askHasToothPick(),
-                humanAsker.askImpactSpeed(),
-                humanAsker.askSoundtrackName(),
-                humanAsker.askMinutesOfWaiting(),
-                humanAsker.askWeaponType(),
-                humanAsker.askCar()
+                    humanAsker.askName(),
+                    humanAsker.askCoordinates(),
+                    ZonedDateTime.now(),
+                    humanAsker.askRealHero(),
+                    humanAsker.askHasToothPick(),
+                    humanAsker.askImpactSpeed(),
+                    humanAsker.askSoundtrackName(),
+                    humanAsker.askMinutesOfWaiting(),
+                    humanAsker.askWeaponType(),
+                    humanAsker.askCar()
             ));
             Console.println("Человек успешно добавлен!");
             return true;
         } catch (WrongAmountOfElementsException exception) {
             Console.println("Использование: '" + getName() + "'");
-        } catch (IncorrectInputInScriptException exception) {}
+        } catch (IncorrectInputInScriptException exception) {
+        }
         return false;
     }
 }

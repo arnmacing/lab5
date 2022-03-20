@@ -9,7 +9,6 @@ import java.util.Collections;
 import dao.DAOHumanBeign;
 
 
-
 public class CollectionManager<T> {
     DAOHumanBeign human = new DAOHumanBeign();
     private ZonedDateTime lastInitTime;
@@ -33,12 +32,14 @@ public class CollectionManager<T> {
         lastInitTime = ZonedDateTime.now();
     }
 
+
     public HumanBeing getMax(){
         if (human.getAll().isEmpty()) {
             return null;
         }
         return Collections.max(human.getAll());
     }
+
 
     public HumanBeing getMin(){
         if (human.getAll().isEmpty()) {
@@ -124,6 +125,7 @@ public class CollectionManager<T> {
      */
 
     public HumanBeing getLast() {
+
         if (human.getAll().isEmpty()) return null;
         return human.getAll().get(human.getAll().size()-1);
     }
@@ -155,6 +157,7 @@ public class CollectionManager<T> {
 
     /**
      * Удаление людей, которых больше, чем выбранный.
+
      * @param humanh Человек, с которым можно сравнить.
      */
 
@@ -177,12 +180,13 @@ public class CollectionManager<T> {
 //        return Collections.max(humanCollection).getId() + 1;
 //    }
 
+
     /**
      * Сохраняет коллекцию в файл.
      */
     public void saveCollection() {
-            fileManager.writeCollection(humanCollection);
-            lastSaveTime = ZonedDateTime.now();
+        fileManager.writeCollection(humanCollection);
+        lastSaveTime = ZonedDateTime.now();
     }
 
     /**
@@ -190,6 +194,7 @@ public class CollectionManager<T> {
      */
 
     public double getAverageOfMin() {
+
     double averageOfMin = 0;
     int n = 0;
     for (HumanBeing humanh : humanCollection) {
@@ -210,6 +215,7 @@ public class CollectionManager<T> {
     /**
      * Метод, чтобы получить коллекцию для пользователя.
      */
+
     public ArrayList<HumanBeing> getCollectionForUser(){
         human.sort();
         return (human.getAll());

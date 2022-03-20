@@ -10,12 +10,14 @@ import utility.Console;
 
 public class HelpCommand extends AbstractCommand {
     private CommandManager commandManager;
+
     public HelpCommand() {
         super("help", "вывести справку по доступным командам");
     }
 
     /**
      * Выполнение команды.
+     *
      * @return Статус выхода из команды.
      */
 

@@ -8,6 +8,7 @@ public enum WeaponType {
 
     /**
      * Генерирует список строковых значений enum'a.
+     *
      * @return Строка со всеми значениями перечисления, разделенными запятой.
      */
 
@@ -16,6 +17,6 @@ public enum WeaponType {
         for (WeaponType weaponType : values()) {
             nameList += weaponType.name() + ", ";
         }
-        return nameList.substring(0, nameList.length()-2);
+        return nameList.substring(0, nameList.length() - 2);
     }
 }
