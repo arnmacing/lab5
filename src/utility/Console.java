@@ -207,6 +207,7 @@ public class Console {
 
     public static void run(String scriptPath) {
         Console.println("Начало работы программы!");
+        Console.println("Для получения справочной информации, наберите в командной строке команду help. На экран выведется список основных команд.");
         while (true) {
             try {
                 try (Scanner userScanner = new Scanner(System.in)) {
