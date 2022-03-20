@@ -15,7 +15,7 @@ public class CollectionManager<T> {
     private ZonedDateTime lastInitTime;
     private ZonedDateTime lastSaveTime;
     private FileManager fileManager;
-    private Collection<HumanBeing> humanCollection;
+    private ArrayList<HumanBeing> humanCollection;
 
     public CollectionManager(FileManager fileManager) {
         this.human = null;
@@ -29,7 +29,7 @@ public class CollectionManager<T> {
      * Загружает коллекцию из файла.
      */
     private void loadCollection() {
-        //humanCollection = fileManager.readCollection();
+        humanCollection = fileManager.readCollection();
         lastInitTime = ZonedDateTime.now();
     }
 
@@ -185,7 +185,7 @@ public class CollectionManager<T> {
      * Сохраняет коллекцию в файл.
      */
     public void saveCollection() {
-        fileManager.writeCollection(humanCollection);
+        fileManager.writeCollection(human.getAll());
         lastSaveTime = ZonedDateTime.now();
     }
 
@@ -197,7 +197,7 @@ public class CollectionManager<T> {
 
         double averageOfMin = 0;
         int n = 0;
-        for (HumanBeing humanh : humanCollection) {
+        for (HumanBeing humanh : human.getAll()) {
             averageOfMin += humanh.getMinutesOfWaiting();
             n += 1;
         }
@@ -208,17 +208,19 @@ public class CollectionManager<T> {
 //     * Метод сортировки коллекции.
 //     */
 //
-//    public void sortCollection(){
-//        .sort(humanCollection);
-//    }
+    public void sortCollection(){
+        Collections.sort(humanCollection);
+    }
 
     /**
      * Метод, чтобы получить коллекцию для пользователя.
      */
 
     public ArrayList<HumanBeing> getCollectionForUser() {
-        human.sort();
-        return (human.getAll());
+//        humanCollection.sort();
+//        return (human.getAll());
+        sortCollection();
+        return(humanCollection);
     }
 }
 
