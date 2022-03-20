@@ -28,13 +28,11 @@ public class CommandManager {
     private Command removeAllByWeaponTypeCommand;
     private Command averageOfMinutesOfWaitingCommand;
     private Command filterStartsWithNameCommand;
-    // todo for what?
-    private Command serverExitCommand;
 
     public CommandManager(Command helpCommand, Command infoCommand, Command showCommand, Command addCommand, Command updateCommand,
                           Command removeByIDCommand, Command clearCommand, Command saveCommand, Command exitCommand, Command executeScriptCommand,
                           Command addIfMaxCommand, Command insertAtIndexCommand, Command removeGreaterCommand, Command removeAllByWeaponTypeCommand,
-                          Command averageOfMinutesOfWaitingCommand, Command filterStartsWithNameCommand, Command serverExitCommand) {
+                          Command averageOfMinutesOfWaitingCommand, Command filterStartsWithNameCommand) {
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.showCommand = showCommand;
@@ -51,7 +49,6 @@ public class CommandManager {
         this.averageOfMinutesOfWaitingCommand = averageOfMinutesOfWaitingCommand;
         this.insertAtIndexCommand = insertAtIndexCommand;
         this.filterStartsWithNameCommand = filterStartsWithNameCommand;
-        this.serverExitCommand = serverExitCommand;
 
         commands.add(helpCommand);
         commands.add(infoCommand);
@@ -69,7 +66,6 @@ public class CommandManager {
         commands.add(averageOfMinutesOfWaitingCommand);
         commands.add(insertAtIndexCommand);
         commands.add(filterStartsWithNameCommand);
-        commands.add(serverExitCommand);
     }
 
     public CommandManager(HelpCommand helpCommand, InfoCommand infoCommand, ShowCommand showCommand, AddCommand addCommand, UpdateElementCommand updateCommand, RemoveElementByIDCommand removeByIDCommand, ClearCommand clearCommand, SaveCommand saveCommand, ExecuteScriptCommand executeScriptCommand, ExitCommand exitCommand, InsertElementAtIndexCommand insertElementAtIndexCommand, AddElementIfMaxCommand insertAtIndexCommand, RemoveGreaterCommand removeGreaterCommand, RemoveAllByWeaponTypeCommand removeAllByWeaponTypeCommand, AverageOfMinutesCommand averageOfMinutesOfWaitingCommand, FilterStartsWithNameCommand filterStartsWithNameCommand) {
