@@ -52,7 +52,7 @@ public class UpdateElementCommand extends AbstractCommand {
             Car car = oldHuman.getCar();
 
 
-            collectionManager.removeFromCollection(oldHuman);
+            collectionManager.removeFromCollection(oldHuman.getId());
 
             if (humanAsker.askQuestion("Хотите изменить имя человека?")) name = humanAsker.askName();
             if (humanAsker.askQuestion("Хотите изменить координаты человека?"))
