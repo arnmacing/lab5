@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-import commands.Command;
+import commands.*;
 import exceptions.*;
 
 
@@ -203,6 +203,42 @@ public class Console {
 
     public static void println(Object toOut) {
         System.out.println(toOut);
+    }
+
+    public static void run(String scriptPath) {
+        Console.println("Начало работы программы!");
+        while (true) {
+            try {
+                try (Scanner userScanner = new Scanner(System.in)) {
+
+                    HumanAsker humanAsker = new HumanAsker(userScanner);
+                    FileManager fileManager = new FileManager(System.getenv(scriptPath));
+                    CollectionManager collectionManager = new CollectionManager(fileManager);
+                    CommandManager commandManager = new CommandManager(
+                        new HelpCommand(collectionManager),
+                        new InfoCommand(collectionManager),
+                        new ShowCommand(collectionManager),
+                        new AddCommand(collectionManager, humanAsker),
+                        new UpdateElementCommand(collectionManager, humanAsker),
+                        new RemoveElementByIDCommand(collectionManager),
+                        new ClearCommand(collectionManager),
+                        new SaveCommand(collectionManager),
+                        new ExecuteScriptCommand(),
+                        new ExitCommand(),
+                        new InsertElementAtIndexCommand(collectionManager, humanAsker),
+                        new AddElementIfMaxCommand(collectionManager, humanAsker),
+                        new RemoveGreaterCommand(collectionManager, humanAsker),
+                        new RemoveAllByWeaponTypeCommand(collectionManager),
+                        new AverageOfMinutesCommand(collectionManager),
+                        new FilterStartsWithNameCommand(collectionManager));
+                    Console console = new Console(commandManager, userScanner, humanAsker);
+                    console.interactiveMode();
+                }
+            } catch (ExitException e) {
+                Console.printerror(e.getMessage());
+                break;
+            }
+        }
     }
 }
 
