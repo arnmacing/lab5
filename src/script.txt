@@ -2,6 +2,16 @@ help
 info
 show
 add
+Alex
+420
+240
+Yes
+no
+90
+Morgenshtern - ICE
+3
+shotgun
+Tesla Model X
 update
 removeById
 clear

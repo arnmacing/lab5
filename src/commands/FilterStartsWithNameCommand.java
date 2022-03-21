@@ -37,7 +37,7 @@ public class FilterStartsWithNameCommand extends AbstractCommand {
             ArrayList<HumanBeing> arrayColection = collectionManager.getCollection();
             for (HumanBeing human : arrayColection) {
                 if (human.getName().startsWith(argument)) {
-                    collectionManager.removeFromCollection(human.getId());
+                    collectionManager.removeFromCollection(human);
                     isDeleted = true;
                     collectionManager.saveCollection();
                 }

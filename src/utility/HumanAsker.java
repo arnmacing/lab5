@@ -384,7 +384,7 @@ public class HumanAsker {
         Car car = null;
         while (true) {
             try {
-                Console.println("Введите название машины");
+                Console.println("Введите название машины:");
                 Console.println(PS2);
                 name = userScanner.nextLine().trim();
                 if (fileMode) Console.println(name);
