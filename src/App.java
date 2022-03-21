@@ -14,7 +14,12 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Console.run("PATH_FILE");
+        Console.run();
     }
 
+    //todo script
+    //todo check script recursion
+    //todo exit ebaniy
+    //todo date&time formatter
+    //todo car getname work correctly
 }

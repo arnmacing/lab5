@@ -41,7 +41,6 @@ public class InfoCommand extends AbstractCommand {
 
             Console.println("Сведения о коллекции:");
             Console.println(" Тип: " + collectionManager.collectionType());
-            //todo collectionsize
             Console.println(" Количество элементов: " + collectionManager.collectionSize());
             Console.println(" Дата последнего сохранения: " + lastSaveTimeString);
             Console.println(" Дата последней инициализации: " + lastInitTimeString);

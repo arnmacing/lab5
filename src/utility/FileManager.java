@@ -16,7 +16,7 @@ import com.google.gson.JsonParseException;
 
 public class FileManager {
     private final String filePath;
-    public static java.util.Date lastInit;
+    //public static java.util.Date lastInit;
 
     /**
      * Поле объект Gson
@@ -35,12 +35,12 @@ public class FileManager {
      */
 
     public ArrayList<HumanBeing> readCollection() {
-        if (filePath != null) {
-            try (Scanner collectionFileScanner = new Scanner(new File(filePath))) {
+        if (System.getenv("LABA") != null) {
+            try (Scanner collectionFileScanner = new Scanner(new File(System.getenv("LABA")))) {
                 ArrayList<HumanBeing> collection;
-                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {
-                }.getType();
-                collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
+                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
+                collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), ArrayList.class);
+                //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType);
                 Console.println("Коллекция успешна загружена!");
                 return collection;
             } catch (FileNotFoundException exception) {
@@ -56,9 +56,9 @@ public class FileManager {
         return new ArrayList<HumanBeing>();
     }
 
-    public void lastInit() {
-        lastInit = new Date();
-    }
+//    public void lastInit() {
+//        lastInit = new Date();
+//    }
 
     /**
      * Функция записи в файл.
@@ -67,8 +67,8 @@ public class FileManager {
      */
 
     public void writeCollection(Collection<HumanBeing> data) {
-        if (System.getenv().get(filePath) != null) {
-            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv().get(filePath)))) {
+        if (System.getenv("LABA") != null) {
+            try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv("LABA")))) {
                 collectionFileWriter.write(GSON.toJson(data));
                 collectionFileWriter.close();
                 Console.println("Коллекция успешна сохранена в файл!");
