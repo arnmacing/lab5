@@ -10,7 +10,6 @@ import java.util.Scanner;
 import commands.*;
 import exceptions.*;
 
-
 /**
  * Управление вводом команд.
  */
@@ -214,7 +213,6 @@ public class Console {
         while (true) {
             try {
                 try (Scanner userScanner = new Scanner(System.in)) {
-
                     HumanAsker humanAsker = new HumanAsker(userScanner);
                     FileManager fileManager = new FileManager(System.getenv(scriptPath));
                     CollectionManager collectionManager = new CollectionManager(fileManager);
