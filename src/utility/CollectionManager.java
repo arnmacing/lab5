@@ -75,7 +75,7 @@ public class CollectionManager<T> {
      */
     public HumanBeing getById(int id) {
         for (HumanBeing human : dao.getAll()) {
-            if (human.equals(id)) return human;
+            if (human.getId() == id) return human;
         }
         return null;
     }
