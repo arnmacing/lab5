@@ -1,10 +1,8 @@
 package dao;
-// ты кто
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import sourse.*;
+import utility.FileManager;
 
-//todo update collection manager)))))0
 import javax.json.*;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -101,6 +99,7 @@ public class DAOHumanBeign implements DAO {
     public ArrayList<HumanBeing> getAll() {
         ArrayList<HumanBeing> outputCollection = new ArrayList<>();
         outputCollection.addAll(humanCollection);
+        Collections.sort(outputCollection);
         return outputCollection;
     }
 
@@ -122,13 +121,20 @@ public class DAOHumanBeign implements DAO {
         Collections.sort(humanCollection);
     }
 
-    //todo это что?
     public DAOHumanBeign() {
         initDateTime = ZonedDateTime.now();
     }
 
     public ZonedDateTime getInitDateTime() {
         return initDateTime;
+    }
+
+    /**
+     * Метод для загрузки коллекции
+     */
+
+    public void loadCollection(FileManager fileManager) {
+        humanCollection = fileManager.readCollection();
     }
 
 }

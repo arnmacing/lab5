@@ -37,7 +37,7 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
 
         for (HumanBeing human : collection) {
             if (human.getWeaponType() == WeaponType.valueOf(argument)) {
-                collectionManager.removeFromCollection(human.getId());
+                collectionManager.removeFromCollection(human);
                 collectionManager.saveCollection();
             }
             //if (human.getId() == Integer.parseInt(argument)) collectionManager.removeFromCollection(human);
