@@ -207,12 +207,12 @@ public class Console {
         System.out.println(toOut);
     }
 
-    public static void run() {
+    public static void run(String enVar) {
         Console.println("Начало работы программы!");
         Console.println("Для получения справочной информации, наберите в командной строке команду 'help'. На экран выведется список основных команд.");
         while (true) {
             try {
-            Console.body();
+            Console.body(enVar);
             } catch (ExitException e) {
                 //todo exit out
                 Console.printerror("Завершение программы...");
@@ -221,11 +221,11 @@ public class Console {
         }
     }
 
-    public static void body() {
+    public static void body(String enVar) {
         try {
             try (Scanner userScanner = new Scanner(System.in)) {
                 HumanAsker humanAsker = new HumanAsker(userScanner);
-                FileManager fileManager = new FileManager(System.getenv("LABA"));
+                FileManager fileManager = new FileManager(System.getenv(enVar));
                 CollectionManager collectionManager = new CollectionManager(fileManager);
                 CommandManager commandManager = new CommandManager(
                         new HelpCommand(collectionManager),

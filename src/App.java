@@ -14,12 +14,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        Console.run();
+        Console.run("LABA");
     }
-
-    //todo script
-    //todo check script recursion
+    
     //todo exit ebaniy
     //todo date&time formatter
-    //todo car getname work correctly
+
 }
