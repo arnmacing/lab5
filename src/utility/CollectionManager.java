@@ -2,9 +2,13 @@ package utility;
 
 import dao.DAOHumanBeign;
 import sourse.HumanBeing;
+
+import javax.naming.Name;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Optional;
 
 public class CollectionManager<T> {
     DAOHumanBeign dao = new DAOHumanBeign();
@@ -18,6 +22,7 @@ public class CollectionManager<T> {
         this.fileManager = fileManager;
         loadCollection();
     }
+
     /**
      * Загружает коллекцию из файла.
      */
@@ -39,36 +44,42 @@ public class CollectionManager<T> {
         }
         return Collections.min(dao.getAll());
     }
+
     /**
      * @return Коллекция.
      */
     public ArrayList<HumanBeing> getCollection() {
         return dao.getAll();
     }
+
     /**
      * @return Время последней инициализации или null, если инициализации не было.
      */
     public ZonedDateTime getLastInitTime() {
         return lastInitTime;
     }
+
     /**
      * @return Время последнего сохранения или null, если сохранения не было.
      */
     public ZonedDateTime getLastSaveTime() {
         return lastSaveTime;
     }
+
     /**
      * @return Тип коллекции.
      */
     public String collectionType() {
         return dao.getAll().getClass().getName();
     }
+
     /**
      * @return Размер коллекции.
      */
     public int collectionSize() {
         return dao.getAll().size();
     }
+
     /**
      * @param id ID человека.
      * @return Человек по его ID или null, если человек не найден.
@@ -79,6 +90,7 @@ public class CollectionManager<T> {
         }
         return null;
     }
+
     /**
      * @param humanToFind Найти человека, чья ценность будет найдена.
      * @return Человека по его значению или null, если человек не найден.
@@ -89,6 +101,7 @@ public class CollectionManager<T> {
         }
         return null;
     }
+
     /**
      * @return Первый элемент коллекции или null, если коллекция пуста.
      */
@@ -96,6 +109,7 @@ public class CollectionManager<T> {
         if (dao.getAll().isEmpty()) return null;
         return dao.getAll().get(0);
     }
+
     /**
      * @return Последний элемент коллекции или null, если коллекция пуста.
      */
@@ -111,12 +125,51 @@ public class CollectionManager<T> {
     public void addToCollection(HumanBeing human) {
         dao.create(human);
     }
+
+    /**
+     * Добавление элемента, если он является максимальным по скорости удара.
+     *
+     * @param humanBeing
+     */
+
+    public void addMaxToCollection(HumanBeing humanBeing) {
+        Optional<HumanBeing> max = null;
+        try {
+            max = getCollection().stream().max(Comparator.comparing(obj -> obj.getImpactSpeed()));
+        } catch (NullPointerException e) {
+            addToCollection(humanBeing);
+            System.out.println("Это будет первым элементом в нашей коллекции.");
+        } finally {
+            if (max.get().getImpactSpeed() < humanBeing.getImpactSpeed()) {
+                addToCollection(humanBeing);
+
+
+            }
+        }
+    }
+
     /**
      * Удаление человека из коллекции.
      */
     public void removeFromCollection(HumanBeing human) {
         dao.delete(human.getId());
     }
+
+    /*  /**
+     * @param weaponToFilter Weapon to filter by.
+     * @return Information about valid marines or empty string, if there's no such marines.
+     */
+ /*   public String nameFilteredInfo(HumanBeing nameToFilter) {
+        String info = "";
+        for (HumanBeing human : humanBeing) {
+            if (human.getName().equals(nameToFilter)) {
+                info += human + "\n\n";
+            }
+        }
+        return info.trim();
+    }
+*/
+
     /**
      * Очистка колекции.
      */
@@ -150,6 +203,7 @@ public class CollectionManager<T> {
         if (dao.getAll().isEmpty()) return 1;
         return Collections.max(dao.getAll()).getId() + 1;
     }
+
     /**
      * Сохраняет коллекцию в файл.
      */

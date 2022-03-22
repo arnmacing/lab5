@@ -45,7 +45,7 @@ public class AddElementIfMaxCommand extends AbstractCommand {
 
             );
             if (collectionManager.collectionSize() == 0 || collectionManager.getMax().getImpactSpeed() < humanToAdd.getImpactSpeed()) {
-                collectionManager.addToCollection(humanToAdd);
+                collectionManager.addMaxToCollection(humanToAdd);
                 Console.println("Человек успешно добавлен!");
                 return true;
             } else Console.printerror("Значение меньше, чем значение наибольшего человека!");

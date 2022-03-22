@@ -105,7 +105,7 @@ public class Console {
             case "average_of_minutes_of_waiting":
                 if (!commandManager.averageOfMinutesOfWaiting(userCommand[1])) return 1;
                 break;
-            case "filter_starts_with_name":
+            case "remove_starts_with_name":
                 if (!commandManager.filterStartsWithName(userCommand[1])) return 1;
                 break;
             case "exit":
@@ -243,7 +243,7 @@ public class Console {
                         new RemoveAllByWeaponTypeCommand(collectionManager),
                         new AverageOfMinutesCommand(collectionManager),
                         new InsertElementAtIndexCommand(collectionManager, humanAsker),
-                        new FilterStartsWithNameCommand(collectionManager)
+                        new RemoveStartsWithNameCommand(collectionManager)
                 );
                 Console console = new Console(commandManager, userScanner, humanAsker);
                 console.interactiveMode();
