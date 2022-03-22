@@ -1,7 +1,9 @@
 package commands;
 
 import java.time.ZonedDateTime;
+import java.util.NoSuchElementException;
 
+import exceptions.ExitException;
 import sourse.HumanBeing;
 import exceptions.IncorrectInputInScriptException;
 import exceptions.WrongAmountOfElementsException;

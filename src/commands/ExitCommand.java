@@ -1,6 +1,7 @@
 package commands;
 
 
+import exceptions.ExitException;
 import exceptions.WrongAmountOfElementsException;
 import utility.Console;
 

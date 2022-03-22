@@ -70,10 +70,12 @@ public class HumanAsker {
                 if (fileMode) Console.println(name);
                 if (name.equals("")) throw new MustBeNotEmptyException(); //ошибка пустого ввода
                 break;
-            } catch (NoSuchElementException exception) { //не найдено
-                Console.printerror("Имя не распознано!");
-                if (fileMode) throw new IncorrectInputInScriptException();
-            } catch (MustBeNotEmptyException exception) {
+            }
+//            catch (NoSuchElementException exception) { //не найдено
+//                Console.printerror("Имя не распознано!");
+//                if (fileMode) throw new IncorrectInputInScriptException();
+//            }
+            catch (MustBeNotEmptyException exception) {
                 Console.printerror("Имя не может быть пустым!");
                 if (fileMode) throw new IncorrectInputInScriptException();
             } catch (IllegalStateException exception) {
