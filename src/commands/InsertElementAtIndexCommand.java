@@ -55,9 +55,10 @@ public class InsertElementAtIndexCommand extends AbstractCommand {
             Console.println("Использование: '" + getName() + "'");
         } catch (NumberFormatException | IncorrectInputInScriptException exception) {
             Console.printerror("Индекс должен быть представлен числом!");
+        } catch (IndexOutOfBoundsException exception) {
+            Console.printerror("Такой позиции не существует! Введите число меньше.");
         }
         return false;
     }
-
 }
 
