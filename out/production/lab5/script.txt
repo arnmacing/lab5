@@ -1,0 +1,14 @@
+add
+Alex
+420
+240
+Yes
+no
+90
+Morgenshtern - ICE
+3
+shotgun
+Tesla Model X
+execute_script C:\Users\Irina\Documents\lab5sgsoul\src\script.txt
+show
+info
