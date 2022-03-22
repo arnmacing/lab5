@@ -29,7 +29,7 @@ public class RemoveGreaterCommand extends AbstractCommand {
     @Override
     public boolean execute(String argument) {
         try {
-            if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
+            if (argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
             HumanBeing humanToFind = new HumanBeing(
                     Math.toIntExact(collectionManager.generateNextId()),
