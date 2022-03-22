@@ -3,7 +3,6 @@ package commands;
 import exceptions.CollectionIsEmptyException;
 import exceptions.WrongAmountOfElementsException;
 import sourse.HumanBeing;
-import sourse.WeaponType;
 import utility.CollectionManager;
 import utility.Console;
 
@@ -11,13 +10,13 @@ import java.util.ArrayList;
 
 
 /**
- * Команда 'filter_starts_with_name name'. Выводит элементы, значение поля name которых начинается с заданной подстроки.
+ * Команда 'remove_starts_with_name name'. Удаляет элементы, значение поля name которых начинается с заданной подстроки.
  */
-public class FilterStartsWithNameCommand extends AbstractCommand {
+public class RemoveStartsWithNameCommand extends AbstractCommand {
     private CollectionManager collectionManager;
 
-    public FilterStartsWithNameCommand(CollectionManager collectionManager) {
-        super("filter_starts_with_name name", "вывести элементы, значение поля name которых начинается с заданной подстроки");
+    public RemoveStartsWithNameCommand(CollectionManager collectionManager) {
+        super("remove_starts_with_name name", "Удалить элементы, значение поля name которых начинается с заданной подстроки");
         this.collectionManager = collectionManager;
     }
 

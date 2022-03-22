@@ -27,7 +27,7 @@ public class CommandManager {
     private Command removeGreaterCommand;
     private Command removeAllByWeaponTypeCommand;
     private Command averageOfMinutesOfWaitingCommand;
-    private Command filterStartsWithNameCommand;
+    private Command removeStartsWithNameCommand;
 
     public CommandManager(Command helpCommand,
                           Command infoCommand,
@@ -44,7 +44,7 @@ public class CommandManager {
                           Command removeAllByWeaponTypeCommand,
                           Command averageOfMinutesOfWaitingCommand,
                           Command insertAtIndexCommand,
-                          Command filterStartsWithNameCommand) {
+                          Command removeStartsWithNameCommand) {
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.showCommand = showCommand;
@@ -60,7 +60,7 @@ public class CommandManager {
         this.removeAllByWeaponTypeCommand = removeAllByWeaponTypeCommand;
         this.averageOfMinutesOfWaitingCommand = averageOfMinutesOfWaitingCommand;
         this.insertAtIndexCommand = insertAtIndexCommand;
-        this.filterStartsWithNameCommand = filterStartsWithNameCommand;
+        this.removeStartsWithNameCommand = removeStartsWithNameCommand;
 
         commands.add(helpCommand);
         commands.add(infoCommand);
@@ -77,7 +77,7 @@ public class CommandManager {
         commands.add(removeAllByWeaponTypeCommand);
         commands.add(averageOfMinutesOfWaitingCommand);
         commands.add(insertAtIndexCommand);
-        commands.add(filterStartsWithNameCommand);
+        commands.add(removeStartsWithNameCommand);
     }
 
 
@@ -181,7 +181,7 @@ public class CommandManager {
     }
 
     public boolean filterStartsWithName(String argument) {
-        return filterStartsWithNameCommand.execute(argument);
+        return removeStartsWithNameCommand.execute(argument);
     }
 
     public Command getCommandByName(String name) {
