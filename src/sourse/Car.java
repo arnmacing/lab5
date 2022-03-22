@@ -24,5 +24,13 @@ public class Car {
     public boolean checkCool() {
         return cool;
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "name='" + name + '\'' +
+                ", cool=" + cool +
+                '}';
+    }
 }
 

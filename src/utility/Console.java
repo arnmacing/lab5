@@ -51,7 +51,7 @@ public class Console {
     /**
      * Запуск команды.
      */
-    /* //todo
+    /* //todo launch command
     public int launchCommand(String[] userCommand) throws CommandNotFoundException {
         Command command = commandManager.getCommandByName(userCommand[0]);
         if (command == null) throw new CommandNotFoundException();
@@ -207,40 +207,49 @@ public class Console {
         System.out.println(toOut);
     }
 
-    public static void run(String scriptPath) {
+    public static void run(String enVar) {
         Console.println("Начало работы программы!");
         Console.println("Для получения справочной информации, наберите в командной строке команду 'help'. На экран выведется список основных команд.");
         while (true) {
             try {
-                try (Scanner userScanner = new Scanner(System.in)) {
-                    HumanAsker humanAsker = new HumanAsker(userScanner);
-                    FileManager fileManager = new FileManager(System.getenv(scriptPath));
-                    CollectionManager collectionManager = new CollectionManager(fileManager);
-                    CommandManager commandManager = new CommandManager(
-                            new HelpCommand(collectionManager),
-                            new InfoCommand(collectionManager),
-                            new ShowCommand(collectionManager),
-                            new AddCommand(collectionManager, humanAsker),
-                            new UpdateElementCommand(collectionManager, humanAsker),
-                            new RemoveElementByIDCommand(collectionManager),
-                            new ClearCommand(collectionManager),
-                            new SaveCommand(collectionManager),
-                            new ExitCommand(),
-                            new ExecuteScriptCommand(),
-                            new AddElementIfMaxCommand(collectionManager, humanAsker),
-                            new RemoveGreaterCommand(collectionManager, humanAsker),
-                            new RemoveAllByWeaponTypeCommand(collectionManager),
-                            new AverageOfMinutesCommand(collectionManager),
-                            new InsertElementAtIndexCommand(collectionManager, humanAsker),
-                            new FilterStartsWithNameCommand(collectionManager)
-                    );
-                    Console console = new Console(commandManager, userScanner, humanAsker);
-                    console.interactiveMode();
-                }
+            Console.body(enVar);
             } catch (ExitException e) {
-                Console.printerror(e.getMessage());
-                break;
+                //todo exit out
+                Console.printerror("Завершение программы...");
             }
+            break;
+        }
+    }
+
+    public static void body(String enVar) {
+        try {
+            try (Scanner userScanner = new Scanner(System.in)) {
+                HumanAsker humanAsker = new HumanAsker(userScanner);
+                FileManager fileManager = new FileManager(System.getenv(enVar));
+                CollectionManager collectionManager = new CollectionManager(fileManager);
+                CommandManager commandManager = new CommandManager(
+                        new HelpCommand(collectionManager),
+                        new InfoCommand(collectionManager),
+                        new ShowCommand(collectionManager),
+                        new AddCommand(collectionManager, humanAsker),
+                        new UpdateElementCommand(collectionManager, humanAsker),
+                        new RemoveElementByIDCommand(collectionManager),
+                        new ClearCommand(collectionManager),
+                        new SaveCommand(collectionManager),
+                        new ExitCommand(),
+                        new ExecuteScriptCommand(),
+                        new AddElementIfMaxCommand(collectionManager, humanAsker),
+                        new RemoveGreaterCommand(collectionManager, humanAsker),
+                        new RemoveAllByWeaponTypeCommand(collectionManager),
+                        new AverageOfMinutesCommand(collectionManager),
+                        new InsertElementAtIndexCommand(collectionManager, humanAsker),
+                        new FilterStartsWithNameCommand(collectionManager)
+                );
+                Console console = new Console(commandManager, userScanner, humanAsker);
+                console.interactiveMode();
+            }
+        } catch (NoSuchElementException e) {
+            throw new ExitException(e.getMessage());
         }
     }
 }
