@@ -1,5 +1,3 @@
-info
-show
 add
 Alex
 420
@@ -11,6 +9,6 @@ Morgenshtern - ICE
 3
 shotgun
 Tesla Model X
-update
-removeById
-clear
+execute_script C:\Users\Irina\Documents\lab5sgsoul\src\script.txt
+show
+info
