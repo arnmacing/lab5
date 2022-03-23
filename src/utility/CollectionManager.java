@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Optional;
 
-public class CollectionManager<T> {
+public class CollectionManager {
     DAOHumanBeign dao = new DAOHumanBeign();
     private ZonedDateTime lastInitTime;
     private ZonedDateTime lastSaveTime;
