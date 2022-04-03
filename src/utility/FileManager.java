@@ -103,7 +103,7 @@ public class FileManager {
                 collection = GSON.fromJson(collectionFileScanner.nextLine(), ArrayList.class);
                 //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType); //это точно всё в комменты?
                 //CollectionManager collectionManager = GSON.fromJson(collectionFileScanner.nextLine().trim(), CollectionManager.class);
-                Console.println("Коллекция успешнDA загружена!");
+                Console.println("Коллекция успешно загружена!");
                 return collection; // если раскомментировать 103 строку то всё ок
             } catch (FileNotFoundException exception) {
                 Console.printerror("Загрузочный файл не найден!");
