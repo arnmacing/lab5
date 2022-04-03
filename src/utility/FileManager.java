@@ -8,6 +8,7 @@ import sourse.HumanBeing;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
 
@@ -42,9 +43,9 @@ public class FileManager {
             for (int i = 0; i < jsonArray.size(); i++) {
                 JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
 
-               // HumanBeing newHuman = context.deserialize(jsonObject, HumanBeing.class); я думала можно наебать систему
+                HumanBeing newHuman = context.deserialize(jsonObject, HumanBeing.class);
 
-                int id = jsonObject.get("id").getAsInt();
+                /*int id = jsonObject.get("id").getAsInt();
                 String name = jsonObject.get("name").getAsString();
 
                 JsonObject coordinates = jsonObject.get("coordinates").getAsJsonObject();
@@ -75,7 +76,7 @@ public class FileManager {
                         minutesOfWaiting,
                         newWeaponType,
                         newCar
-                );
+                );*/
 
                 newCollectionManager.addToCollection(newHuman);
                 //list.add(humanBeing); всё тот же вопрос зачем нам лист
@@ -98,11 +99,11 @@ public class FileManager {
         if (System.getenv("LABA") != null) {
             try (Scanner collectionFileScanner = new Scanner(new File(System.getenv("LABA")))) {
                 ArrayList<HumanBeing> collection;
-                Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-                //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), ArrayList.class);
-                //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType); это точно всё в комменты?
-                CollectionManager collectionManager = GSON.fromJson(collectionFileScanner.nextLine().trim(), CollectionManager.class);
-                Console.println("Коллекция успешна загружена!");
+                //Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
+                collection = GSON.fromJson(collectionFileScanner.nextLine(), ArrayList.class);
+                //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType); //это точно всё в комменты?
+                //CollectionManager collectionManager = GSON.fromJson(collectionFileScanner.nextLine().trim(), CollectionManager.class);
+                Console.println("Коллекция успешнDA загружена!");
                 return collection; // если раскомментировать 103 строку то всё ок
             } catch (FileNotFoundException exception) {
                 Console.printerror("Загрузочный файл не найден!");
