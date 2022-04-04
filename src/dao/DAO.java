@@ -5,6 +5,7 @@ import utility.HumanAsker;
 
 import javax.json.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public interface DAO {
     int create(HumanBeing human);
@@ -19,6 +20,6 @@ public interface DAO {
 
     HumanBeing get(int id);
 
-    ArrayList<HumanBeing> getAll();
+    List<HumanBeing> getAll();
 
 }

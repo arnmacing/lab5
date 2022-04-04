@@ -7,6 +7,7 @@ import utility.CollectionManager;
 import utility.Console;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -33,7 +34,7 @@ public class RemoveStartsWithNameCommand extends AbstractCommand {
         try {
             if (argument.isEmpty()) throw new WrongAmountOfElementsException();
             if (collectionManager.collectionSize() == 0) throw new CollectionIsEmptyException();
-            ArrayList<HumanBeing> arrayColection = collectionManager.getCollection();
+            List<HumanBeing> arrayColection = collectionManager.getCollection();
             for (HumanBeing human : arrayColection) {
                 if (human.getName().startsWith(argument)) {
                     collectionManager.removeFromCollection(human);

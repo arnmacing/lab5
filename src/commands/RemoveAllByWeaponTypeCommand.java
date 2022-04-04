@@ -10,6 +10,7 @@ import utility.CollectionManager;
 import utility.Console;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Команда 'remove_all_by_weapon_type weaponType'. Удаляет из коллекции все элементы, значение поля weaponType которого эквивалентно заданному.
@@ -33,7 +34,7 @@ public class RemoveAllByWeaponTypeCommand extends AbstractCommand {
     public boolean execute(String argument) {
 
 
-        ArrayList<HumanBeing> collection = collectionManager.getCollection(); // пол
+        List<HumanBeing> collection = collectionManager.getCollection(); // пол
 
         for (HumanBeing human : collection) {
             if (human.getWeaponType() == WeaponType.valueOf(argument)) {

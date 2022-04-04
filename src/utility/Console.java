@@ -212,7 +212,7 @@ public class Console {
         Console.println("Для получения справочной информации, наберите в командной строке команду 'help'. На экран выведется список основных команд.");
         while (true) {
             try {
-            Console.body(enVar);
+                Console.body(enVar);
             } catch (ExitException e) {
                 //todo exit out
                 Console.printerror("Завершение программы...");
@@ -223,31 +223,13 @@ public class Console {
 
     public static void body(String enVar) {
         try {
-            try (Scanner userScanner = new Scanner(System.in)) {
-                HumanAsker humanAsker = new HumanAsker(userScanner);
-                FileManager fileManager = new FileManager(System.getenv(enVar));
-                CollectionManager collectionManager = new CollectionManager(fileManager);
-                CommandManager commandManager = new CommandManager(
-                        new HelpCommand(collectionManager),
-                        new InfoCommand(collectionManager),
-                        new ShowCommand(collectionManager),
-                        new AddCommand(collectionManager, humanAsker),
-                        new UpdateElementCommand(collectionManager, humanAsker),
-                        new RemoveElementByIDCommand(collectionManager),
-                        new ClearCommand(collectionManager),
-                        new SaveCommand(collectionManager),
-                        new ExitCommand(),
-                        new ExecuteScriptCommand(),
-                        new AddElementIfMaxCommand(collectionManager, humanAsker),
-                        new RemoveGreaterCommand(collectionManager, humanAsker),
-                        new RemoveAllByWeaponTypeCommand(collectionManager),
-                        new AverageOfMinutesCommand(collectionManager),
-                        new InsertElementAtIndexCommand(collectionManager, humanAsker),
-                        new RemoveStartsWithNameCommand(collectionManager)
-                );
-                Console console = new Console(commandManager, userScanner, humanAsker);
-                console.interactiveMode();
-            }
+            Scanner userScanner = new Scanner(System.in);
+            HumanAsker humanAsker = new HumanAsker(userScanner);
+            FileManager fileManager = new FileManager(System.getenv(enVar));
+            CollectionManager collectionManager = new CollectionManager(fileManager);
+            CommandManager commandManager = new CommandManager(new HelpCommand(collectionManager), new InfoCommand(collectionManager), new ShowCommand(collectionManager), new AddCommand(collectionManager, humanAsker), new UpdateElementCommand(collectionManager, humanAsker), new RemoveElementByIDCommand(collectionManager), new ClearCommand(collectionManager), new SaveCommand(collectionManager), new ExitCommand(), new ExecuteScriptCommand(), new AddElementIfMaxCommand(collectionManager, humanAsker), new RemoveGreaterCommand(collectionManager, humanAsker), new RemoveAllByWeaponTypeCommand(collectionManager), new AverageOfMinutesCommand(collectionManager), new InsertElementAtIndexCommand(collectionManager, humanAsker), new RemoveStartsWithNameCommand(collectionManager));
+            Console console = new Console(commandManager, userScanner, humanAsker);
+            console.interactiveMode();
         } catch (NoSuchElementException e) {
             throw new ExitException(e.getMessage());
         }
