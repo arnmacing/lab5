@@ -1,11 +1,14 @@
 package utility;
 
 import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import sourse.Car;
 import sourse.Coordinates;
 import sourse.HumanBeing;
 
 import java.io.*;
+import java.lang.reflect.GenericDeclaration;
 import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -30,60 +33,19 @@ public class FileManager {
      */
 
     private final Gson GSON = new GsonBuilder()
-            .registerTypeAdapter(CollectionManager.class, new CollectionManagerJsonDeserializer())
+            .registerTypeAdapter(ZonedDateTime.class, new TypeAdapter<ZonedDateTime>() {
+                @Override
+                public void write(JsonWriter out, ZonedDateTime value) throws IOException {
+                    out.value(value.toString());
+                }
+
+                @Override
+                public ZonedDateTime read(JsonReader in) throws IOException {
+                    return ZonedDateTime.parse(in.nextString());
+                }
+            })
+            .enableComplexMapKeySerialization()
             .create();
-
-    private static class CollectionManagerJsonDeserializer implements JsonDeserializer<CollectionManager> {
-        @Override
-        public CollectionManager deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            CollectionManager newCollectionManager = new CollectionManager(new FileManager("LABA"));
-
-            JsonArray jsonArray = json.getAsJsonArray();
-            //List<HumanBeing> list = new ArrayList<>(); зачем мы создаём лист
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
-
-                HumanBeing newHuman = context.deserialize(jsonObject, HumanBeing.class);
-
-                /*int id = jsonObject.get("id").getAsInt();
-                String name = jsonObject.get("name").getAsString();
-
-                JsonObject coordinates = jsonObject.get("coordinates").getAsJsonObject();
-                Coordinates newCoordinates = context.deserialize(coordinates, Coordinates.class);
-
-                JsonObject creationDate = jsonObject.get("creationDate").getAsJsonObject(); // тут может пойти по пизде всё
-                ZonedDateTime newCreationDate = context.deserialize(creationDate, ZonedDateTime.class); //  тут может пойти по пизде всё
-                boolean realHero = jsonObject.get("realHero").getAsBoolean();
-                boolean hasToothpick = jsonObject.get("hasToothpick").getAsBoolean();
-                Integer impactSpeed = jsonObject.get("impactSpeed").getAsInt();
-                String soundtrackName = jsonObject.get("soundtrackName").getAsString();
-                Float minutesOfWaiting = jsonObject.get("minutesOfWaiting").getAsFloat();
-                String weaponType = jsonObject.get("weaponType").getAsString();
-                WeaponType newWeaponType = WeaponType.valueOf(weaponType);
-
-                JsonObject car = jsonObject.get("car").getAsJsonObject();
-                Car newCar = context.deserialize(car, Car.class);
-                //context.deserialize(car, Car.class); зачем
-                HumanBeing newHuman = new HumanBeing(
-                        id ,
-                        name,
-                        newCoordinates,
-                        newCreationDate,
-                        realHero,
-                        hasToothpick,
-                        impactSpeed,
-                        soundtrackName,
-                        minutesOfWaiting,
-                        newWeaponType,
-                        newCar
-                );*/
-
-                newCollectionManager.addToCollection(newHuman);
-                //list.add(humanBeing); всё тот же вопрос зачем нам лист
-            }
-            return newCollectionManager;
-        }
-    }
 
     public FileManager(String fileName) {
         this.filePath = fileName;
@@ -98,12 +60,9 @@ public class FileManager {
     public ArrayList<HumanBeing> readCollection() {
         if (System.getenv("LABA") != null) {
             try (Scanner collectionFileScanner = new Scanner(new File(System.getenv("LABA")))) {
-                ArrayList<HumanBeing> collection;
-                //Type collectionType = new TypeToken<ArrayList<HumanBeing>>() {}.getType();
-                collection = GSON.fromJson(collectionFileScanner.nextLine(), ArrayList.class);
-                //collection = GSON.fromJson(collectionFileScanner.nextLine().trim(), collectionType); //это точно всё в комменты?
-                //CollectionManager collectionManager = GSON.fromJson(collectionFileScanner.nextLine().trim(), CollectionManager.class);
-                Console.println("Коллекция успешнDA загружена!");
+                ModelParse modelParse = GSON.fromJson(collectionFileScanner.nextLine(), ModelParse.class);
+                ArrayList<HumanBeing> collection = new ArrayList<>(modelParse.getHumanBeings());
+                Console.println("Коллекция успешно загружена!");
                 return collection; // если раскомментировать 103 строку то всё ок
             } catch (FileNotFoundException exception) {
                 Console.printerror("Загрузочный файл не найден!");
@@ -131,7 +90,8 @@ public class FileManager {
     public void writeCollection(Collection<HumanBeing> data) {
         if (System.getenv("LABA") != null) {
             try (FileWriter collectionFileWriter = new FileWriter(new File(System.getenv("LABA")))) {
-                collectionFileWriter.write(GSON.toJson(data));
+                ModelParse modelParse = new ModelParse((ArrayList<HumanBeing>) data);
+                collectionFileWriter.write(GSON.toJson(modelParse));
                 collectionFileWriter.close();
                 Console.println("Коллекция успешна сохранена в файл!");
             } catch (IOException exception) {

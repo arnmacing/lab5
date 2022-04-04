@@ -5,10 +5,7 @@ import sourse.HumanBeing;
 
 import javax.naming.Name;
 import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 
 public class CollectionManager {
     DAOHumanBeign dao = new DAOHumanBeign();
@@ -48,7 +45,7 @@ public class CollectionManager {
     /**
      * @return Коллекция.
      */
-    public ArrayList<HumanBeing> getCollection() {
+    public List<HumanBeing> getCollection() {
         return dao.getAll();
     }
 
@@ -238,7 +235,7 @@ public class CollectionManager {
      * Метод, чтобы получить коллекцию для пользователя.
      */
 
-    public ArrayList<HumanBeing> getCollectionForUser() {
+    public List<HumanBeing> getCollectionForUser() {
         sortCollection();
         return (dao.getAll());
     }

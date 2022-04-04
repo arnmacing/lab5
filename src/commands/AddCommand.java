@@ -35,8 +35,7 @@ public class AddCommand extends AbstractCommand {
     public boolean execute(String argument) {
         try {
             if (!argument.isEmpty()) throw new WrongAmountOfElementsException();
-            collectionManager.addToCollection(new HumanBeing(
-                    Math.toIntExact(collectionManager.generateNextId()),
+            HumanBeing humanBeing = new HumanBeing(Math.toIntExact(collectionManager.generateNextId()),
                     humanAsker.askName(),
                     humanAsker.askCoordinates(),
                     ZonedDateTime.now(),
@@ -46,8 +45,8 @@ public class AddCommand extends AbstractCommand {
                     humanAsker.askSoundtrackName(),
                     humanAsker.askMinutesOfWaiting(),
                     humanAsker.askWeaponType(),
-                    humanAsker.askCar()
-            ));
+                    humanAsker.askCar());
+            collectionManager.addToCollection(humanBeing);
             Console.println("Человек успешно добавлен!");
             return true;
         } catch (WrongAmountOfElementsException exception) {

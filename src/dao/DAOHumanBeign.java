@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -18,7 +19,7 @@ import java.util.Collections;
 public class DAOHumanBeign implements DAO {
     private ZonedDateTime initDateTime;
     private static int availableId = 1;
-    protected ArrayList<HumanBeing> humanCollection = new ArrayList<>();
+    protected List<HumanBeing> humanCollection = new ArrayList<>();
 
 
     /**
@@ -96,11 +97,8 @@ public class DAOHumanBeign implements DAO {
      */
 
     @Override
-    public ArrayList<HumanBeing> getAll() {
-        ArrayList<HumanBeing> outputCollection = new ArrayList<>();
-        outputCollection.addAll(humanCollection);
-        Collections.sort(outputCollection);
-        return outputCollection;
+    public List<HumanBeing> getAll() {
+        return humanCollection;
     }
 
     /**
@@ -112,7 +110,7 @@ public class DAOHumanBeign implements DAO {
         humanCollection.clear();
     }
 
-    /**
+    /**"main" java.lang.ClassCastException: java.util.LinkedHashMap cannot be cast to sourse.HumanBeing
      * Метод для сортировки коллекции
      */
 
